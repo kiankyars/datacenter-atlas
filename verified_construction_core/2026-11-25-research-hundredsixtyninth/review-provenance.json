@@ -1,0 +1,2305 @@
+{
+  "input_sha256": "fce9d6627a74e1a5e056d07a0e1f5c3b453a8dad4ba3df959cd771b09187aeb8",
+  "source_projections": {
+    "am169-statcan-quebec": {
+      "attribution": "Source: Statistics Canada, National Address Register, June 2026, catalogue 46-26-0002. Adapted from Statistics Canada. This does not constitute an endorsement by Statistics Canada.",
+      "bytes": 1665944959,
+      "capture_id": "am169-nar.zip",
+      "content_hash": "c87df8d39537b75146ab4b38b9b1ca1f820d72e0f74ee2b3722059851a564364",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/zip",
+      "extraction": {
+        "edition": "June 2026",
+        "license_url": "https://www.statcan.gc.ca/en/reference/licence",
+        "matched_records": {
+          "MTL-1": {
+            "address_id": "ac2ea48f-8bc6-4305-a066-be6b4296ff0d",
+            "building_representative_point": [
+              -73.635459,
+              45.508255
+            ],
+            "city": "Montréal",
+            "location_id": "8c597190-9b89-43d8-80af-78b8f048b6d7",
+            "number": "3195",
+            "source_members": [
+              "Addresses/Address_24_part_2.csv",
+              "Locations/Location_24_part_1.csv"
+            ],
+            "street": "CH Bedford"
+          },
+          "MTL-2": {
+            "address_id": "0c459323-f4e0-4ad4-8678-96c40c4cd908",
+            "building_representative_point": [
+              -73.832089,
+              45.459278
+            ],
+            "city": "Pointe-Claire",
+            "location_id": "80a07824-1b53-4972-8f41-09b7da160c07",
+            "number": "7300",
+            "source_members": [
+              "Addresses/Address_24_part_3.csv",
+              "Locations/Location_24_part_2.csv"
+            ],
+            "street": "AUT Transcanadienne"
+          },
+          "MTL-3": {
+            "address_id": "991743fd-1dd8-4e2d-a150-0139a443388a",
+            "building_representative_point": [
+              -74.019184,
+              45.784356
+            ],
+            "city": "Saint-Jérôme",
+            "location_id": "13813899-8828-4351-a85a-20a4ec2698c6",
+            "number": "500",
+            "source_members": [
+              "Addresses/Address_24_part_3.csv",
+              "Locations/Location_24_part_3.csv"
+            ],
+            "street": "BOUL Monseigneur-Dubois"
+          }
+        },
+        "method": "Join the Quebec Addresses and Locations files on the unique LOC_GUID. The building coordinates are BG_LONGITUDE and BG_LATITUDE in EPSG:4326. Per the user guide, the point can represent a building access point or driveway.",
+        "user_guide": "NARguide.pdf included in the official June archive. The BF_REPPOINT blockface fields were excluded."
+      },
+      "final_url": "https://www150.statcan.gc.ca/n1/pub/46-26-0002/2022001/202606.zip",
+      "http_status": 200,
+      "id": "am169-statcan-quebec",
+      "kind": "government_address_register",
+      "license": "Statistics Canada Open Licence Agreement, https://www.statcan.gc.ca/en/reference/licence",
+      "published_at": "2026-06-26",
+      "publisher": "Statistics Canada",
+      "raw_capture_file": "local_data/research-2026-11-25-americas-169/nar.zip",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:48:56.333335+00:00",
+      "source_family": "Statistics Canada",
+      "source_url": "https://www150.statcan.gc.ca/n1/pub/46-26-0002/2022001/202606.zip",
+      "summary": "The register assigns separate building-representative coordinates to the exact Montréal, Pointe-Claire and Saint-Jérôme civic addresses identified by the issuer.",
+      "title": "Statistics Canada National Address Register, June 2026, three Québec facility addresses"
+    },
+    "am169-whitefiber-mtl1": {
+      "attribution": "WhiteFiber, Inc.",
+      "bytes": 171017,
+      "capture_id": "am169-facility-1.html",
+      "content_hash": "5dc4ceadb6d6d30dffce39e3b244d3854e62ab3f5cf0c57fcf6a014446d5ca2e",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "facility": "MTL-1",
+        "scope": "Facility identity and operator service description. This page gives no date of physical observation."
+      },
+      "final_url": "https://www.whitefiber.com/mtl-1",
+      "http_status": 200,
+      "id": "am169-whitefiber-mtl1",
+      "kind": "company_facility_page",
+      "license": "Issuer terms. Attributed facility facts only.",
+      "published_at": null,
+      "publisher": "WhiteFiber, Inc.",
+      "raw_capture_file": "local_data/research-2026-11-25-americas-169/facility-1.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:45:40.701590+00:00",
+      "source_family": "WhiteFiber, Inc.",
+      "source_url": "https://www.whitefiber.com/mtl-1",
+      "summary": "WhiteFiber describes MTL-1 as a facility hosting high-performance and other computing workloads and identifies its connection to the separately named MTL-3 facility.",
+      "title": "WhiteFiber MTL-1 facility specifications"
+    },
+    "am169-whitefiber-mtl3": {
+      "attribution": "WhiteFiber, Inc.",
+      "bytes": 163785,
+      "capture_id": "am169-facility-3.html",
+      "content_hash": "0c797c353ee510c9be788889df3ef51656ae61910b9bc71d6393534f0eae1bc4",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "facility": "MTL-3",
+        "scope": "Project identity and customer-specific service description. The issuer’s dated quarterly filing records revenue and service."
+      },
+      "final_url": "https://www.whitefiber.com/mtl-3",
+      "http_status": 200,
+      "id": "am169-whitefiber-mtl3",
+      "kind": "company_facility_page",
+      "license": "Issuer terms. Attributed facility facts only.",
+      "published_at": null,
+      "publisher": "WhiteFiber, Inc.",
+      "raw_capture_file": "local_data/research-2026-11-25-americas-169/facility-3.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:45:40.651080+00:00",
+      "source_family": "WhiteFiber, Inc.",
+      "source_url": "https://www.whitefiber.com/mtl-3",
+      "summary": "WhiteFiber identifies MTL-3 as a retrofit for Cerebras and describes 5 MW ready at the facility.",
+      "title": "WhiteFiber MTL-3 facility specifications"
+    },
+    "am169-whitefiber-property": {
+      "attribution": "WhiteFiber, Inc.",
+      "bytes": 2161862,
+      "capture_id": "am169-annual-official.html",
+      "content_hash": "f06abfaaea92fb7bd8e632c857950ca90c493109ea25584f46c5cea3a6d57990",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "canonical_sec_filing": "https://www.sec.gov/Archives/edgar/data/2042022/000121390026034341/ea0278305-10k_white.htm",
+        "facilities": {
+          "MTL-1": "3195 chemin de Bedford, Montréal. Leased 64,642-square-foot facility.",
+          "MTL-2": "7300 Trans-Canada Highway, Pointe-Claire. Former manufacturing facility of 160,000 square feet.",
+          "MTL-3": "500 boulevard Monseigneur-Dubois, Saint-Jérôme. Lease-to-own facility. The subsequent quarterly filing records closure of the purchase in May 2026."
+        },
+        "sec_accession": "0001213900-26-034341",
+        "source_distribution": "WhiteFiber investor relations link to its filed annual report."
+      },
+      "final_url": "https://app.quotemedia.com/data/downloadFiling?cdn=71bed52c47c6afde107c6c3c455ca3e5&companyName=WhiteFiber+Inc.&dateFiled=2026-03-26&formType=10-K&ref=319901911&symbol=WYFI&type=HTML&webmasterId=101533",
+      "http_status": 200,
+      "id": "am169-whitefiber-property",
+      "kind": "regulatory_filing",
+      "license": "Issuer terms. Attributed facility facts only.",
+      "published_at": "2026-03-26",
+      "publisher": "WhiteFiber, Inc.",
+      "raw_capture_file": "local_data/research-2026-11-25-americas-169/annual-official.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:04.425360+00:00",
+      "source_family": "WhiteFiber, Inc.",
+      "source_url": "https://app.quotemedia.com/data/downloadFiling?cdn=71bed52c47c6afde107c6c3c455ca3e5&companyName=WhiteFiber+Inc.&dateFiled=2026-03-26&formType=10-K&ref=319901911&symbol=WYFI&type=HTML&webmasterId=101533",
+      "summary": "The issuer identifies three separate Québec properties by their facility codes and commercial addresses.",
+      "title": "WhiteFiber 2025 Form 10-K, Item 2, Québec data center properties"
+    },
+    "am169-whitefiber-quarter": {
+      "attribution": "WhiteFiber, Inc.",
+      "bytes": 1624384,
+      "capture_id": "am169-quarter-official.html",
+      "content_hash": "4d47efdad5751cbf781644d9d97bce4919286cefd39678f75c291ef30c6a83a8",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "canonical_sec_filing": "https://www.sec.gov/Archives/edgar/data/2042022/000121390026117728/ea0310427-10q_whitefiber.htm",
+        "filed": "2026-11-10",
+        "mtl1": "The issuer describes its leased Montréal HPC facility as 4 MW gross. Its statement of full operation at acquisition refers specifically to October 2024.",
+        "mtl2": "Third-quarter planning started on the 160,000-square-foot former manufacturing building. The targeted initial project is 5 MW gross. Construction was still described as a future fourth-quarter start.",
+        "mtl3": "In the quarter ended September 30, MTL-3 generated revenue. The seven-gross-MW property is approximately 202,000 square feet on 7.7 acres. Cerebras contracts for five MW of IT load. The acquisition closed May 8, 2026, following the commencement of colocation billing in November 2025.",
+        "quarter_end": "2026-09-30",
+        "sec_accession": "0001213900-26-117728",
+        "source_distribution": "WhiteFiber investor relations SEC filings archive."
+      },
+      "final_url": "https://app.quotemedia.com/data/downloadFiling?webmasterId=101533&ref=320464702&type=HTML&symbol=WYFI&cdn=93d14e59317a64d132246670094c2284&companyName=WhiteFiber+Inc.&formType=10-Q&dateFiled=2026-11-10",
+      "http_status": 200,
+      "id": "am169-whitefiber-quarter",
+      "kind": "regulatory_filing",
+      "license": "Issuer terms. Attributed facility facts only.",
+      "published_at": "2026-11-10",
+      "publisher": "WhiteFiber, Inc.",
+      "raw_capture_file": "local_data/research-2026-11-25-americas-169/quarter-official.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:45:04.617839+00:00",
+      "source_family": "WhiteFiber, Inc.",
+      "source_url": "https://app.quotemedia.com/data/downloadFiling?webmasterId=101533&ref=320464702&type=HTML&symbol=WYFI&cdn=93d14e59317a64d132246670094c2284&companyName=WhiteFiber+Inc.&formType=10-Q&dateFiled=2026-11-10",
+      "summary": "WhiteFiber attributed third-quarter revenue to its operating MTL-3 facility. It reported planning at its MTL-2 conversion and still expected construction to start in the fourth quarter.",
+      "title": "WhiteFiber Q3 2026 Form 10-Q, Canadian colocation operations and development"
+    },
+    "am169-whitefiber-september": {
+      "attribution": "WhiteFiber, Inc.",
+      "bytes": 3811984,
+      "capture_id": "am169-investor-slides.pdf",
+      "content_hash": "460264ac169e351e1aeee199ec293cd2adf637124fc9983c385f96c0ce4e4fff",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "mtl1": {
+          "commercial_operation_since": "2021-01",
+          "gross_mw": 4,
+          "it_load_mw": 3,
+          "occupancy": "All capacity occupied by customers, with multiple customers at the site."
+        },
+        "mtl2": {
+          "planned_gross_mw": 5,
+          "planned_it_load_mw": 3
+        },
+        "mtl3": {
+          "capacity_status": "operational",
+          "commercial_operation_since": "2025-Q4",
+          "customer": "Cerebras Systems",
+          "gross_mw": 7,
+          "it_load_mw": 5
+        },
+        "portfolio_information_as_of": "2026-08-31",
+        "published_filed": "2026-09-14",
+        "scope": "Capacity ratings describe the facilities. Customer electricity use is not reported.",
+        "sec_accession": "0001213900-26-099424",
+        "slides": [
+          5,
+          8,
+          13,
+          19
+        ]
+      },
+      "final_url": "https://cdn.prod.website-files.com/673bd4e39d0fb4773ffa1054/6aa80be6bc63292132b6bcbd_WhiteFiber_Investor_Overview_Sep_2026_5.pptx%20%281%29.pdf",
+      "http_status": 200,
+      "id": "am169-whitefiber-september",
+      "kind": "company_disclosure",
+      "license": "Issuer terms. Attributed facility facts only.",
+      "published_at": "2026-09-14",
+      "publisher": "WhiteFiber, Inc.",
+      "raw_capture_file": "local_data/research-2026-11-25-americas-169/investor-slides.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:03.889850+00:00",
+      "source_family": "WhiteFiber, Inc.",
+      "source_url": "https://cdn.prod.website-files.com/673bd4e39d0fb4773ffa1054/6aa80be6bc63292132b6bcbd_WhiteFiber_Investor_Overview_Sep_2026_5.pptx%20%281%29.pdf",
+      "summary": "WhiteFiber identifies MTL-1 and MTL-3 in its operating capacity, with MTL-2 shown separately as future capacity. It identifies gross and IT capacity separately for each location.",
+      "title": "WhiteFiber September 2026 investor overview, Québec data center portfolio"
+    },
+    "east169-keppel-3q": {
+      "attribution": "Keppel DC REIT Management Pte. Ltd.",
+      "bytes": 2060244,
+      "capture_id": "east169-keppel-3q",
+      "content_hash": "7904bd8a49f00c14b3b79e297df2ae0ef1ff5b20cea03a3ce24bed824df205d5",
+      "content_hash_scope": "sha256_exact_response_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "asset_rows": {
+          "Keppel DC Singapore 7": {
+            "attributable_lettable_area_sq_ft": 77024,
+            "interest_percent": 100,
+            "lease_type": "Keppel Lease / Fully-fitted (Colocation)",
+            "occupancy_percent": 100,
+            "reported_clients": 4
+          },
+          "Keppel DC Singapore 8": {
+            "attributable_lettable_area_sq_ft": 78214,
+            "interest_percent": 100,
+            "lease_type": "Keppel Lease / Fully-fitted (Colocation)",
+            "occupancy_percent": 100,
+            "reported_clients": 4
+          }
+        },
+        "pdf_page": 20,
+        "portfolio_as_at": "2026-09-30",
+        "scope": "Client counts can include multiple arrangements through related entities. FY2025 rental income and 2025 valuations are outside this status assessment."
+      },
+      "http_status": 200,
+      "id": "east169-keppel-3q",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved",
+      "publication_date_precision": "day",
+      "published_at": "2026-10-23",
+      "publisher": "Keppel DC REIT Management Pte. Ltd.",
+      "raw_capture_file": "local_data/country-research-q3-apac-operators-p3/kdcr-3q-2026-operational-updates.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-10-26T14:02:00.050+00:00",
+      "reuse_evidence_id": "a7a87ecb-8c5a-5a11-b467-8975a3a2fe19",
+      "source_family": "Keppel DC REIT",
+      "source_url": "https://www.keppeldcreit.com/en/file/investor-relations/financial-results/2026/kdcr-3q-2026-operational-updates.pdf",
+      "summary": "The September 30 portfolio table reports Keppel DC Singapore 7 and 8 as fully occupied, fully fitted colocation assets with four clients each. The REIT reports a 100% interest in each asset.",
+      "title": "Keppel DC REIT 3Q 2026 Operational Updates (portfolio overview as at 30 September 2026)"
+    },
+    "east169-keppel-campus": {
+      "attribution": "Keppel DC REIT",
+      "bytes": 15774826,
+      "capture_id": "east169-keppel-sg-circular.pdf",
+      "content_hash": "6cfd57bf5a35508f91b1a9d38ea9ee3e0b5b5a4e7a7ec36b21d0c6936acab778",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "address": "82 Genting Lane, Singapore 349567",
+        "named_buildings": [
+          "Keppel DC Singapore 7",
+          "Keppel DC Singapore 8"
+        ],
+        "scope": "The contemporaneous transaction proposal identifies two different buildings at one campus. Current ownership and occupancy come from the 2026 quarterly report."
+      },
+      "final_url": "https://www.keppeldcreit.com/en/file/investor-relations/publications/circulars/kdcr-circular-dated-5-dec-2024.pdf",
+      "http_status": 200,
+      "id": "east169-keppel-campus",
+      "kind": "company_disclosure",
+      "license": "All rights reserved. Attributed factual observations only.",
+      "published_at": "2024-12-05",
+      "publisher": "Keppel DC REIT",
+      "raw_capture_file": "local_data/research-2026-11-25-east-169/keppel-sg-circular.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:44:16.125185+00:00",
+      "source_family": "Keppel DC REIT",
+      "source_url": "https://www.keppeldcreit.com/en/file/investor-relations/publications/circulars/kdcr-circular-dated-5-dec-2024.pdf",
+      "summary": "The REIT identifies two data centre buildings at 82 Genting Lane, Singapore 349567 and identifies the operating and master lease arrangements for those buildings.",
+      "title": "Keppel DC REIT circular on the acquisition of Keppel DC Singapore 7 and 8"
+    },
+    "east169-keppel-sg7": {
+      "attribution": "Keppel Data Centres",
+      "bytes": 16264,
+      "capture_id": "east169-keppel-sg7.html",
+      "content_hash": "d1caeac223ddde80b8c17d1c9f2967285b908109fd6ad17a1cc72f1ca8ff0751",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "asset": "Keppel DC Singapore 7",
+        "asset_alias": "KDC SGP 7",
+        "building_scope": "seven-storey purpose-built carrier-neutral colocation facility"
+      },
+      "final_url": "https://www.keppeldatacentres.com/locations/asia-pacific/singapore/keppel-dc-singapore-7/",
+      "http_status": 200,
+      "id": "east169-keppel-sg7",
+      "kind": "operator_website",
+      "license": "All rights reserved. Attributed factual observations only.",
+      "published_at": null,
+      "publisher": "Keppel Data Centres",
+      "raw_capture_file": "local_data/research-2026-11-25-east-169/keppel-sg7.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:44:08.489657+00:00",
+      "source_family": "Keppel Data Centres",
+      "source_url": "https://www.keppeldatacentres.com/locations/asia-pacific/singapore/keppel-dc-singapore-7/",
+      "summary": "Keppel markets KDC SGP 7 as a separate seven-storey purpose-built carrier-neutral colocation facility at its Genting Lane campus.",
+      "title": "Keppel DC Singapore 7"
+    },
+    "east169-keppel-sg8": {
+      "attribution": "Keppel Data Centres",
+      "bytes": 16040,
+      "capture_id": "east169-keppel-sg8.html",
+      "content_hash": "4b1d52ab7519b2e8f17752f2c8df4b02c3858a26aeae6c88fa03371672c3281c",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "asset": "Keppel DC Singapore 8",
+        "asset_alias": "KDC SGP 8",
+        "building_scope": "six-storey purpose-built colocation facility adjacent to KDC SGP 7"
+      },
+      "final_url": "https://www.keppeldatacentres.com/locations/asia-pacific/singapore/keppel-dc-singapore-8/",
+      "http_status": 200,
+      "id": "east169-keppel-sg8",
+      "kind": "operator_website",
+      "license": "All rights reserved. Attributed factual observations only.",
+      "published_at": null,
+      "publisher": "Keppel Data Centres",
+      "raw_capture_file": "local_data/research-2026-11-25-east-169/keppel-sg8.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:44:08.507475+00:00",
+      "source_family": "Keppel Data Centres",
+      "source_url": "https://www.keppeldatacentres.com/locations/asia-pacific/singapore/keppel-dc-singapore-8/",
+      "summary": "Keppel markets KDC SGP 8 as a separate six-storey purpose-built colocation facility adjacent to KDC SGP 7 at its Genting Lane campus.",
+      "title": "Keppel DC Singapore 8"
+    },
+    "east169-sg6-cbre": {
+      "attribution": "CBRE Singapore",
+      "bytes": 261307,
+      "capture_id": "east169-cbre-raw",
+      "content_hash": "95020df87076a4cdc3aceec8630d7777ff933f257ae80006dd35dc7fe299ade7",
+      "content_hash_scope": "sha256_exact_response_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "capture": "Original CBRE HTML captured November 11. A November 25 rendered reread of the same page and matching press distribution confirm the civic identification.",
+        "commercial_civic_address": "21 Jalan Tukang",
+        "scope": "Address identification only. Commercial opening is documented separately by Equinix.",
+        "section": "Single-user factory completions"
+      },
+      "id": "east169-sg6-cbre",
+      "kind": "analyst_report",
+      "license": "All rights reserved. Attributed factual observations only.",
+      "published_at": "2026-10-22",
+      "publisher": "CBRE Singapore",
+      "raw_capture_file": "local_data/research-2026-11-11-asia-next/cbre-sg6.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-11T06:26:45.415557+00:00",
+      "source_family": "CBRE Singapore",
+      "source_url": "https://www.cbre.com.sg/press-releases/commentary-on-jtc-q3-2026-statistics",
+      "summary": "CBRE’s own industrial property research identifies Equinix SG6 as the nine-storey project at 21 Jalan Tukang.",
+      "title": "Commentary on JTC’s Q3 2026 Statistics"
+    },
+    "east169-sg6-jtc": {
+      "attribution": "JTC Corporation",
+      "bytes": 6283893,
+      "capture_id": "east169-jtc-sg6.pdf",
+      "content_hash": "cf6aca9da16a19430d6cff725b0c94c5eb57fb5cae20e4870ab5b6498521ce17",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "scope": "JTC identifies the facility and street while describing an earlier project timetable. The later Equinix and ministry releases establish the actual opening date.",
+        "street_location": "Jalan Tukang"
+      },
+      "final_url": "https://www.jtc.gov.sg/-/media/project/jtc-cx/corpweb/assets/about-jtc/resources/jtc-annual-report---fy2024.pdf",
+      "http_status": 200,
+      "id": "east169-sg6-jtc",
+      "kind": "government_record",
+      "license": "All rights reserved. Attributed factual observations only.",
+      "published_at": null,
+      "publisher": "JTC Corporation",
+      "raw_capture_file": "local_data/research-2026-11-25-east-169/jtc-sg6.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:46:26.293189+00:00",
+      "source_family": "JTC Corporation",
+      "source_url": "https://www.jtc.gov.sg/-/media/project/jtc-cx/corpweb/assets/about-jtc/resources/jtc-annual-report---fy2024.pdf",
+      "summary": "JTC identifies its Jalan Tukang site as the location of Equinix’s sixth data centre in Singapore.",
+      "title": "JTC Annual Report FY2024, Equinix’s sixth Singapore data centre"
+    },
+    "east169-sg6-local-opening": {
+      "attribution": "Equinix",
+      "bytes": 129292,
+      "capture_id": "east169-sg6-local-opening",
+      "content_hash": "66dbfb5aec84f2da34ae4cb6deb9a2ed347aee3dec4ed2a12ca50b7ef5ba2e53",
+      "content_hash_scope": "sha256_exact_content_decoded_response_bytes",
+      "extraction": {
+        "event": "SG6 opening in Singapore",
+        "event_date": "2026-11-06",
+        "first_phase_approximate_cabinets": 1550,
+        "prospective_full_build_it_capacity_mw_up_to": 20,
+        "scope": "This Singapore opening announcement is the existing canonical evidence. A separately titled US investor announcement additionally provides first-phase MW."
+      },
+      "id": "east169-sg6-local-opening",
+      "kind": "company_disclosure",
+      "license": "all-rights-reserved",
+      "publication_date_precision": "day",
+      "published_at": "2026-11-06",
+      "publisher": "Equinix",
+      "raw_capture_file": "local_data/country-research-ops-singapore-jakarta-p6/eqx-pr-sg6-sg-local.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-06T22:43:21.269Z",
+      "reuse_evidence_id": "67457cba-097b-56e6-aa81-2d91f89275d9",
+      "source_family": "Equinix announcements and IBX pages",
+      "source_url": "https://newsroom.equinix.com/2026-11-06-Equinix-Opens-SG6-to-Support-Singapores-Digital-Future-and-Strengthen-Its-Role-as-a-Global-Innovation-Hub",
+      "summary": "Equinix’s Singapore newsroom records the November 6 opening of its sixth Singapore data centre and reports about 1,550 cabinets in phase one.",
+      "title": "Equinix: Equinix Opens SG6 to Support Singapore's Digital Future and Strengthen Its Role as a Global Innovation Hub (Singapore, 6 November 2026)"
+    },
+    "east169-sg6-ministry": {
+      "attribution": "Singapore Ministry of Digital Development and Information",
+      "bytes": 470744,
+      "capture_id": "east169-mddi-launch.html",
+      "content_hash": "356e5fe2344a3467d725cfcb70e9a1d8faf245f4cfdc9f17cbd9ce285ef332df",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "event": "Launch of Equinix’s SG6 data centre",
+        "event_date": "2026-11-06"
+      },
+      "final_url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-launch-of-equinix-s-data-centre-sg6-/",
+      "http_status": 200,
+      "id": "east169-sg6-ministry",
+      "kind": "government_record",
+      "license": "All rights reserved. Attributed factual observations only.",
+      "published_at": "2026-11-06",
+      "publisher": "Singapore Ministry of Digital Development and Information",
+      "raw_capture_file": "local_data/research-2026-11-25-east-169/mddi-launch.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:47:18.803934+00:00",
+      "source_family": "Singapore Ministry of Digital Development and Information",
+      "source_url": "https://www.mddi.gov.sg/newsroom/keynote-address-by-sms-tan-kiat-how-at-the-launch-of-equinix-s-data-centre-sg6-/",
+      "summary": "The Minister of State’s address at the November 6 launch independently confirms the opening of Equinix SG6.",
+      "title": "Launch of Equinix’s SG6 data centre, ministerial address"
+    },
+    "east169-sg6-opening": {
+      "attribution": "Equinix",
+      "bytes": 122150,
+      "capture_id": "east169-equinix-sg6-launch.html",
+      "content_hash": "0c3c21e6eefac6966114b0e185b6b24a237e077151646797bf7e2e4440330282",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "event": "First-phase opening",
+        "first_phase_cabinets_approximate": 1550,
+        "first_phase_reported_capacity_mw": 8,
+        "future_full_build_it_capacity_mw_up_to": 20,
+        "physical_observation_day": "2026-11-06",
+        "scope": "First-phase capacity is reported without a specified electrical boundary. The full-build IT target is prospective; neither figure is a measurement of power consumed."
+      },
+      "final_url": "https://investor.equinix.com/news-events/press-releases/detail/1130/equinix-opens-sg6-in-singapore-expanding-ai-ready-capacity",
+      "http_status": 200,
+      "id": "east169-sg6-opening",
+      "kind": "company_disclosure",
+      "license": "All rights reserved. Attributed factual observations only.",
+      "published_at": "2026-11-06",
+      "publisher": "Equinix",
+      "raw_capture_file": "local_data/research-2026-11-25-east-169/equinix-sg6-launch.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:46:23.148731+00:00",
+      "source_family": "Equinix",
+      "source_url": "https://investor.equinix.com/news-events/press-releases/detail/1130/equinix-opens-sg6-in-singapore-expanding-ai-ready-capacity",
+      "summary": "Equinix announced the opening of SG6 on November 6. It reports 8 MW and about 1,550 cabinets in the first phase and up to 20 MW of IT capacity at full build-out.",
+      "title": "Equinix opens SG6 in Singapore"
+    },
+    "east169-sg6-sla": {
+      "attribution": "Contains information from OneMap address search accessed on 25 November 2026 from the Singapore Land Authority (https://www.onemap.gov.sg/), made available under the terms of the Singapore Open Data Licence version 1.0 (https://www.onemap.gov.sg/legal/opendatalicence.html).",
+      "bytes": 444,
+      "capture_id": "east169-onemap-sg6.json",
+      "content_hash": "b80da67ec334a9038cd575f4a04f6b8b0711301f636fe6f01866a6fadea7bb9d",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/json",
+      "extraction": {
+        "address": "21 JALAN TUKANG SINGAPORE 619794",
+        "dataset_terms": "https://www.onemap.gov.sg/legal/apitermsofservice.html",
+        "latitude": 1.325842648792628,
+        "license_url": "https://www.onemap.gov.sg/legal/opendatalicence.html",
+        "longitude": 103.7132625629157,
+        "source_accuracy": "No per-address horizontal accuracy supplied."
+      },
+      "final_url": "https://www.onemap.gov.sg/api/common/elastic/search?searchVal=21%20JALAN%20TUKANG&returnGeom=Y&getAddrDetails=Y&pageNum=1",
+      "http_status": 200,
+      "id": "east169-sg6-sla",
+      "kind": "government_address_register",
+      "license": "Contains information from OneMap address search accessed on 25 November 2026 from the Singapore Land Authority (https://www.onemap.gov.sg/), made available under the terms of the Singapore Open Data Licence version 1.0 (https://www.onemap.gov.sg/legal/opendatalicence.html).",
+      "published_at": null,
+      "publisher": "Singapore Land Authority",
+      "raw_capture_file": "local_data/research-2026-11-25-east-169/onemap-sg6.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:46:24.446186+00:00",
+      "source_family": "Singapore Land Authority",
+      "source_url": "https://www.onemap.gov.sg/api/common/elastic/search?searchVal=21%20JALAN%20TUKANG&returnGeom=Y&getAddrDetails=Y&pageNum=1",
+      "summary": "The national address service matches 21 Jalan Tukang to postal code 619794 and publishes a geographic address point.",
+      "title": "OneMap address search, 21 Jalan Tukang"
+    },
+    "eu169-bag-van-nelle": {
+      "attribution": "Kadaster, Basisregistratie Adressen en Gebouwen (BAG), via PDOK. Municipal source: Rotterdam.",
+      "bytes": 1859,
+      "capture_id": "eu169-rt-bag.json",
+      "content_hash": "e5a9a618e5a6482ae7a6be037d8df1975eb88e7f32b0ba3323fabb671e9f16ca",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/geo+json",
+      "extraction": {
+        "official_address": "Van Nelleweg 1, 3044 BC Rotterdam",
+        "principal_address": "0599200000760872",
+        "registry_object": "0599010000220989",
+        "scope": "Shared estate address only. The municipal object is not asserted to represent the data centre building."
+      },
+      "final_url": "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/verblijfsobject/items?f=json&identificatie=0599010000220989",
+      "http_status": 200,
+      "id": "eu169-bag-van-nelle",
+      "kind": "government_record",
+      "license": "Public-Domain-Mark-1.0",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "published_at": null,
+      "publisher": "Kadaster / PDOK",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/rt-bag.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:10.288847+00:00",
+      "source_family": "Kadaster / PDOK",
+      "source_url": "https://api.pdok.nl/kadaster/bag/ogc/v2/collections/verblijfsobject/items?f=json&identificatie=0599010000220989",
+      "summary": "The Dutch buildings and addresses register supplies the point for the complex’s published street address.",
+      "title": "BAG principal address object, Van Nelleweg 1, Rotterdam"
+    },
+    "eu169-ban-eb6": {
+      "attribution": "Base Adresse Nationale (France), commune de Magny-les-Hameaux.",
+      "bytes": 11680347,
+      "capture_id": "eu169-ban78.csv.gz",
+      "content_hash": "23bba698e2c775a6e803acb83e468aea831d28d79ecde95e3e8cee1918669c42",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/octet-stream",
+      "extraction": {
+        "certification_commune": "0",
+        "code_postal": "78114",
+        "id": "78356_0461_00052",
+        "lat": "48.73077",
+        "lon": "2.071381",
+        "nom_commune": "Magny-les-Hameaux",
+        "nom_voie": "Route de Port-Royal des Champs",
+        "numero": "52",
+        "source_position": "commune",
+        "type_position": "bâtiment"
+      },
+      "final_url": "https://adresse.data.gouv.fr/data/ban/adresses/latest/csv/adresses-78.csv.gz",
+      "http_status": 200,
+      "id": "eu169-ban-eb6",
+      "kind": "government_record",
+      "license": "Licence Ouverte 2.0 (Etalab). Source: Base Adresse Nationale; position supplied by the commune of Magny-les-Hameaux.",
+      "license_url": "https://www.etalab.gouv.fr/licence-ouverte-open-licence/",
+      "published_at": null,
+      "publisher": "Base Adresse Nationale",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/ban78.csv.gz",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:47.800394+00:00",
+      "source_family": "Base Adresse Nationale",
+      "source_url": "https://adresse.data.gouv.fr/data/ban/adresses/latest/csv/adresses-78.csv.gz",
+      "summary": "The municipal address record for 52 Route de Port-Royal des Champs provides a building-position point at the address given for EB6.",
+      "title": "Base Adresse Nationale, Yvelines address records"
+    },
+    "eu169-bics-bru1": {
+      "attribution": "BICS",
+      "bytes": 965910,
+      "capture_id": "eu169-br-bics.pdf",
+      "content_hash": "6bafdd91fca132c71da677de690a25664c07e1fd18ea104d361b5af6b3c0775e",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "civic_address": "Wezembeekstraat 2, 1930 Zaventem",
+        "facility": "BRU1",
+        "provider": "Digital Realty",
+        "scope": "Host identity rather than current status date."
+      },
+      "final_url": "https://www.bics.com/wp-content/uploads/2026/05/BICS_Network_Presence_Map_March_2026.pdf",
+      "http_status": 200,
+      "id": "eu169-bics-bru1",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "BICS",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/br-bics.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:45:35.615002+00:00",
+      "source_family": "BICS",
+      "source_url": "https://www.bics.com/wp-content/uploads/2026/05/BICS_Network_Presence_Map_March_2026.pdf",
+      "summary": "BICS identifies its Digital Realty BRU1 host at the parent street address, Wezembeekstraat 2, Zaventem.",
+      "title": "BICS network presence map, March 2026"
+    },
+    "eu169-bix-dataplex": {
+      "attribution": "Budapest Internet Exchange",
+      "bytes": 16289,
+      "capture_id": "eu169-bix.html",
+      "content_hash": "4926fc63033c7a3341927dde462f8a47cfd5d6cc7791c01dc94b4c9e599436cd",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "address": "Asztalos Sándor u. 13, 1087 Budapest",
+        "alias": "Dataplex",
+        "host": "T-Systems Cloud & Datacenter"
+      },
+      "final_url": "https://www.bix.hu/en/index.php?p=lox",
+      "http_status": 200,
+      "id": "eu169-bix-dataplex",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "Budapest Internet Exchange",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/bix.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:52.202053+00:00",
+      "source_family": "Budapest Internet Exchange",
+      "source_url": "https://www.bix.hu/en/index.php?p=lox",
+      "summary": "BIX lists T-Systems Cloud & Datacenter (Dataplex) at the same Budapest address.",
+      "title": "Budapest Internet Exchange colocation locations"
+    },
+    "eu169-bnix-bru1": {
+      "attribution": "BNIX",
+      "bytes": 20200,
+      "capture_id": "eu169-br-bnix.html",
+      "content_hash": "0b1d3fd6e66be0f0434fcf047da3ef2c27986176977123cb98c7094362e7f08f",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "address": "Wezembeekstraat 2 bus 1, 1930 Zaventem",
+        "host": "Digital Realty Brussels BRU1"
+      },
+      "final_url": "https://www.bnix.net/nl/node/410",
+      "http_status": 200,
+      "id": "eu169-bnix-bru1",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "BNIX",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/br-bnix.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:45:36.032675+00:00",
+      "source_family": "BNIX",
+      "source_url": "https://www.bnix.net/nl/node/410",
+      "summary": "BNIX independently identifies the Digital Realty BRU1 colocation address including bus 1.",
+      "title": "Belgian National Internet Exchange points of presence"
+    },
+    "eu169-cegedim-eb6-certificate": {
+      "attribution": "AFNOR Certification",
+      "bytes": 334799,
+      "capture_id": "eu169-eb6-certificate.pdf",
+      "content_hash": "476ddeacd447d171cbb2cb5c0a467f3ca9413a035be8bc8a7db6cd8b62e4e72e",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "address": "52 route de Port Royal des Champs, 78114 Magny-les-Hameaux",
+        "facility": "DATA CENTER EB6",
+        "operator": "CEGEDIM.CLOUD",
+        "other": "EB5, 1 rue Pablo Picasso"
+      },
+      "final_url": "https://cegedim.cloud/wp-content/uploads/2025/05/certificat-HDS_cegedim-cloud.pdf",
+      "http_status": 200,
+      "id": "eu169-cegedim-eb6-certificate",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "AFNOR Certification",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/eb6-certificate.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:52.626447+00:00",
+      "source_family": "AFNOR Certification",
+      "source_url": "https://cegedim.cloud/wp-content/uploads/2025/05/certificat-HDS_cegedim-cloud.pdf",
+      "summary": "AFNOR’s location annex names EB6 at 52 Route de Port Royal des Champs and EB5 at 1 Rue Pablo Picasso in the same commune.",
+      "title": "AFNOR certificate, Cegedim.cloud data centre establishments"
+    },
+    "eu169-cegedim-eb6-november": {
+      "attribution": "Cegedim",
+      "bytes": 163324,
+      "capture_id": "eu169-eb6-release.pdf",
+      "content_hash": "6a82da80bcb832656dbc40107ca77ea408cba93e4e5994223cca28831d847dff",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "announcement_day": "2026-11-19",
+        "opening_month": "2026-09",
+        "status_scope": "Commercial operation at EB6; no precise opening day was reported."
+      },
+      "final_url": "https://cegedim.cloud/wp-content/uploads/2026/11/Cegedim_NouveauDatacenter_EB6_19112026.pdf",
+      "http_status": 200,
+      "id": "eu169-cegedim-eb6-november",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": "2026-11-19",
+      "publisher": "Cegedim",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/eb6-release.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:51:41.270314+00:00",
+      "source_family": "Cegedim",
+      "source_url": "https://cegedim.cloud/wp-content/uploads/2026/11/Cegedim_NouveauDatacenter_EB6_19112026.pdf",
+      "summary": "Cegedim confirms EB6 is operating and offers colocation. Service began in September 2026.",
+      "title": "Cegedim confirms EB6 commercial operations in the Yvelines"
+    },
+    "eu169-cloudflare-september16": {
+      "attribution": "Cloudflare",
+      "bytes": 12243,
+      "capture_id": "eu169-cloudflare-sep16-matrix",
+      "content_hash": "2c342b077f291a8ea01401b7d1253cfc4cccb7d1a9fc70315937a1711c70bdb2",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/plain",
+      "extraction": {
+        "date_semantics": "UTC publication of the first provider matrix on its production branch, where the three facilities are listed as offering Direct CNI. This is an operating-service observation rather than the original opening date.",
+        "facility_rows": [
+          "T-Systems Dataplex Budapest",
+          "SITELPOP1",
+          "Digital Realty BRU1"
+        ],
+        "publication_metadata": "https://github.com/cloudflare/cloudflare-docs/pull/33357",
+        "publication_utc": "2026-09-16T01:13:51Z",
+        "publisher_revision": "b72f37e2f4420b426225aac4f70307d11cf8243e"
+      },
+      "final_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b72f37e2f4420b426225aac4f70307d11cf8243e/src/content/docs/network-interconnect/locations.mdx",
+      "http_status": 200,
+      "id": "eu169-cloudflare-september16",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": "2026-09-16",
+      "publisher": "Cloudflare",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-168/cni-sep16-matrix.mdx",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T09:59:07.002939+00:00",
+      "source_family": "Cloudflare",
+      "source_url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/b72f37e2f4420b426225aac4f70307d11cf8243e/src/content/docs/network-interconnect/locations.mdx",
+      "summary": "Cloudflare lists direct network service at SITELPOP1 in Bratislava, Dataplex in Budapest and Digital Realty BRU1 in Zaventem.",
+      "title": "Cloudflare publishes Direct CNI facility availability"
+    },
+    "eu169-dataplex-geometry": {
+      "attribution": "© OpenStreetMap contributors",
+      "bytes": 6150,
+      "capture_id": "eu169-hu-osm.json",
+      "content_hash": "047709bdca2fff1555623c2c247defa6b3a993b35638f7f6f2c348265ae76aa6",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/json",
+      "extraction": {
+        "copyright": "https://www.openstreetmap.org/copyright",
+        "facility_name": "Magyar Telekom Cloud & DataCenter",
+        "facility_ref": "Dataplex",
+        "number": "13",
+        "osm_way": 256121487,
+        "representative_point": "Midpoint of the geographic bounds of the original way nodes, checked inside the named polygon.",
+        "street": "Asztalos Sándor út",
+        "version": 6
+      },
+      "final_url": "https://api.openstreetmap.org/api/0.6/way/256121487/full.json",
+      "http_status": 200,
+      "id": "eu169-dataplex-geometry",
+      "kind": "openstreetmap",
+      "license": "ODbL-1.0",
+      "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "published_at": null,
+      "publisher": "OpenStreetMap contributors",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/hu-osm.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:46.682511+00:00",
+      "source_family": "OpenStreetMap contributors",
+      "source_url": "https://api.openstreetmap.org/api/0.6/way/256121487/full.json",
+      "summary": "The mapped facility is named Magyar Telekom Cloud & DataCenter and carries the Dataplex reference and the operator’s address.",
+      "title": "OpenStreetMap Magyar Telekom Cloud & DataCenter, way 256121487"
+    },
+    "eu169-digital-realty-bru1": {
+      "attribution": "Digital Realty",
+      "bytes": 225684,
+      "capture_id": "eu169-br-operator.html",
+      "content_hash": "83470f8d9f78f69b20dd11723e7d1bdb6e01b8db9f9b8188c0e2806625f2c87d",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "address": "Wezembeekstraat 2 bus 1, 1930 Zaventem",
+        "host": "BRU1"
+      },
+      "final_url": "https://www.digitalrealty.com/data-centers/emea/brussels/bru1",
+      "http_status": 200,
+      "id": "eu169-digital-realty-bru1",
+      "kind": "company_facility_page",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "Digital Realty",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/br-operator.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:45:10.743201+00:00",
+      "source_family": "Digital Realty",
+      "source_url": "https://www.digitalrealty.com/data-centers/emea/brussels/bru1",
+      "summary": "Digital Realty lists its BRU1 colocation facility at Wezembeekstraat 2 bus 1, Zaventem.",
+      "title": "Digital Realty BRU1, Brussels"
+    },
+    "eu169-flanders-zaventem-address": {
+      "attribution": "Bron: Digitaal Vlaanderen",
+      "bytes": 1515,
+      "capture_id": "eu169-br-register.json",
+      "content_hash": "3d659e750f925840f715cbecf816f45bc955e68e1bfdcd3964cf481db7af8fa2",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/ld+json",
+      "extraction": {
+        "address_id": "638317",
+        "civic_address": "Wezembeekstraat 2, 1930 Zaventem",
+        "license_notice": "https://www.vlaanderen.be/datavindplaats/catalogus/gebouwen-en-adressenregister-adressen",
+        "native_crs": "EPSG:31370",
+        "native_position": [
+          157559.71,
+          173362.22
+        ],
+        "registered_point_specification": "gebouweenheid",
+        "scope": "Street-number address. This position does not distinguish the postal box bus 1."
+      },
+      "final_url": "https://api.basisregisters.vlaanderen.be/v2/adressen/638317",
+      "http_status": 200,
+      "id": "eu169-flanders-zaventem-address",
+      "kind": "government_record",
+      "license": "Modellicentie voor Gratis Hergebruik Vlaanderen v1.0.",
+      "license_url": "https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/open-data/voorwaarden-voor-het-hergebruik-van-overheidsinformatie/modellicentie-gratis-hergebruik",
+      "published_at": null,
+      "publisher": "Digitaal Vlaanderen",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/br-register.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:45:35.647595+00:00",
+      "source_family": "Digitaal Vlaanderen",
+      "source_url": "https://api.basisregisters.vlaanderen.be/v2/adressen/638317",
+      "summary": "The Flemish Address Register gives the registered parent address point for Digital Realty’s BRU1 establishment.",
+      "title": "Flemish Address Register, Wezembeekstraat 2, Zaventem"
+    },
+    "eu169-megaport-rotterdam": {
+      "attribution": "Megaport",
+      "bytes": 2769333,
+      "capture_id": "megaport-nov25.json",
+      "content_hash": "cb5406db25db07cdcb6068186b921192aea5db707063e3d4d9d73ae977910e5f",
+      "content_hash_scope": "sha256_exact_decoded_http_response_body_bytes",
+      "content_type": "application/json",
+      "date_semantics": "Service live date for Rotterdam in the complete Megaport locations capture. November 23, 14:00 UTC, is November 23 in Rotterdam. The date confirms network service at an existing host.",
+      "extraction": {
+        "address": "Van Nelleweg 1",
+        "host": "Smartdc Rotterdam",
+        "local_timestamp": "2026-11-23T15:00:00+01:00",
+        "location_id": 2050,
+        "network_live_date_epoch_milliseconds": 1795442400000,
+        "source_scope": "The original evidence title names the Mitcham entry. The same captured register separately contains this Rotterdam row."
+      },
+      "final_url": "https://api.megaport.com/v2/locations",
+      "http_status": 200,
+      "id": "eu169-megaport-rotterdam",
+      "kind": "company_disclosure",
+      "license": "Megaport Acceptable Use Policy. Selected factual network service status at the public commercial facility.",
+      "published_at": null,
+      "publisher": "Megaport",
+      "raw_capture_file": "local_data/research-2026-11-25-asia-168/megaport-nov25.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T09:57:12.098013+00:00",
+      "reuse_evidence_id": "039ac076-3095-52f5-aa44-f1b95852b142",
+      "source_family": "Megaport",
+      "source_observation_date": "2026-11-23",
+      "source_observation_date_precision": "day",
+      "source_url": "https://api.megaport.com/v2/locations",
+      "summary": "Entry 2050 in Megaport’s global directory identifies Smartdc Rotterdam at Van Nelleweg 1 and gives November 23 as the date its network service went live.",
+      "title": "Megaport network locations, Vocus DC-MEL04 in Mitcham"
+    },
+    "eu169-sitel-addresses": {
+      "attribution": "SITEL s.r.o.",
+      "bytes": 180517,
+      "capture_id": "eu169-sitel-locations.pdf",
+      "content_hash": "180f0b5ed0622f7abebde2ed7f12d044b689420ed9bd88a9871c1148edcf562e",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "pop1": "Kopčianska 20/C, Bratislava",
+        "pop2": "Kopčianska 18, Bratislava",
+        "scope": "Public civic-address distinction between the two commercial locations."
+      },
+      "final_url": "https://www.datacentrumsitel.sk/uploads/file/10.pdf",
+      "http_status": 200,
+      "id": "eu169-sitel-addresses",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "SITEL s.r.o.",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/sitel-locations.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:52.276537+00:00",
+      "source_family": "SITEL s.r.o.",
+      "source_url": "https://www.datacentrumsitel.sk/uploads/file/10.pdf",
+      "summary": "SITEL identifies its Bratislava POP1 and POP2 colocation establishments at Kopčianska 20/C and Kopčianska 18 respectively.",
+      "title": "SITELPOP data centre operating regulations, facility addresses"
+    },
+    "eu169-sitel-colocation": {
+      "attribution": "SITEL s.r.o.",
+      "bytes": 90044,
+      "capture_id": "eu169-sitel.html",
+      "content_hash": "dfc453b390813f04c0c4ed4852b675ae4841bf2e9abf21c94a51a307eb038daa",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "facilities": [
+          "SITELPOP1",
+          "SITELPOP2",
+          "SITELPOPKE"
+        ]
+      },
+      "final_url": "https://www.datacentrumsitel.sk/en/services-of-data-center",
+      "http_status": 200,
+      "id": "eu169-sitel-colocation",
+      "kind": "company_facility_page",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "SITEL s.r.o.",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/sitel.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:46.949723+00:00",
+      "source_family": "SITEL s.r.o.",
+      "source_url": "https://www.datacentrumsitel.sk/en/services-of-data-center",
+      "summary": "SITEL offers commercial services at SITELPOP1 and SITELPOP2 in Bratislava and separately lists its Košice establishment.",
+      "title": "SITEL data centre services"
+    },
+    "eu169-sitel-street-address": {
+      "attribution": "© OpenStreetMap contributors",
+      "bytes": 3694,
+      "capture_id": "eu169-sk-osm.json",
+      "content_hash": "695ee5bb4a60bba3e8b551b3212544c2032229e99a7e93a09bc11d3e71b6db00",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/json",
+      "extraction": {
+        "civic_number": "20C",
+        "copyright": "https://www.openstreetmap.org/copyright",
+        "number_with_conscription": "6076/20C",
+        "osm_way": 319323151,
+        "place": "Bratislava",
+        "representative_point": "Midpoint of the bounds of the original way nodes, checked inside the civic-address polygon.",
+        "street": "Kopčianska",
+        "version": 8
+      },
+      "final_url": "https://api.openstreetmap.org/api/0.6/way/319323151/full.json",
+      "http_status": 200,
+      "id": "eu169-sitel-street-address",
+      "kind": "openstreetmap",
+      "license": "ODbL-1.0",
+      "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "published_at": null,
+      "publisher": "OpenStreetMap contributors",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/sk-osm.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:46.691829+00:00",
+      "source_family": "OpenStreetMap contributors",
+      "source_url": "https://api.openstreetmap.org/api/0.6/way/319323151/full.json",
+      "summary": "The civic-address building feature carries street number 20C at Kopčianska in Bratislava.",
+      "title": "OpenStreetMap Kopčianska 20C, Bratislava, way 319323151"
+    },
+    "eu169-smartdc-estate": {
+      "attribution": "Smartdc",
+      "bytes": 332393,
+      "capture_id": "eu169-rt-estate.html",
+      "content_hash": "7009038f300bb334ae0b7cd0e1ff83b6a5163d07a96c03771724addc591a6d02",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "facility": "Smartdc Rotterdam",
+        "host_estate": "Van Nelle Factory",
+        "scope": "The facility occupies part of the shared estate."
+      },
+      "final_url": "https://www.smartdc.net/data-centers/locations/rotterdam/route/",
+      "http_status": 200,
+      "id": "eu169-smartdc-estate",
+      "kind": "company_facility_page",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "Smartdc",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/rt-estate.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:46.726398+00:00",
+      "source_family": "Smartdc",
+      "source_url": "https://www.smartdc.net/data-centers/locations/rotterdam/route/",
+      "summary": "Smartdc identifies the former distribution centre within the Van Nelle property as its commercial premises.",
+      "title": "Smartdc Rotterdam location within the Van Nelle Factory complex"
+    },
+    "eu169-smartdc-rotterdam": {
+      "attribution": "Smartdc",
+      "bytes": 483366,
+      "capture_id": "eu169-smartdc.html",
+      "content_hash": "1d4bdb0088b8d289fd10f2d74c79815106438f163cc00ff9d5e04d4195e98bab",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "address": "Van Nelleweg 1, 3044 BC Rotterdam",
+        "facility": "Smartdc Rotterdam",
+        "host_estate": "Van Nelle Factory"
+      },
+      "final_url": "https://www.smartdc.net/data-centers/locations/rotterdam/",
+      "http_status": 200,
+      "id": "eu169-smartdc-rotterdam",
+      "kind": "company_facility_page",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "Smartdc",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/smartdc.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:52.149367+00:00",
+      "source_family": "Smartdc",
+      "source_url": "https://www.smartdc.net/data-centers/locations/rotterdam/",
+      "summary": "Smartdc offers colocation at Van Nelleweg 1 in Rotterdam’s Van Nelle Factory complex.",
+      "title": "Smartdc Rotterdam colocation facility"
+    },
+    "eu169-telekom-host": {
+      "attribution": "Magyar Telekom",
+      "bytes": 17477,
+      "capture_id": "eu169-dataplex.html",
+      "content_hash": "7b390d16f6804ac17eb7c9b04dc5508088e7679ac38ddeec5a84ffdf4e8772d3",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "address": "Asztalos Sándor u. 13, 1087 Budapest",
+        "host": "T-Systems Cloud & DataCenter"
+      },
+      "final_url": "https://www.telekom.hu/about_us/services/wholesale/national_fixed_line_solutions/ip_and_data/hosting",
+      "http_status": 200,
+      "id": "eu169-telekom-host",
+      "kind": "company_facility_page",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "Magyar Telekom",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/dataplex.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:52.179566+00:00",
+      "source_family": "Magyar Telekom",
+      "source_url": "https://www.telekom.hu/about_us/services/wholesale/national_fixed_line_solutions/ip_and_data/hosting",
+      "summary": "Magyar Telekom lists its Budapest Cloud & DataCenter at 13 Asztalos Sándor Street among several separately addressed commercial hosting facilities.",
+      "title": "Magyar Telekom commercial hosting locations"
+    },
+    "eu169-telekom-operator": {
+      "attribution": "SGS",
+      "bytes": 478691,
+      "capture_id": "eu169-hu-certificate.pdf",
+      "content_hash": "d2fbdb4c9c5075f491d4fe91b781a57074246ec052a197f1ae333cb76d283d4d",
+      "content_hash_scope": "sha256_exact_http_response_body_bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "certificate": "HU18/8246",
+        "company": "Telekom Rendszerintegráció Zrt.",
+        "scope": "Exact site and legal entity. The certificate’s validity period does not date service activation."
+      },
+      "final_url": "https://www.telekom.hu/vallalati-megoldasok/sw/static/file/TRI_ISO22301_2027_EN.pdf",
+      "http_status": 200,
+      "id": "eu169-telekom-operator",
+      "kind": "company_disclosure",
+      "license": "Source terms; factual extraction only.",
+      "published_at": null,
+      "publisher": "SGS",
+      "raw_capture_file": "local_data/research-2026-11-25-europe-169/hu-certificate.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:44:23.613602+00:00",
+      "source_family": "SGS",
+      "source_url": "https://www.telekom.hu/vallalati-megoldasok/sw/static/file/TRI_ISO22301_2027_EN.pdf",
+      "summary": "The certification names Telekom Rendszerintegráció Zrt. as the provider of colocation services at 13 Asztalos Sándor Street.",
+      "title": "SGS certificate for Telekom Rendszerintegráció colocation in Budapest"
+    },
+    "oc169-akl03": {
+      "attribution": "Auckland Council",
+      "bytes": 497,
+      "capture_id": "oc169-council-entries",
+      "content_hash": "80fa1c766ca581e984e74b1851536a3aa7085b7e156556d084f3eb570d0df1a0",
+      "content_hash_scope": "SHA-256 of the locally serialized selected register fields transcribed from the publicly rendered Auckland Council PDF. The digest covers this extraction only.",
+      "content_type": "application/json",
+      "extraction": {
+        "applications": [
+          {
+            "id": "BUN60445331",
+            "type": "bundled"
+          },
+          {
+            "id": "DIS60445333",
+            "type": "discharge"
+          },
+          {
+            "id": "LUC60445332",
+            "type": "land use"
+          }
+        ],
+        "lodged": "2025-03-13",
+        "project": "AKL03 data centre construction and operation",
+        "register": "Auckland Council recent resource consent applications",
+        "reporting_period": [
+          "2025-02-23",
+          "2025-08-23"
+        ],
+        "street_address": "7 Kakano Road, Whenuapai 0618"
+      },
+      "id": "oc169-akl03",
+      "kind": "government_planning_record",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": null,
+      "publisher": "Auckland Council",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/council-entries.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:46:05.443689+00:00",
+      "source_family": "Auckland Council",
+      "source_url": "https://www.aucklandcouncil.govt.nz/building-and-consents/Documents/recent-resource-consent-applications.pdf",
+      "summary": "The March 2025 bundled, discharge and land-use applications identify the AKL03 datacentre at 7 Kakano Road.",
+      "title": "Auckland Council consent register, AKL03 applications"
+    },
+    "oc169-akldv": {
+      "attribution": "DataVault",
+      "bytes": 89307,
+      "capture_id": "oc169-auckland.html",
+      "content_hash": "91dce26ec07188c46f2042e856489665c36ea45266f0b928bbea2ff508184275",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "facility": "Grafton",
+        "service": "Carrier-neutral colocation"
+      },
+      "final_url": "https://datavault.net.nz/auckland",
+      "http_status": 200,
+      "id": "oc169-akldv",
+      "kind": "company_facility_page",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": null,
+      "publisher": "DataVault",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/auckland.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:22.899766+00:00",
+      "source_family": "DataVault",
+      "source_url": "https://datavault.net.nz/auckland",
+      "summary": "DataVault operates a commercial colocation facility in Grafton.",
+      "title": "DataVault Grafton data centre"
+    },
+    "oc169-cdc": {
+      "attribution": "CDC Data Centres",
+      "bytes": 1671671,
+      "capture_id": "oc169-cdc.pdf",
+      "content_hash": "2576c5795fcf6ebfd9649584fe642b1bd18f9cc3d140690878297bb628dbd1ba",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "issue": "October 2026",
+        "proponent": "CDC Data Centres",
+        "site": "178–196 Bushmead Road"
+      },
+      "final_url": "https://cdc.com/media/b30hk0no/cdc-hazelmere-community-update-oct-2026.pdf",
+      "http_status": 200,
+      "id": "oc169-cdc",
+      "kind": "company_disclosure",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": null,
+      "publisher": "CDC Data Centres",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/cdc.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:14.965411+00:00",
+      "source_family": "CDC Data Centres",
+      "source_url": "https://cdc.com/media/b30hk0no/cdc-hazelmere-community-update-oct-2026.pdf",
+      "summary": "CDC reports lodging a development application and describes two proposed four-storey buildings at the Hazelmere site.",
+      "title": "Hazelmere community update"
+    },
+    "oc169-dv": {
+      "attribution": "DataVault",
+      "bytes": 104720,
+      "capture_id": "oc169-dv-original.html",
+      "content_hash": "b34f1886f11c98ab5900e24aebeede2ba234d980fbc72a20dd5567320b4d6907",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "date_basis": "Original operator post at 2026-10-19T20:00:11.433Z, October 20 in Auckland. This is the announcement date.",
+        "distinct_project": "The same communication separately announces a new North Shore building.",
+        "future_delivery": {
+          "Hall 4": "Q1 2027",
+          "Hall 5": "Q3 2027"
+        },
+        "project": "Grafton Halls 4 and 5"
+      },
+      "final_url": "https://www.linkedin.com/posts/data-vault_vergeinfrastructure-datavault-datacentre-activity-7518038309722419200-koD9",
+      "http_status": 200,
+      "id": "oc169-dv",
+      "kind": "company_disclosure",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": "2026-10-20",
+      "publisher": "DataVault",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/dv-original.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:43:23.072555+00:00",
+      "source_family": "DataVault",
+      "source_url": "https://www.linkedin.com/posts/data-vault_vergeinfrastructure-datavault-datacentre-activity-7518038309722419200-koD9",
+      "summary": "DataVault identifies two further halls at its Grafton data centre. It expects Hall 4 in the first quarter of 2027 and Hall 5 in the third quarter.",
+      "title": "DataVault announcement of the Grafton expansion"
+    },
+    "oc169-gnaf": {
+      "attribution": "National Address Points, Geoscience Australia (CC BY 4.0). Incorporates G-NAF © Geoscape Australia, licensed by the Commonwealth of Australia under the Open G-NAF End User Licence Agreement.",
+      "bytes": 3188,
+      "capture_id": "oc169-bushmead.json",
+      "content_hash": "e7d0738e5d9a256cd95780dccfc66164a94cf2fcf9e42e4dde32fe0456f4d9be",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/json",
+      "extraction": {
+        "addresses": [
+          "178 BUSHMEAD ROAD, HAZELMERE, WA, 6055",
+          "196 BUSHMEAD ROAD, HAZELMERE, WA, 6055"
+        ],
+        "geocode_type": "PROPERTY CENTROID",
+        "selected_pid": "GAWA_163074868"
+      },
+      "final_url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/national_address_points/FeatureServer/0/query?where=STATE+%3D+%27WA%27+AND+LOCALITY_NAME+%3D+%27HAZELMERE%27+AND+STREET_NAME+%3D+%27BUSHMEAD%27+AND+NUMBER_FIRST+IN+%28178%2C196%29&outFields=ADDRESS_DETAIL_PID%2CCOMPLETE_ADDRESS%2CGEOCODE_TYPE%2CLEVEL_GEOCODED%2CNUMBER_FIRST%2CNUMBER_LAST%2CLONGITUDE%2CLATITUDE&returnGeometry=true&outSR=4326&f=pjson",
+      "http_status": 200,
+      "id": "oc169-gnaf",
+      "kind": "government_address_register",
+      "license": "National Address Points is available from Geoscience Australia under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). G-NAF is subject to the Open G-NAF End User Licence Agreement (https://data.gov.au/data/dataset/geocoded-national-address-file-g-naf/resource/09f74802-08b1-4214-a6ea-3591b2753d30). For mailing, verify through a secondary source that each address can receive mail.",
+      "published_at": null,
+      "publisher": "Geoscience Australia / Geoscape Australia",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/bushmead.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:15.600152+00:00",
+      "source_family": "Geoscience Australia / Geoscape Australia",
+      "source_url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/national_address_points/FeatureServer/0/query?where=STATE+%3D+%27WA%27+AND+LOCALITY_NAME+%3D+%27HAZELMERE%27+AND+STREET_NAME+%3D+%27BUSHMEAD%27+AND+NUMBER_FIRST+IN+%28178%2C196%29&outFields=ADDRESS_DETAIL_PID%2CCOMPLETE_ADDRESS%2CGEOCODE_TYPE%2CLEVEL_GEOCODED%2CNUMBER_FIRST%2CNUMBER_LAST%2CLONGITUDE%2CLATITUDE&returnGeometry=true&outSR=4326&f=pjson",
+      "summary": "G-NAF records two property-centroid address points. The campus locator uses the point for 178 Bushmead Road, one of the two application properties.",
+      "title": "G-NAF property address points for 178 and 196 Bushmead Road"
+    },
+    "oc169-grafton": {
+      "attribution": "Sourced from the LINZ Data Service and licensed for reuse under CC BY 4.0.",
+      "bytes": 2592,
+      "capture_id": "oc169-grafton.json",
+      "content_hash": "4c910281fbff23a3962afe2e5eb3c6f7e32fa6ce5c1f512d87fe90ef429ae16b",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/json",
+      "extraction": {
+        "address_id": 1123866,
+        "full_address": "162-164 Grafton Road, Grafton, Auckland",
+        "full_address_number": "162-164",
+        "full_road_name": "Grafton Road",
+        "territorial_authority": "Auckland"
+      },
+      "final_url": "https://services.arcgis.com/xdsHIIxuCWByZiCB/arcgis/rest/services/LINZ_NZ_Addresses/FeatureServer/0/query?where=full_road_name%3D%27Grafton+Road%27+AND+address_number%3D162+AND+territorial_authority%3D%27Auckland%27&outFields=full_address%2Cfull_address_number%2Caddress_id%2Cterritorial_authority%2Cfull_road_name&returnGeometry=true&outSR=4326&f=pjson",
+      "http_status": 200,
+      "id": "oc169-grafton",
+      "kind": "government_address_register",
+      "license": "Creative Commons Attribution 4.0 International (CC BY 4.0).",
+      "published_at": null,
+      "publisher": "Toitū Te Whenua Land Information New Zealand",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/grafton.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:15.671429+00:00",
+      "source_family": "Toitū Te Whenua Land Information New Zealand",
+      "source_url": "https://services.arcgis.com/xdsHIIxuCWByZiCB/arcgis/rest/services/LINZ_NZ_Addresses/FeatureServer/0/query?where=full_road_name%3D%27Grafton+Road%27+AND+address_number%3D162+AND+territorial_authority%3D%27Auckland%27&outFields=full_address%2Cfull_address_number%2Caddress_id%2Cterritorial_authority%2Cfull_road_name&returnGeometry=true&outSR=4326&f=pjson",
+      "summary": "LINZ records the civic address at this point.",
+      "title": "NZ Addresses, 162-164 Grafton Road, Grafton, Auckland"
+    },
+    "oc169-ix": {
+      "attribution": "New Zealand Internet Exchange",
+      "bytes": 345268,
+      "capture_id": "oc169-nzix.html",
+      "content_hash": "6299ce57847cc0767059add2219fab7017130a72032270cc22001a9da3b5c126",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "address": "162 Grafton Road",
+        "host": "DataVault",
+        "identifier": "AKL4"
+      },
+      "final_url": "https://ix.nz/service/peering/",
+      "http_status": 200,
+      "id": "oc169-ix",
+      "kind": "operator_website",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": null,
+      "publisher": "New Zealand Internet Exchange",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/nzix.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:46:05.420934+00:00",
+      "source_family": "New Zealand Internet Exchange",
+      "source_url": "https://ix.nz/service/peering/",
+      "summary": "NZIX lists its AKL4 service at DataVault, 162 Grafton Road.",
+      "title": "AKL-IX facility presence in Auckland"
+    },
+    "oc169-kakano": {
+      "attribution": "Sourced from the LINZ Data Service and licensed for reuse under CC BY 4.0.",
+      "bytes": 2581,
+      "capture_id": "oc169-kakano.json",
+      "content_hash": "e8551d6021244c50efa113c4e832264f835887a33c971a94237bdc922e3aa15f",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/json",
+      "extraction": {
+        "address_id": 2229027,
+        "full_address": "7 Kakano Road, Westgate, Auckland",
+        "full_address_number": "7",
+        "full_road_name": "Kakano Road",
+        "territorial_authority": "Auckland"
+      },
+      "final_url": "https://services.arcgis.com/xdsHIIxuCWByZiCB/arcgis/rest/services/LINZ_NZ_Addresses/FeatureServer/0/query?where=full_road_name%3D%27Kakano+Road%27+AND+address_number%3D7+AND+territorial_authority%3D%27Auckland%27&outFields=full_address%2Cfull_address_number%2Caddress_id%2Cterritorial_authority%2Cfull_road_name&returnGeometry=true&outSR=4326&f=pjson",
+      "http_status": 200,
+      "id": "oc169-kakano",
+      "kind": "government_address_register",
+      "license": "Creative Commons Attribution 4.0 International (CC BY 4.0).",
+      "published_at": null,
+      "publisher": "Toitū Te Whenua Land Information New Zealand",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/kakano.json",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:16.031838+00:00",
+      "source_family": "Toitū Te Whenua Land Information New Zealand",
+      "source_url": "https://services.arcgis.com/xdsHIIxuCWByZiCB/arcgis/rest/services/LINZ_NZ_Addresses/FeatureServer/0/query?where=full_road_name%3D%27Kakano+Road%27+AND+address_number%3D7+AND+territorial_authority%3D%27Auckland%27&outFields=full_address%2Cfull_address_number%2Caddress_id%2Cterritorial_authority%2Cfull_road_name&returnGeometry=true&outSR=4326&f=pjson",
+      "summary": "LINZ records the civic address at this point.",
+      "title": "NZ Addresses, 7 Kakano Road, Westgate, Auckland"
+    },
+    "oc169-maq-phase1": {
+      "attribution": "Macquarie Technology Group",
+      "bytes": 150225,
+      "capture_id": "oc169-maq-chair.pdf",
+      "content_hash": "2ac5d5e6da4e0297fbadf928ad9a19ad821ad832442cdd3827aabfa7809934e1",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "AGM_date": "2026-11-25",
+        "commercial_status": "Potential tenant still in negotiation. The chair discusses later FY27 revenue as an assumption.",
+        "phase": "Phase 1",
+        "physical_milestone": "Phase delivered",
+        "section": "IC3 SuperWest and Outlook, printed pages 4–5"
+      },
+      "final_url": "https://company-announcements.afr.com/asx/maq/fb087341-e84f-11f1-bfca-7e6c94865bd1.pdf",
+      "http_status": 200,
+      "id": "oc169-maq-phase1",
+      "kind": "regulatory_filing",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": "2026-11-25",
+      "publisher": "Macquarie Technology Group",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/maq-chair.pdf",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:51:15.719006+00:00",
+      "source_family": "Macquarie Technology Group",
+      "source_url": "https://company-announcements.afr.com/asx/maq/fb087341-e84f-11f1-bfca-7e6c94865bd1.pdf",
+      "summary": "Macquarie reports delivering Phase 1 with the core and shell complete and building utilities installed. Tenant negotiations and future revenue are discussed separately.",
+      "title": "2026 AGM chair’s address, IC3 SuperWest Phase 1"
+    },
+    "oc169-mpi": {
+      "attribution": "Mineral Policy Institute",
+      "bytes": 61337,
+      "capture_id": "oc169-mpi.html",
+      "content_hash": "e87d44c8ecd69380ffc8d92ba1781d7170b7bf625f6c5ba868527931f9faeb6a",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "published": "2026-11-20",
+        "stage": "Referral submitted",
+        "submitted": "2026-11-19"
+      },
+      "final_url": "https://mpi.org.au/wa-first-data-centre-proposal-referred/",
+      "http_status": 200,
+      "id": "oc169-mpi",
+      "kind": "other",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": "2026-11-20",
+      "publisher": "Mineral Policy Institute",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/mpi.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:44:53.128809+00:00",
+      "source_family": "Mineral Policy Institute",
+      "source_url": "https://mpi.org.au/wa-first-data-centre-proposal-referred/",
+      "summary": "The filer reports submitting the referral on November 19 and publishes the completed form on November 20.",
+      "title": "Filer’s publication of its Hazelmere environmental referral"
+    },
+    "oc169-ms": {
+      "attribution": "Microsoft",
+      "bytes": 199475,
+      "capture_id": "oc169-ms.html",
+      "content_hash": "e22ec7068f39bdd720f4c5ff19069ce6858eaf8ac48903e41367ce1ceb8f9683",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "project": "Westgate datacentre",
+        "published_utc": "2026-11-19T04:24:50+00:00",
+        "road": "Kakano Road",
+        "scope": "The work list combines current and upcoming activities. No individual structural or fit-out phase is assigned.",
+        "started": "September 2026"
+      },
+      "final_url": "https://local.microsoft.com/blog/westgate-datacentre-project-overview/",
+      "http_status": 200,
+      "id": "oc169-ms",
+      "kind": "company_disclosure",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": "2026-11-19",
+      "publisher": "Microsoft",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/ms.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:15.365047+00:00",
+      "source_family": "Microsoft",
+      "source_url": "https://local.microsoft.com/blog/westgate-datacentre-project-overview/",
+      "summary": "Microsoft reports that construction on its Westgate datacentre started in September. Its project update was published on November 19.",
+      "title": "Microsoft Westgate datacentre construction update"
+    },
+    "oc169-referral": {
+      "attribution": "Mineral Policy Institute and Conservation Council of Western Australia",
+      "bytes": 218194,
+      "capture_id": "oc169-epa-form.pdf",
+      "content_hash": "64e3a19ee54bb0aac5175e3ff9c703f9c888a492967084b8e57b9985270e1e28",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "application/pdf",
+      "extraction": {
+        "published_by_filer": "2026-11-20",
+        "role": "Third-party environmental referral",
+        "scope": "The referral describes an application and seeks assessment. It grants no permission.",
+        "signed": "2026-11-18",
+        "submitted": "2026-11-19"
+      },
+      "http_status": 200,
+      "id": "oc169-referral",
+      "kind": "regulatory_filing",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": "2026-11-20",
+      "publisher": "Mineral Policy Institute and Conservation Council of Western Australia",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/epa-form.pdf",
+      "raw_capture_redistributed": false,
+      "redirect_note": "The publisher uses a temporary signed download redirect. The stable original download link is retained.",
+      "retrieved_at": "2026-11-25T10:44:52.519224+00:00",
+      "source_family": "Mineral Policy Institute and Conservation Council of Western Australia",
+      "source_url": "https://mineralpolicyinstitute.substack.com/api/v1/file/34e4b761-b200-4f23-aaea-ddf833ca1a3c.pdf",
+      "summary": "The third-party filing identifies the CDC data centre proposal on the two Bushmead Road lots.",
+      "title": "Environmental referral for the proposed CDC Hazelmere data centre"
+    },
+    "oc169-swan": {
+      "attribution": "City of Swan",
+      "bytes": 189481,
+      "capture_id": "oc169-swan.html",
+      "content_hash": "56641e0d34d45e192eecc85f14a063bb969a89ed9ce6575ac4c3ca643242513c",
+      "content_hash_scope": "SHA-256 over complete decoded original HTTP entity bytes",
+      "content_type": "text/html",
+      "extraction": {
+        "addresses": [
+          "178 Bushmead Road",
+          "196 Bushmead Road"
+        ],
+        "application": "DA-386/2026",
+        "excluded": "Future electrical substation"
+      },
+      "final_url": "https://swanengage.swan.wa.gov.au/da-3862026-proposed-data-centre",
+      "http_status": 200,
+      "id": "oc169-swan",
+      "kind": "government_planning_record",
+      "license": "Publisher terms. Selected factual information with attribution.",
+      "published_at": null,
+      "publisher": "City of Swan",
+      "raw_capture_file": "local_data/research-2026-11-25-oceania-169/swan.html",
+      "raw_capture_redistributed": false,
+      "retrieved_at": "2026-11-25T10:42:19.101138+00:00",
+      "source_family": "City of Swan",
+      "source_url": "https://swanengage.swan.wa.gov.au/da-3862026-proposed-data-centre",
+      "summary": "The public application concerns lots 1 and 82 on Bushmead Road. Submissions closed on November 5. The City makes a recommendation to the Metro Outer Development Assessment Panel.",
+      "title": "DA-386/2026, proposed data centre in Hazelmere"
+    }
+  },
+  "update": {
+    "additions": [
+      {
+        "context_source_ids": [
+          "am169-whitefiber-mtl1",
+          "am169-whitefiber-quarter"
+        ],
+        "country": "Canada",
+        "country_iso_a2": "CA",
+        "distinctness_review": "The prior snapshot includes 1,380 physical sites, 1,500 projects, 231 source records and 231 entries in each identity mapping and decision layer. Comparison against MTL-1, WhiteFiber, Enovum, addresses and other relevant aliases found only the separate WhiteFiber NC-1 site across the US border. The nearest complete baseline geometry is Equinix MT1 Montreal (6205 rue Vanden-Abeele, Saint-Laurent) at 8.843 km. The issuer provides a separate address for each of its three Québec facilities.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              -73.635459,
+              45.508255
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "WhiteFiber identifies the commercial property in Item 2 of its annual filing. Statistics Canada matches its street, number and municipality to a single building-representative point. The later issuer disclosures retain the facility code.",
+          "identity_source_ids": [
+            "am169-whitefiber-property"
+          ],
+          "method": "Statistics_Canada_NAR_building_representative_point",
+          "precision": "Statistics Canada building-associated point for the precise commercial address. Placement can be at the building or its access point.",
+          "scope": "project_locator",
+          "scope_class": "government_address_point",
+          "source_id": "am169-statcan-quebec",
+          "uncertainty_reason": "The National Address Register supplies no numerical horizontal uncertainty for this point."
+        },
+        "name": "WhiteFiber MTL-1, Montréal — existing colocation facility",
+        "physical_site_stable_key": "curated:whitefiber-mtl-1-montreal",
+        "project_stable_key": "curated:whitefiber-mtl-1-montreal:existing-colocation",
+        "roles": [
+          {
+            "party": "WhiteFiber, Inc. (through Enovum Data Centers Corp.)",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "am169-whitefiber-quarter"
+          }
+        ],
+        "scoped_project_details": {
+          "commercial_operation_since": "2021-01",
+          "physical_scope": "Existing 64,642-square-foot leased property",
+          "rated_gross_mw": 4,
+          "rated_it_mw": 3
+        },
+        "site_name": "WhiteFiber MTL-1, Montréal",
+        "status": {
+          "as_of": "2026-08-31",
+          "source_id": "am169-whitefiber-september",
+          "summary": "WhiteFiber’s portfolio as of August 31 places MTL-1 in service and reports occupancy at the multi-customer Montréal facility. The issuer dates commercial operation to January 2021.",
+          "value": "operational"
+        },
+        "successor_review": "The November 10 filing retained this 4 MW gross Montréal facility in the portfolio. The issuer’s facility page describes existing hosted workloads. The observation date uses the dated September presentation’s portfolio cutoff."
+      },
+      {
+        "context_source_ids": [
+          "am169-whitefiber-september"
+        ],
+        "country": "Canada",
+        "country_iso_a2": "CA",
+        "distinctness_review": "The prior snapshot includes 1,380 physical sites, 1,500 projects, 231 source records and 231 entries in each identity mapping and decision layer. Comparison against MTL-2, WhiteFiber, Enovum, addresses and other relevant aliases found only the separate WhiteFiber NC-1 site across the US border. The nearest complete baseline geometry is Cologix MTL8 Data Centre, Technoparc Montréal (7350 rue Frederick-Banting) at 5.606 km. The issuer provides a separate address for each of its three Québec facilities.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              -73.832089,
+              45.459278
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "WhiteFiber identifies the commercial property in Item 2 of its annual filing. Statistics Canada matches its street, number and municipality to a single building-representative point. The later issuer disclosures retain the facility code.",
+          "identity_source_ids": [
+            "am169-whitefiber-property"
+          ],
+          "method": "Statistics_Canada_NAR_building_representative_point",
+          "precision": "Statistics Canada building-associated point for the precise commercial address. Placement can be at the building or its access point.",
+          "scope": "project_locator",
+          "scope_class": "government_address_point",
+          "source_id": "am169-statcan-quebec",
+          "uncertainty_reason": "The National Address Register supplies no numerical horizontal uncertainty for this point."
+        },
+        "name": "WhiteFiber MTL-2, Pointe-Claire — announced initial data center conversion",
+        "physical_site_stable_key": "curated:whitefiber-mtl-2-pointe-claire",
+        "project_stable_key": "curated:whitefiber-mtl-2-pointe-claire:initial-retrofit",
+        "roles": [
+          {
+            "party": "WhiteFiber, Inc. (through Enovum Data Centers Corp.)",
+            "relationship_scope": "intended",
+            "role": "operator",
+            "source_id": "am169-whitefiber-quarter"
+          }
+        ],
+        "scoped_project_details": {
+          "physical_scope": "Initial retrofit planned within a former 160,000-square-foot manufacturing facility",
+          "planned_gross_mw": 5,
+          "planned_it_load_mw": 3
+        },
+        "site_name": "WhiteFiber MTL-2, Pointe-Claire",
+        "status": {
+          "as_of": "2026-11-10",
+          "source_id": "am169-whitefiber-quarter",
+          "summary": "The November 10 filing identifies the conversion and states that project planning began in the third quarter. It describes construction as expected later in the fourth quarter.",
+          "value": "announced"
+        },
+        "successor_review": "The November 10 filing was reviewed for updated progress. Its fourth-quarter start remained an expectation. No later first-party announcement of physical construction was identified through November 25."
+      },
+      {
+        "context_source_ids": [
+          "am169-whitefiber-september",
+          "am169-whitefiber-mtl3"
+        ],
+        "country": "Canada",
+        "country_iso_a2": "CA",
+        "distinctness_review": "The prior snapshot includes 1,380 physical sites, 1,500 projects, 231 source records and 231 entries in each identity mapping and decision layer. Comparison against MTL-3, WhiteFiber, Enovum, addresses and other relevant aliases found only the separate WhiteFiber NC-1 site across the US border. The nearest complete baseline geometry is Cologix MTL8 Data Centre, Technoparc Montréal (7350 rue Frederick-Banting) at 38.949 km. The issuer provides a separate address for each of its three Québec facilities.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              -74.019184,
+              45.784356
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "WhiteFiber identifies the commercial property in Item 2 of its annual filing. Statistics Canada matches its street, number and municipality to a single building-representative point. The later issuer disclosures retain the facility code.",
+          "identity_source_ids": [
+            "am169-whitefiber-property"
+          ],
+          "method": "Statistics_Canada_NAR_building_representative_point",
+          "precision": "Statistics Canada building-associated point for the precise commercial address. Placement can be at the building or its access point.",
+          "scope": "project_locator",
+          "scope_class": "government_address_point",
+          "source_id": "am169-statcan-quebec",
+          "uncertainty_reason": "The National Address Register supplies no numerical horizontal uncertainty for this point."
+        },
+        "name": "WhiteFiber MTL-3, Saint-Jérôme — operating Cerebras colocation facility",
+        "physical_site_stable_key": "curated:whitefiber-mtl-3-saint-jerome",
+        "project_stable_key": "curated:whitefiber-mtl-3-saint-jerome:existing-colocation",
+        "roles": [
+          {
+            "party": "WhiteFiber, Inc. (through Enovum Data Centers Corp.)",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "am169-whitefiber-quarter"
+          },
+          {
+            "party": "Cerebras Systems",
+            "relationship_scope": "current",
+            "role": "customer",
+            "source_id": "am169-whitefiber-quarter"
+          }
+        ],
+        "scoped_project_details": {
+          "contract_customer": "Cerebras Systems",
+          "contracted_it_mw": 5,
+          "gross_mw": 7,
+          "operation_start_month": "2025-11",
+          "physical_scope": "Existing colocation building, approximately 202,000 square feet on 7.7 acres per the issuer’s 10-Q"
+        },
+        "site_name": "WhiteFiber MTL-3, Saint-Jérôme",
+        "status": {
+          "as_of": "2026-09-30",
+          "source_id": "am169-whitefiber-quarter",
+          "summary": "The issuer’s third-quarter results report revenue from MTL-3 during the quarter ended September 30, after retrofit and service commencement in November 2025.",
+          "value": "operational"
+        },
+        "successor_review": "The November filing identifies actual colocation revenue at this site during the September quarter, following its November 2025 opening. WhiteFiber’s facility page also confirms its scoped customer operation. Reviewed through November 25."
+      },
+      {
+        "context_source_ids": [
+          "east169-keppel-campus"
+        ],
+        "country": "Singapore",
+        "country_iso_a2": "SG",
+        "distinctness_review": "The full five-layer alias and geometry review identifies the existing Genting Lane campus. Singapore 7 is one of two separately listed, occupied buildings, distinct from the sibling operating project and from SGP 9 under construction.",
+        "existing_site_id": "vcc-site-bb743c7caad1e739c23e",
+        "locator": {
+          "geometry_evidence_id": "55851feb-fc9d-51f3-ab77-030da1cbf8a2",
+          "geometry_evidence_ids": [
+            "491b3b57-f2fb-53b4-ad33-07902a6d2e19",
+            "55851feb-fc9d-51f3-ab77-030da1cbf8a2"
+          ],
+          "geometry_identity_evidence_ids": [
+            "7c83230f-029a-5624-871a-69dd0eac40eb",
+            "f5b6d780-e4e6-5028-bb4b-719b8953891d"
+          ],
+          "identity_review": "The REIT’s property circular identifies both buildings at 82 Genting Lane. The inherited polygon locates their shared campus, as previously reviewed for SGP 9.",
+          "reuse_from_project_id": "04b22725-af3a-5d12-b2b6-0caf17b0c39e",
+          "scope": "campus_locator"
+        },
+        "name": "Keppel DC Singapore 7 operations",
+        "physical_site_stable_key": "curated:keppel-genting-lane-data-centre-campus",
+        "project_stable_key": "curated:keppel-genting-lane-data-centre-campus:keppel-dc-singapore-7-operations",
+        "roles": [
+          {
+            "party": "Keppel DC REIT",
+            "relationship_scope": "current",
+            "role": "owner",
+            "source_id": "east169-keppel-3q"
+          },
+          {
+            "party": "Keppel Data Centres",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "east169-keppel-sg7"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "82 Genting Lane, Singapore 349567",
+          "asset": "Keppel DC Singapore 7",
+          "attributable_lettable_area_sq_ft": 77024,
+          "client_count_scope": "The REIT notes that some clients contract through multiple entities.",
+          "facility_alias": "KDC SGP 7",
+          "reported_attributable_interest_percent": 100,
+          "reported_clients": 4,
+          "reported_occupancy_percent": 100,
+          "reporting_date": "2026-09-30"
+        },
+        "site_identity_review": "The REIT identifies Singapore 7 at 82 Genting Lane. Its separate branded building uses the existing Keppel Genting Lane campus locator.",
+        "site_name": "Keppel Genting Lane Data Centre Campus",
+        "status": {
+          "as_of": "2026-09-30",
+          "source_id": "east169-keppel-3q",
+          "summary": "At September 30 the REIT reports fully fitted colocation at Singapore 7, with 100% occupancy and four reported clients.",
+          "value": "operational"
+        },
+        "successor_review": "The October 23 quarterly report dates its asset table to September 30. The two current facility pages market the separate colocation facilities. SGP 8’s prospective asset enhancement and SGP 9 construction are separate from the existing operations."
+      },
+      {
+        "context_source_ids": [
+          "east169-keppel-campus"
+        ],
+        "country": "Singapore",
+        "country_iso_a2": "SG",
+        "distinctness_review": "The full five-layer alias and geometry review identifies the existing Genting Lane campus. Singapore 8 is one of two separately listed, occupied buildings, distinct from the sibling operating project and from SGP 9 under construction.",
+        "existing_site_id": "vcc-site-bb743c7caad1e739c23e",
+        "locator": {
+          "geometry_evidence_id": "55851feb-fc9d-51f3-ab77-030da1cbf8a2",
+          "geometry_evidence_ids": [
+            "491b3b57-f2fb-53b4-ad33-07902a6d2e19",
+            "55851feb-fc9d-51f3-ab77-030da1cbf8a2"
+          ],
+          "geometry_identity_evidence_ids": [
+            "7c83230f-029a-5624-871a-69dd0eac40eb",
+            "f5b6d780-e4e6-5028-bb4b-719b8953891d"
+          ],
+          "identity_review": "The REIT’s property circular identifies both buildings at 82 Genting Lane. The inherited polygon locates their shared campus, as previously reviewed for SGP 9.",
+          "reuse_from_project_id": "04b22725-af3a-5d12-b2b6-0caf17b0c39e",
+          "scope": "campus_locator"
+        },
+        "name": "Keppel DC Singapore 8 operations",
+        "physical_site_stable_key": "curated:keppel-genting-lane-data-centre-campus",
+        "project_stable_key": "curated:keppel-genting-lane-data-centre-campus:keppel-dc-singapore-8-operations",
+        "roles": [
+          {
+            "party": "Keppel DC REIT",
+            "relationship_scope": "current",
+            "role": "owner",
+            "source_id": "east169-keppel-3q"
+          },
+          {
+            "party": "Keppel Data Centres",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "east169-keppel-sg8"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "82 Genting Lane, Singapore 349567",
+          "asset": "Keppel DC Singapore 8",
+          "attributable_lettable_area_sq_ft": 78214,
+          "client_count_scope": "The REIT notes that some clients contract through multiple entities.",
+          "facility_alias": "KDC SGP 8",
+          "reported_attributable_interest_percent": 100,
+          "reported_clients": 4,
+          "reported_occupancy_percent": 100,
+          "reporting_date": "2026-09-30"
+        },
+        "site_identity_review": "The REIT identifies Singapore 8 at 82 Genting Lane. Its separate branded building uses the existing Keppel Genting Lane campus locator.",
+        "site_name": "Keppel Genting Lane Data Centre Campus",
+        "status": {
+          "as_of": "2026-09-30",
+          "source_id": "east169-keppel-3q",
+          "summary": "At September 30 the REIT reports fully fitted colocation at Singapore 8, with 100% occupancy and four reported clients.",
+          "value": "operational"
+        },
+        "successor_review": "The October 23 quarterly report dates its asset table to September 30. The two current facility pages market the separate colocation facilities. SGP 8’s prospective asset enhancement and SGP 9 construction are separate from the existing operations."
+      },
+      {
+        "context_source_ids": [
+          "east169-sg6-ministry",
+          "east169-sg6-opening"
+        ],
+        "country": "Singapore",
+        "country_iso_a2": "SG",
+        "distinctness_review": "Checked SG6/SG06, Singapore 6, Jalan Tukang and postal code 619794 across five baseline identity layers and every full site geometry. The nearest mapped site is Keppel DC Singapore 5, Sunview Way, 1,611 metres away. STT Singapore 6 is a different operator. The SG6 release already appears on SG1, SG4 and SG5 rows as a source, without an SG6 project. Equinix identifies this as its sixth Singapore facility.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              103.7132625629157,
+              1.325842648792628
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "JTC identifies Equinix’s sixth Singapore data centre on Jalan Tukang. CBRE identifies the facility at number 21, and the Singapore Land Authority returns the exact commercial address. Its point also falls inside the community-mapped SG6 building. Only the Singapore Land Authority coordinates are used.",
+          "identity_source_ids": [
+            "east169-sg6-jtc",
+            "east169-sg6-cbre"
+          ],
+          "method": "Singapore_Land_Authority_OneMap_exact_numbered_address_WGS84",
+          "precision": "Numbered commercial civic address for 21 Jalan Tukang, postal code 619794.",
+          "scope": "campus_locator",
+          "scope_class": "official_numbered_address_point",
+          "source_id": "east169-sg6-sla",
+          "uncertainty_reason": "OneMap supplies a civic point without a per-address survey accuracy."
+        },
+        "name": "Equinix SG6 first phase",
+        "physical_site_stable_key": "curated:equinix-sg6-singapore-jalan-tukang",
+        "project_stable_key": "curated:equinix-sg6-singapore-jalan-tukang:first-phase",
+        "roles": [
+          {
+            "party": "Equinix",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "east169-sg6-local-opening"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "21 Jalan Tukang, Singapore 619794",
+          "capacity_scope": "Equinix reports a first-phase capacity figure without an explicit electrical boundary. The 20 MW IT figure applies only to the prospective full build-out.",
+          "first_phase_cabinets_approximate": 1550,
+          "first_phase_reported_capacity_mw": 8,
+          "future_full_build_it_capacity_mw_up_to": 20,
+          "phase": "First phase opened November 6, 2026."
+        },
+        "site_name": "Equinix SG6 Singapore",
+        "status": {
+          "as_of": "2026-11-06",
+          "source_id": "east169-sg6-local-opening",
+          "summary": "Equinix announced SG6’s opening on November 6, including the first phase. Singapore’s Ministry of Digital Development and Information independently recorded the launch.",
+          "value": "operational"
+        },
+        "successor_review": "The November 6 service opening supersedes JTC’s earlier 2027 schedule. Equinix distinguishes the first phase in service from the larger future build-out."
+      },
+      {
+        "context_source_ids": [
+          "eu169-telekom-operator",
+          "eu169-cloudflare-september16",
+          "eu169-telekom-host",
+          "eu169-bix-dataplex"
+        ],
+        "country": "Hungary",
+        "country_iso_a2": "HU",
+        "distinctness_review": "Identity checks covered 1,380 site geometries, 1,500 projects, 231 imported source records and both 231-entry identity mapping arrays. No existing identity matched the facility name and address. The nearest prior geometry was Digital Realty VIE13-VIE16 Digital Park Vienna Expansion, 218,160 metres away. The operator portfolio, the exchange and the original mapped feature explicitly join the Dataplex name to this address. Other Telekom Budapest hosting locations have distinct addresses.",
+        "locator": {
+          "authority": "community_mapped",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              19.1036268,
+              47.4936045
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "The operator portfolio, the exchange and the original mapped feature explicitly join the Dataplex name to this address. Other Telekom Budapest hosting locations have distinct addresses.",
+          "identity_source_ids": [
+            "eu169-cloudflare-september16",
+            "eu169-telekom-operator",
+            "eu169-telekom-host",
+            "eu169-bix-dataplex"
+          ],
+          "method": "openstreetmap_Dataplex_named_way_256121487_bbox_center",
+          "precision": "Publicly named data centre and exact operator address. The point is inside the mapped establishment.",
+          "scope": "reviewed_site_locator",
+          "scope_class": "community_mapped_named_data_center_representative_point",
+          "source_id": "eu169-dataplex-geometry",
+          "uncertainty_reason": "The source provides no numerical positional accuracy for this locator."
+        },
+        "name": "Magyar Telekom Cloud & DataCenter (Dataplex), Budapest — existing colocation operations",
+        "physical_site_stable_key": "curated:telekom-dataplex-budapest-asztalos-sandor",
+        "project_stable_key": "curated:telekom-dataplex-budapest-asztalos-sandor:existing-operations",
+        "roles": [
+          {
+            "party": "Telekom Rendszerintegráció Zrt.",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "eu169-telekom-operator"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "Asztalos Sándor út 13, 1087 Budapest",
+          "commercial_alias": "T-Systems Dataplex Budapest"
+        },
+        "site_name": "Magyar Telekom Cloud & DataCenter (Dataplex), Budapest",
+        "status": {
+          "as_of": "2026-09-16",
+          "source_id": "eu169-cloudflare-september16",
+          "summary": "Cloudflare identifies current direct network service at the named Magyar Telekom Cloud & DataCenter (Dataplex), Budapest facility in its September 16 published register.",
+          "value": "operational"
+        },
+        "successor_review": "Cloudflare confirms service at T-Systems Dataplex; the exchange and active operator listings agree."
+      },
+      {
+        "context_source_ids": [
+          "eu169-sitel-addresses",
+          "eu169-cloudflare-september16",
+          "eu169-sitel-colocation"
+        ],
+        "country": "Slovakia",
+        "country_iso_a2": "SK",
+        "distinctness_review": "Identity checks covered 1,380 site geometries, 1,500 projects, 231 imported source records and both 231-entry identity mapping arrays. No existing identity matched the facility name and address. The nearest prior geometry was Digital Realty VIE13-VIE16 Digital Park Vienna Expansion, 52,664 metres away. SITEL explicitly assigns 20/C to POP1 and 18 to POP2. The OSM civic feature carries street number 20C within compound number 6076/20C.",
+        "locator": {
+          "authority": "community_mapped",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              17.0942334,
+              48.116855
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "SITEL explicitly assigns 20/C to POP1 and 18 to POP2. The OSM civic feature carries street number 20C within compound number 6076/20C.",
+          "identity_source_ids": [
+            "eu169-cloudflare-september16",
+            "eu169-sitel-addresses",
+            "eu169-sitel-colocation"
+          ],
+          "method": "openstreetmap_Kopcianska_20C_address_way_319323151_bbox_center",
+          "precision": "Point within the mapped building that carries the operator’s public civic address.",
+          "scope": "reviewed_site_locator",
+          "scope_class": "community_mapped_address_representative_point",
+          "source_id": "eu169-sitel-street-address",
+          "uncertainty_reason": "The source provides no numerical positional accuracy for this locator."
+        },
+        "name": "SITELPOP1, Bratislava — existing colocation operations",
+        "physical_site_stable_key": "curated:sitelpop1-bratislava-kopcianska-20c",
+        "project_stable_key": "curated:sitelpop1-bratislava-kopcianska-20c:existing-operations",
+        "roles": [
+          {
+            "party": "SITEL s.r.o.",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "eu169-sitel-addresses"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "Kopčianska 20/C, 851 01 Bratislava",
+          "other_Bratislava_location": "SITELPOP2, Kopčianska 18"
+        },
+        "site_name": "SITELPOP1, Bratislava",
+        "status": {
+          "as_of": "2026-09-16",
+          "source_id": "eu169-cloudflare-september16",
+          "summary": "Cloudflare identifies current direct network service at the named SITELPOP1, Bratislava facility in its September 16 published register.",
+          "value": "operational"
+        },
+        "successor_review": "Cloudflare names SITELPOP1 in Bratislava and the operator continues to offer colocation there."
+      },
+      {
+        "context_source_ids": [
+          "eu169-cegedim-eb6-november",
+          "eu169-cegedim-eb6-certificate"
+        ],
+        "country": "France",
+        "country_iso_a2": "FR",
+        "distinctness_review": "Identity checks covered 1,380 site geometries, 1,500 projects, 231 imported source records and both 231-entry identity mapping arrays. No existing identity matched the facility name and address. The nearest prior geometry was Telehouse TH3 Paris Magny Campus, Magny-les-Hameaux (1 rue Pablo Picasso), 705 metres away. AFNOR identifies EB6 and EB5 by code and distinct street addresses in the same commune. The baseline Telehouse TH3 Magny campus is at 1 rue Pablo Picasso, whereas EB6 is at 52 route de Port-Royal des Champs. The national address point matches the exact EB6 address.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              2.071381,
+              48.73077
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "AFNOR identifies EB6 and EB5 by code and distinct street addresses in the same commune. The baseline Telehouse TH3 Magny campus is at 1 rue Pablo Picasso, whereas EB6 is at 52 route de Port-Royal des Champs. The national address point matches the exact EB6 address.",
+          "identity_source_ids": [
+            "eu169-cegedim-eb6-november",
+            "eu169-cegedim-eb6-certificate"
+          ],
+          "method": "BAN_78356_0461_00052_published_WGS84",
+          "precision": "Municipal building-position address point at the public EB6 address. Individual data halls have no separate geometry.",
+          "scope": "project_locator",
+          "scope_class": "government_address_point",
+          "source_id": "eu169-ban-eb6",
+          "uncertainty_reason": "The source provides no numerical positional accuracy for this locator."
+        },
+        "name": "Cegedim EB6, Magny-les-Hameaux — existing colocation operations",
+        "physical_site_stable_key": "curated:cegedim-eb6-magny-les-hameaux",
+        "project_stable_key": "curated:cegedim-eb6-magny-les-hameaux:existing-operations",
+        "roles": [
+          {
+            "party": "Cegedim",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "eu169-cegedim-eb6-november"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "52 route de Port-Royal des Champs, 78114 Magny-les-Hameaux",
+          "opening_month": "2026-09",
+          "status_observation_day": "2026-11-19"
+        },
+        "site_name": "Cegedim EB6, Magny-les-Hameaux",
+        "status": {
+          "as_of": "2026-11-19",
+          "source_id": "eu169-cegedim-eb6-november",
+          "summary": "Cegedim confirms EB6 is operating and offers colocation. Service began in September 2026.",
+          "value": "operational"
+        },
+        "successor_review": "Cegedim confirms November 19 that the already commissioned facility has been operating since September."
+      },
+      {
+        "context_source_ids": [
+          "eu169-smartdc-rotterdam",
+          "eu169-megaport-rotterdam",
+          "eu169-smartdc-estate"
+        ],
+        "country": "Netherlands",
+        "country_iso_a2": "NL",
+        "distinctness_review": "Identity checks covered 1,380 site geometries, 1,500 projects, 231 imported source records and both 231-entry identity mapping arrays. No existing identity matched the facility name and address. The nearest prior geometry was Alphen aan den Rijn Data Center (Boerhaaveweg 10), 26,292 metres away. The carrier and operator name Smartdc at the exact BAG address. Smartdc identifies its establishment as part of the larger Van Nelle Factory property.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              4.434692017352376,
+              51.922849570050985
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "The carrier and operator name Smartdc at the exact BAG address. Smartdc identifies its establishment as part of the larger Van Nelle Factory property.",
+          "identity_source_ids": [
+            "eu169-megaport-rotterdam",
+            "eu169-smartdc-rotterdam",
+            "eu169-smartdc-estate"
+          ],
+          "method": "Kadaster_BAG_verblijfsobject_0599010000220989_native_GeoJSON",
+          "precision": "Official address point for the shared Van Nelle estate used by the operator. Building-level data-centre position is unspecified.",
+          "scope": "campus_locator",
+          "scope_class": "government_address_point",
+          "source_id": "eu169-bag-van-nelle",
+          "uncertainty_reason": "The source provides no numerical positional accuracy for this locator."
+        },
+        "name": "Smartdc Rotterdam — existing colocation operations",
+        "physical_site_stable_key": "curated:smartdc-rotterdam-van-nelle",
+        "project_stable_key": "curated:smartdc-rotterdam-van-nelle:existing-operations",
+        "roles": [
+          {
+            "party": "Smartdc",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "eu169-smartdc-rotterdam"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "Van Nelleweg 1, 3044 BC Rotterdam",
+          "host_estate": "Van Nelle Factory",
+          "megaport_location_id": 2050,
+          "observation_event": "Network service availability"
+        },
+        "site_name": "Smartdc Rotterdam",
+        "status": {
+          "as_of": "2026-11-23",
+          "source_id": "eu169-megaport-rotterdam",
+          "summary": "Entry 2050 in Megaport’s global directory identifies Smartdc Rotterdam at Van Nelleweg 1 and gives November 23 as the date its network service went live.",
+          "value": "operational"
+        },
+        "successor_review": "The carrier’s November 23 live date and the operator’s Rotterdam facility listing confirm operation."
+      },
+      {
+        "context_source_ids": [
+          "eu169-digital-realty-bru1",
+          "eu169-cloudflare-september16",
+          "eu169-bics-bru1",
+          "eu169-bnix-bru1"
+        ],
+        "country": "Belgium",
+        "country_iso_a2": "BE",
+        "distinctness_review": "Identity checks covered 1,380 site geometries, 1,500 projects, 231 imported source records and both 231-entry identity mapping arrays. No existing identity matched the facility name and address. The nearest prior geometry was LCL Brussels-North Diegem, 2,371 metres away. The operator and Belgian exchange name BRU1 at bus 1. BICS identifies the same establishment at the registered parent street number. Digital Realty’s other Brussels facility BRU3 has a different street address.",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              4.47615005,
+              50.87058615
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "The operator and Belgian exchange name BRU1 at bus 1. BICS identifies the same establishment at the registered parent street number. Digital Realty’s other Brussels facility BRU3 has a different street address.",
+          "identity_source_ids": [
+            "eu169-cloudflare-september16",
+            "eu169-digital-realty-bru1",
+            "eu169-bics-bru1",
+            "eu169-bnix-bru1"
+          ],
+          "method": "Flanders_address_638317_EPSG31370_to_WGS84",
+          "precision": "Registered point for the facility’s public parent street address. The postal box bus 1 is unspecified by the civic geometry.",
+          "scope": "project_locator",
+          "scope_class": "government_address_point",
+          "source_id": "eu169-flanders-zaventem-address",
+          "uncertainty_reason": "The source provides no numerical positional accuracy for this locator."
+        },
+        "name": "Digital Realty BRU1, Zaventem — existing colocation operations",
+        "physical_site_stable_key": "curated:digital-realty-bru1-wezembeekstraat-zaventem",
+        "project_stable_key": "curated:digital-realty-bru1-wezembeekstraat-zaventem:existing-operations",
+        "roles": [
+          {
+            "party": "Digital Realty",
+            "relationship_scope": "current",
+            "role": "operator",
+            "source_id": "eu169-digital-realty-bru1"
+          }
+        ],
+        "scoped_project_details": {
+          "address": "Wezembeekstraat 2 bus 1, 1930 Zaventem",
+          "facility_code": "BRU1",
+          "former_operator_name": "Interxion",
+          "postal_box": 1
+        },
+        "site_name": "Digital Realty BRU1, Zaventem",
+        "status": {
+          "as_of": "2026-09-16",
+          "source_id": "eu169-cloudflare-september16",
+          "summary": "Cloudflare identifies current direct network service at the named Digital Realty BRU1, Zaventem facility in its September 16 published register.",
+          "value": "operational"
+        },
+        "successor_review": "Cloudflare confirms service at BRU1 in September. BNIX and the operator continue to identify the same host."
+      },
+      {
+        "context_source_ids": [],
+        "country": "New Zealand",
+        "country_iso_a2": "NZ",
+        "distinctness_review": "The council applications identify AKL03 at 7 Kakano Road. Microsoft names Westgate and Kakano Road and identifies the project contractor contact as 7Kakano. This record covers the current construction project. Nearest baseline site is 100 Halsey Street redevelopment, Auckland (14.09 km).",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              174.6033365867031,
+              -36.812706650492004
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "The council applications identify AKL03 at 7 Kakano Road. Microsoft names Westgate and Kakano Road and identifies the project contractor contact as 7Kakano. This record covers the current construction project.",
+          "identity_source_ids": [
+            "oc169-akl03",
+            "oc169-ms"
+          ],
+          "method": "LINZ_NZ_Addresses_civic_point_2229027",
+          "precision": "Civic address of the AKL03 project property. Building and construction boundaries are not mapped.",
+          "scope": "project_locator",
+          "scope_class": "government_address_point",
+          "source_id": "oc169-kakano",
+          "uncertainty_reason": "The address register gives no positional accuracy for the selected point."
+        },
+        "name": "Microsoft Westgate AKL03 — datacentre construction",
+        "physical_site_stable_key": "curated:microsoft-westgate-kakano-road",
+        "project_stable_key": "curated:microsoft-westgate-kakano-road:akl03-construction",
+        "roles": [
+          {
+            "party": "Microsoft",
+            "relationship_scope": "intended",
+            "role": "operator",
+            "source_id": "oc169-ms"
+          }
+        ],
+        "site_name": "Microsoft Westgate, Auckland",
+        "status": {
+          "as_of": "2026-11-19",
+          "source_id": "oc169-ms",
+          "summary": "Microsoft’s November 19 construction update confirms a September start at Westgate.",
+          "value": "under_construction"
+        },
+        "successor_review": "Microsoft’s November 19 update describes construction. No later operating or commissioning statement for this project was found."
+      },
+      {
+        "context_source_ids": [
+          "oc169-dv"
+        ],
+        "country": "New Zealand",
+        "country_iso_a2": "NZ",
+        "distinctness_review": "DataVault names the Grafton site and NZIX identifies the same host at 162 Grafton Road, within the LINZ range 162–164. The announced North Shore building is separate. Nearest baseline site is Datacentre220 Auckland (1.67 km).",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              174.7644383500051,
+              -36.8642343823911
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "DataVault names the Grafton site and NZIX identifies the same host at 162 Grafton Road, within the LINZ range 162–164. The announced North Shore building is separate.",
+          "identity_source_ids": [
+            "oc169-akldv",
+            "oc169-ix"
+          ],
+          "method": "LINZ_NZ_Addresses_civic_point_1123866",
+          "precision": "Civic address for the existing Grafton facility. The individual halls share the host property.",
+          "scope": "campus_locator",
+          "scope_class": "government_address_point",
+          "source_id": "oc169-grafton",
+          "uncertainty_reason": "The address register gives no positional accuracy for the selected point."
+        },
+        "name": "DataVault Grafton — Halls 4 and 5 expansion",
+        "physical_site_stable_key": "curated:datavault-grafton-road-auckland",
+        "project_stable_key": "curated:datavault-grafton-road-auckland:halls-4-and-5-expansion",
+        "roles": [
+          {
+            "party": "DataVault",
+            "relationship_scope": "intended",
+            "role": "operator",
+            "source_id": "oc169-dv"
+          }
+        ],
+        "site_name": "DataVault Grafton, Auckland",
+        "status": {
+          "as_of": "2026-10-20",
+          "source_id": "oc169-dv",
+          "summary": "DataVault announced the two halls with separate 2027 delivery targets.",
+          "value": "announced"
+        },
+        "successor_review": "The operator describes the future halls as an expansion of its operating Grafton site. Later material reviewed through November 25 provided no dated physical milestone for the two halls."
+      },
+      {
+        "context_source_ids": [
+          "oc169-mpi"
+        ],
+        "country": "Australia",
+        "country_iso_a2": "AU",
+        "distinctness_review": "The City and CDC identify the proposal at 178 and 196 Bushmead Road. A separate GreenSquareDC application concerned Stirling Crescent. Nearest baseline site is NEXTDC P1 Perth (4 Millrose Drive, Malaga) (10.54 km).",
+        "locator": {
+          "authority": "official_source",
+          "derivation": "direct_geometry",
+          "geometry": {
+            "coordinates": [
+              115.99686371000008,
+              -31.904896640152913
+            ],
+            "type": "Point"
+          },
+          "horizontal_uncertainty_metres": null,
+          "identity_review": "The City and CDC identify the proposal at 178 and 196 Bushmead Road. A separate GreenSquareDC application concerned Stirling Crescent.",
+          "identity_source_ids": [
+            "oc169-swan",
+            "oc169-cdc"
+          ],
+          "method": "GNAF_property_centroid_GAWA_163074868",
+          "precision": "Property-centroid point for 178 Bushmead Road, representing one of the two project lots. It does not locate a particular building.",
+          "scope": "campus_locator",
+          "scope_class": "government_address_point",
+          "source_id": "oc169-gnaf",
+          "uncertainty_reason": "The address register gives no positional accuracy for the selected point."
+        },
+        "name": "CDC Hazelmere — proposed data centre campus",
+        "physical_site_stable_key": "curated:cdc-hazelmere-bushmead-road",
+        "project_stable_key": "curated:cdc-hazelmere-bushmead-road:proposed-campus",
+        "roles": [
+          {
+            "party": "CDC Data Centres",
+            "relationship_scope": "intended",
+            "role": "operator",
+            "source_id": "oc169-cdc"
+          }
+        ],
+        "site_name": "CDC Hazelmere, Western Australia",
+        "status": {
+          "as_of": "2026-11-19",
+          "source_id": "oc169-referral",
+          "summary": "A third-party environmental referral filed November 19 concerns CDC’s pending development application.",
+          "value": "announced"
+        },
+        "successor_review": "The City’s consultation closed November 5. The November 19 referral and CDC’s project page describe a proposal. No project approval or start of physical work was identified."
+      }
+    ],
+    "base_dataset": "verified_construction_core/2026-11-25-research-hundredsixtyeighth",
+    "base_manifest_sha256": "d278b3e64f81473c3dcfd61a15c26e890403cfab76b4854df8faf34ac46e5b64",
+    "format": "datacenter-atlas-update-input-v2",
+    "output": "verified_construction_core/2026-11-25-research-hundredsixtyninth",
+    "source_files": [
+      {
+        "path": "sources/research-countries-2026-11-25-hundredsixtyninth-primary-sources.json",
+        "sha256": "77ef5fc849678a08fba47f8717db31d8d02f1e8efc2364948edb5e087ba20522"
+      }
+    ],
+    "status_updates": [
+      {
+        "identity_review": "The AGM identifies Phase 1 of IC3 SuperWest on the Macquarie Park Data Centre Campus, the same phase tracked in the August results.",
+        "project_stable_key": "curated:macquarie-ic3-super-west-facility:phase-1-build",
+        "status": {
+          "as_of": "2026-11-25",
+          "source_id": "oc169-maq-phase1",
+          "summary": "The chair confirmed delivery of IC3 SuperWest Phase 1 at the November 25 AGM. The tenant agreement was still under negotiation.",
+          "value": "completed"
+        },
+        "successor_review": "The dated AGM distinguishes delivered Phase 1 from the remaining IC3 SuperWest build and future commercial service. The separate Macquarie Engineering & Technology Campus is a proposed development on another site."
+      }
+    ],
+    "updated_at": "2026-11-25"
+  }
+}
