@@ -11,6 +11,7 @@ Source code is licensed separately under the [MIT License](LICENSE).
 | Atlas-authored data and documentation | [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/) |
 | Third-party facts, quoted titles, source URLs and geometries | The source's own terms, recorded on each evidence row and in each dataset's `ATTRIBUTION.txt` |
 | Geometries derived from OpenStreetMap | © OpenStreetMap contributors, [Open Database License 1.0 (ODbL)](https://opendatacommons.org/licenses/odbl/1-0/) |
+| Overture Places points sourced from Meta | Overture Maps Foundation and Meta. Share the [CDLA Permissive 2.0 licence text](datacenter_atlas/licenses/CDLA-Permissive-2.0.txt) with these data. The same text accompanies each applicable snapshot and its downloads. |
 | Required source notices | Reproduced under [Required notices](#required-notices); keep them with the data |
 
 ## Atlas-authored data: CC BY 4.0
@@ -63,7 +64,7 @@ them directly from their providers, under the providers' terms; the website's
 ## OpenStreetMap-derived geometries: ODbL 1.0
 
 Some locators are derived from OpenStreetMap; their geometry evidence row has `license` set to
-`ODbL-1.0` (<!-- atlas:osm-geometry-count -->102 of the 1637 project geometries, on 91 sites, in the 2026-11-25 data snapshot<!-- /atlas:osm-geometry-count -->). These
+`ODbL-1.0` (<!-- atlas:osm-geometry-count -->108 of the 1656 project geometries, on 97 sites, in the 2026-11-25 data snapshot<!-- /atlas:osm-geometry-count -->). These
 geometries are © OpenStreetMap contributors and are available under the ODbL 1.0, not CC BY 4.0.
 Credit "© OpenStreetMap contributors" and link to <https://www.openstreetmap.org/copyright>. If you
 publicly use a derivative database of these geometries, the ODbL's share-alike terms apply to that
