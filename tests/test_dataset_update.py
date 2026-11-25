@@ -2372,5 +2372,63 @@ class EfficiencyObservationTests(unittest.TestCase):
             self.payloads()
 
 
+class AnnualEnergyObservationTests(unittest.TestCase):
+    setUp = DatasetUpdateTests.setUp
+    write = DatasetUpdateTests.write
+    payloads = DatasetUpdateTests.payloads
+
+    def test_facility_electricity_uses_the_reported_year_and_its_own_source(self):
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        project = self.spec["additions"][0]
+        report = {**self.sources["sources"][0], "id": "annual-report",
+                  "source_url": "https://example.org/annual-report", "published_at": None,
+                  "source_reporting_period": "2025", "date_semantics": "Calendar year 2025."}
+        self.sources["sources"].append(report)
+        action = {"project_stable_key": project["project_stable_key"], "source_id": report["id"],
+                  "metric": "annual_energy_mwh", "stage": "measured", "as_of_date": "2025-12-31",
+                  "target_date": None, "low": 1250, "base": 1250, "high": 1250, "unit": "MWh/year",
+                  "method": "reported", "confidence": 1, "notes": "Calendar-year electricity used at the campus."}
+        self.spec["annual_energy_observations"] = [action]
+        self.write()
+        out = self.root / "out"
+        self.assertEqual(build_update(self.input, out, root=self.root), validate_update(self.input, out, root=self.root))
+        with (out / "projects.csv").open() as f:
+            row = next(r for r in csv.DictReader(f) if r["project_stable_key"] == project["project_stable_key"])
+        obs, = json.loads(row["annual_energy_observations_json"])
+        with (out / "evidence.csv").open() as f:
+            evidence = next(r for r in csv.DictReader(f) if r["evidence_id"] == obs["evidence_id"])
+        self.assertEqual(obs, {**{k: v for k, v in action.items() if k not in {"source_id", "project_stable_key"}},
+                               "evidence_id": evidence["evidence_id"]})
+        self.assertEqual(json.loads(evidence["roles_json"]), ["typed_metric:annual_energy_mwh"])
+        self.assertEqual(json.loads(evidence["project_ids_json"]), [row["project_id"]])
+        self.assertEqual(row["annual_energy_unknown_reason"], "")
+        self.assertEqual(row["status_as_of"], project["status"]["as_of"])
+        self.assertEqual(json.loads(row["power_observations_json"]), [])
+        self.assertEqual(json.loads(row["efficiency_observations_json"]), [])
+        self.spec["annual_energy_observations"].append(action.copy())
+        with self.assertRaisesRegex(UpdateError, "duplicate or conflicting"):
+            self.payloads()
+        self.spec["annual_energy_observations"] = [action]
+        report["source_reporting_period"] = "2025-Q4"
+        with self.assertRaisesRegex(UpdateError, "end of its measured reporting period"):
+            self.payloads()
+        report["source_reporting_period"] = "2025"
+        action["unit"] = "MW"
+        with self.assertRaisesRegex(UpdateError, "metric/unit"):
+            self.payloads()
+        action["unit"] = "MWh/year"
+        del report["source_reporting_period"]
+        report["published_at"] = "2026-02-01"
+        with self.assertRaisesRegex(UpdateError, "explicit observation date"):
+            self.payloads()
+        action["as_of_date"] = "2025-06-30"
+        report.update(source_observation_date="2025-06-30", source_observation_date_precision="day",
+                      date_semantics="The report covers the fiscal year ending June 30.")
+        self.payloads()
+        action["target_date"] = "2026-06-30"
+        with self.assertRaisesRegex(UpdateError, "target date"):
+            self.payloads()
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -22,7 +22,7 @@ from uuid import NAMESPACE_URL, uuid5
 from .models import LifecycleStatus
 from .public_site import CDLA_LICENSE_FILE, CDLA_PERMISSIVE, validate_dataset
 from .verified_construction_core import (
-    EFFICIENCY_METRICS, POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation,
+    EFFICIENCY_METRICS, ENERGY_METRICS, POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation,
 )
 
 
@@ -228,22 +228,25 @@ def _metric_observation(item, source, details, category, allowed_metrics):
     _require(observation["stage"] != "unknown" and observation["method"] != "unknown",
              f"{category} observation needs a known stage and method")
     observed = _date(observation["as_of_date"])
+    measured_energy = category == "annual_energy" and observation["stage"] == "measured"
+    if measured_energy:
+        _require(observation["target_date"] is None, "measured annual energy must not have a target date")
     if observation["target_date"] is not None:
         _date(observation["target_date"])
     if source.get("published_at"):
         _require(observed <= _date(source["published_at"]), f"{category} observation postdates its source")
-    if category == "efficiency" and "source_reporting_period" in details:
+    if category in {"annual_energy", "efficiency"} and "source_reporting_period" in details:
         period = details["source_reporting_period"]
         quarter = {(3, 31): 1, (6, 30): 2, (9, 30): 3, (12, 31): 4}.get((observed.month, observed.day))
-        matches_period = ((quarter is not None and period == f"{observed.year}-Q{quarter}")
+        matches_period = ((category == "efficiency" and quarter is not None and period == f"{observed.year}-Q{quarter}")
                           or (quarter == 4 and period == str(observed.year)))
         _require(matches_period and observation["stage"] == "measured" and observation["target_date"] is None,
-                 "efficiency observation must use the end of its measured reporting period")
-        _text(details.get("date_semantics"), "efficiency reporting period semantics")
-    elif not source.get("published_at"):
+                 f"{category} observation must use the end of its measured reporting period")
+        _text(details.get("date_semantics"), f"{category} reporting period semantics")
+    elif measured_energy or not source.get("published_at"):
         _require(details.get("source_observation_date") == observation["as_of_date"]
                  and details.get("source_observation_date_precision") == "day",
-                 f"undated {category} source needs an explicit observation date")
+                 f"{category} source needs an explicit observation date")
         _text(details.get("date_semantics"), f"{category} source observation date semantics")
     retrieved = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
     _require(observed <= retrieved, f"{category} observation postdates its capture")
@@ -826,7 +829,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
 
     added_metrics = {}
     identity = ("metric", "stage", "as_of_date", "target_date")
-    for category, allowed_metrics in (("power", POWER_METRICS), ("efficiency", EFFICIENCY_METRICS)):
+    for category, allowed_metrics in (("power", POWER_METRICS), ("efficiency", EFFICIENCY_METRICS),
+                                      ("annual_energy", ENERGY_METRICS)):
         action_key = category + "_observations"
         metric_actions = spec.get(action_key, [])
         _require(isinstance(metric_actions, list) and (not metric_actions or is_v2),
