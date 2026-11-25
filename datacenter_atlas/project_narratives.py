@@ -192,24 +192,29 @@ def load_project_narratives(
     replace the current status. A single-source context update supplies reviewed
     prose for that project and evidence; its newest summary supersedes generic
     document prose. Multi-source updates retain each source's own summary.
+    A companion marked "project" replaces earlier prose about the same evidence
+    for its project. A "research_only" capture stays out of context on all cards.
     """
     root = root.resolve()
     projects = {row["project_stable_key"]: row for row in atlas.projects if row.get("project_stable_key")}
     status_by_project = {row["project_id"]: row.get("status_evidence_id") for row in atlas.projects}
     evidence_by_id = atlas.evidence_by_id
     result: dict[str, dict[str, Any]] = {}
-    scoped_context: dict[tuple[str, str], str] = {}
+    scoped_context: dict[tuple[str, str], str | None] = {}
+    research_only: set[str] = set()
 
     def item(project: Mapping[str, Any]) -> dict[str, Any]:
         return result.setdefault(project["project_id"], {"status": None, "context": []})
 
     def report(project: Mapping[str, Any], evidence: Mapping[str, Any], text: Any,
                source: Mapping[str, Any] | None = None, *, reviewed_shared_status: bool = False) -> None:
-        scoped = scoped_context.get((project["project_id"], evidence["evidence_id"]))
-        text = scoped or _text(text)
-        if (not text or not _associated(evidence, project)
+        key = (project["project_id"], evidence["evidence_id"])
+        if (source or {}).get("summary_scope") == "project" and key not in scoped_context:
+            return
+        text = scoped_context.get(key, _text(text))
+        if (not text or evidence["evidence_id"] in research_only or not _associated(evidence, project)
                 or not _suitable_report(evidence, project, source,
-                                        reviewed_shared_status=bool(scoped) or reviewed_shared_status)):
+                                        reviewed_shared_status=key in scoped_context or reviewed_shared_status)):
             return
         narrative = item(project)
         entry = {"text": text, "evidence_id": evidence["evidence_id"]}
@@ -217,18 +222,22 @@ def load_project_narratives(
                 and all(existing["text"] != text for existing in narrative["context"])):
             narrative["context"].append(entry)
 
-    def modern_evidence(source: Any, project: Mapping[str, Any]) -> Mapping[str, Any] | None:
+    def modern_evidence(source: Any, project: Mapping[str, Any] | None = None) -> Mapping[str, Any] | None:
         if not isinstance(source, dict):
             return None
         identifier = source.get("reuse_evidence_id") or str(uuid.uuid5(
             uuid.NAMESPACE_URL, f"{source.get('source_url')}#{source.get('content_hash')}",
         ))
         evidence = evidence_by_id.get(identifier)
-        if (evidence and _associated(evidence, project)
+        if (evidence and (project is None or _associated(evidence, project))
                 and evidence.get("source_url") == source.get("source_url")
                 and evidence.get("content_hash") == source.get("content_hash")):
             return evidence
         return None
+
+    def is_other_current_status(evidence: Mapping[str, Any], project: Mapping[str, Any]) -> bool:
+        return any(status_by_project.get(pid) == evidence["evidence_id"]
+                   for pid in evidence["project_ids"] if pid != project["project_id"])
 
     def reviewed_shared_status(change: Mapping[str, Any], project: Mapping[str, Any],
                                evidence: Mapping[str, Any]) -> bool:
@@ -236,9 +245,14 @@ def load_project_narratives(
             project.get("status_as_of") is not None
             and change.get("preserve_status_as_of") == project["status_as_of"]
             and f"context:{change.get('context_kind')}" in evidence.get("roles", [])
-            and any(status_by_project.get(pid) == evidence["evidence_id"]
-                    for pid in evidence["project_ids"] if pid != project["project_id"])
+            and is_other_current_status(evidence, project)
         )
+
+    def current_status(status: Mapping[str, Any], project: Mapping[str, Any],
+                       evidence: Mapping[str, Any] | None) -> bool:
+        return bool(evidence and status.get("value") == project.get("last_observed_physical_status")
+                    and status.get("as_of") == project.get("status_as_of")
+                    and evidence["evidence_id"] == project.get("status_evidence_id"))
 
     lineage = []
     for version in _lineage(root, versions, current):
@@ -247,7 +261,34 @@ def load_project_narratives(
                       if "review-provenance.json" in files else {})
         lineage.append((version, provenance))
         sources = provenance.get("source_projections", {})
-        for change in provenance.get("update", {}).get("context_updates", []) or []:
+        update = provenance.get("update", {})
+        source_projects = _narrative_source_projects(update)
+        for group in ("additions", "status_updates", "status_corrections"):
+            for change in update.get(group, []) or []:
+                project = projects.get(change.get("project_stable_key"))
+                for source_id in change.get("context_source_ids", []):
+                    source = sources.get(source_id, {})
+                    scope = source.get("summary_scope")
+                    if scope not in {"project", "research_only"}:
+                        continue
+                    evidence = modern_evidence(source, project)
+                    if not evidence:
+                        continue
+                    eid = evidence["evidence_id"]
+                    if scope == "research_only":
+                        research_only.add(eid)
+                    elif project and source_projects[source_id] == {project["project_stable_key"]}:
+                        status = change.get("status", {})
+                        status_evidence = modern_evidence(sources.get(status.get("source_id")), project)
+                        roles = evidence.get("roles", [])
+                        selected = ("context:identity" in roles
+                                    and ("physical_status" not in roles or current_status(status, project, status_evidence))
+                                    and _suitable_report(evidence, project, source,
+                                                         reviewed_shared_status=is_other_current_status(evidence, project)))
+                        # Historical context persists; superseded status prose stays hidden.
+                        scoped_context.setdefault((project["project_id"], eid),
+                                                  _text(source.get("summary")) if selected else None)
+        for change in update.get("context_updates", []) or []:
             project = projects.get(change.get("project_stable_key"))
             source_ids = change.get("source_ids", [])
             summary = _text(change.get("summary"))
@@ -279,10 +320,7 @@ def load_project_narratives(
             source = sources.get(status.get("source_id"))
             evidence = modern_evidence(source, project)
             summary = _text(status.get("summary"))
-            if (summary and evidence and status.get("value") == project.get("last_observed_physical_status")
-                    and status.get("as_of") == project.get("status_as_of")
-                    and evidence["evidence_id"] == project.get("status_evidence_id")
-                    and item(project)["status"] is None):
+            if summary and current_status(status, project, evidence) and item(project)["status"] is None:
                 item(project)["status"] = {"text": summary, "evidence_id": evidence["evidence_id"]}
             if project.get("project_details"):
                 continue

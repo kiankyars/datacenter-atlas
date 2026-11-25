@@ -172,6 +172,64 @@ class ProjectNarrativeTests(unittest.TestCase):
         self.assertEqual(result["context"], [{"text": newer, "evidence_id": sid}])
         self.assertEqual(provenances, before)
 
+    def test_current_companion_replaces_older_prose_for_its_project_and_capture(self):
+        status, sid = self.add_source("status", roles=["physical_status"])
+        companion, cid = self.add_source("tour", text="The earlier tour is the latest observation.")
+        self.modern(status, sid, context=["reviewed"])
+        reviewed = dict(companion, id="reviewed", summary="The operator reported a tour in October.",
+                        summary_scope="project")
+        self.provenance["source_projections"]["reviewed"] = reviewed
+        base = SimpleNamespace(path=self.root / "datasets/base", manifest_sha256="base",
+                               manifest={"files": {"review-provenance.json": {}}})
+        self.version.manifest.update(base_dataset="datasets/base", base_manifest_sha256="base")
+        earlier = {"source_projections": {"tour": companion}, "update": {"additions": [
+            {"project_stable_key": "curated:one", "context_source_ids": ["tour"]}]}}
+        versions = [self.version, base]
+        inputs = {self.version.path: self.provenance, base.path: earlier}
+        self.assertEqual(self.load(versions, inputs)["p"]["context"],
+                         [{"text": reviewed["summary"], "evidence_id": cid}])
+        self.project["status_as_of"] = "2026-11-01"
+        self.assertEqual(self.load(versions, inputs)["p"], {
+            "status": None, "context": [{"text": reviewed["summary"], "evidence_id": cid}]})
+
+    def test_dedicated_companion_can_share_a_current_status_capture_with_another_project(self):
+        status, sid = self.add_source("rent", roles=["physical_status"])
+        shared, eid = self.add_source("interview", roles=["physical_status", "context:identity"],
+                                      projects=["p", "q"], text="The operator described Phase 2 in September.")
+        shared["summary_scope"] = "project"
+        self.modern(status, sid, context=["interview"])
+        self.provenance["source_projections"]["interview"] = shared
+        other = {**self.project, "project_id": "q", "project_stable_key": "curated:two",
+                 "status_evidence_id": eid}
+        self.atlas.projects.append(other)
+        self.assertEqual(self.load()["p"]["context"], [{"text": shared["summary"], "evidence_id": eid}])
+        self.project["status_as_of"] = "2026-11-01"
+        self.assertNotIn("p", self.load())
+        self.project["status_as_of"] = "2026-10-01"
+        other["status_evidence_id"] = "superseded"
+        self.assertEqual(self.load()["p"]["context"], [])
+        other["status_evidence_id"] = eid
+        self.provenance["update"]["context_updates"] = [
+            {"project_stable_key": "curated:two", "source_ids": ["interview"]}]
+        self.assertEqual(self.load()["p"]["context"], [])
+        self.atlas.evidence_by_id[eid]["roles"] = ["context:identity"]
+        self.assertEqual(self.load()["p"]["context"], [])
+
+    def test_research_only_context_is_hidden_across_projects_preserving_status_and_other_evidence(self):
+        research, rid = self.add_source("index", projects=["p", "q"], text="A portfolio index review.")
+        note, nid = self.add_source("site", text="The operator offers colocation.", projects=["p", "q"])
+        self.modern(research, rid, context=["classification", "site"])
+        self.provenance["source_projections"].update(
+            classification=dict(research, id="classification", summary_scope="research_only"), site=note)
+        other = {**self.project, "project_id": "q", "project_stable_key": "curated:two"}
+        self.atlas.projects.append(other)
+        self.provenance["update"]["additions"].append(
+            {"project_stable_key": "curated:two", "context_source_ids": ["index", "site"]})
+        result = self.load()
+        self.assertEqual(result["p"]["status"]["evidence_id"], rid)
+        for project in ("p", "q"):
+            self.assertEqual(result[project]["context"], [{"text": note["summary"], "evidence_id": nid}])
+
     def test_current_status_source_can_supply_context_without_reviving_stale_or_map_evidence(self):
         source, identifier = self.add_source("interview", roles=["physical_status"])
         self.modern(source, identifier)
