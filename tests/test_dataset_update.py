@@ -98,6 +98,30 @@ class DatasetUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "must be newer"):
             self.payloads()
 
+    def test_status_change_links_corroboration_to_the_project_only(self):
+        original = next(csv.DictReader((BASE / "projects.csv").read_text().splitlines()))
+        context = {**self.sources["sources"][0], "id": "company-spec", "source_url": "https://example.org/spec"}
+        self.sources["sources"].append(context)
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        action = {"project_stable_key": original["project_stable_key"], "context_source_ids": ["company-spec"],
+                  "status": self.spec["additions"][0]["status"], "identity_review": "Same project.",
+                  "successor_review": "Latest dated construction report."}
+        self.spec["status_updates"] = [action]
+        payloads, _ = self.payloads()
+        record = next(r for r in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode())) if r["source_url"] == context["source_url"])
+        self.assertEqual(json.loads(record["project_ids_json"]), [original["project_id"]])
+        self.assertEqual(json.loads(record["roles_json"]), ["context:identity"])
+        project = next(r for r in csv.DictReader(io.StringIO(payloads["projects.csv"].decode())) if r["project_id"] == original["project_id"])
+        self.assertNotEqual(record["evidence_id"], project["status_evidence_id"])
+        for invalid in ("company-spec", ["unknown"], ["company-spec", "company-spec"]):
+            with self.subTest(invalid=invalid), self.assertRaisesRegex(UpdateError, "unique reviewed source IDs"):
+                action["context_source_ids"] = invalid
+                self.payloads()
+        self.spec["format"] = "datacenter-atlas-update-input-v1"
+        action["context_source_ids"] = ["company-spec"]
+        with self.assertRaisesRegex(UpdateError, "require v2"):
+            self.payloads()
+
     def prepare_existing_campus(self):
         self.write()
         out = self.root / "first"

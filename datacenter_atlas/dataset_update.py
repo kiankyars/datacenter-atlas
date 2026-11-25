@@ -737,6 +737,13 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         row.update(last_observed_physical_status=status["value"], status_as_of=status["as_of"],
                    status_evidence_id=associate(status["source_id"], row["project_id"], status_role),
                    status_source_url=sources[status["source_id"]]["source_url"], status_method=status_method)
+        if "context_source_ids" in item:
+            _require(is_v2, "companion sources on a status action require v2")
+            context_ids = item["context_source_ids"]
+            _require(isinstance(context_ids, list) and all(isinstance(sid, str) and sid in sources for sid in context_ids)
+                     and len(context_ids) == len(set(context_ids)), "status context must list unique reviewed source IDs")
+            for source_id in context_ids:
+                associate(source_id, row["project_id"], "context:identity")
         if status["value"] in PLANNED_STATUSES:
             row["verification_posture"] = PROJECT_RECORD_POSTURE
         elif (is_v2 and row["verification_posture"] == PROJECT_RECORD_POSTURE

@@ -39,6 +39,8 @@ Page modification times and retrieval dates do not date physical observations. I
 selected incorrectly, correct the existing record using the dated source statement. For an
 affected metric, `metric_date_corrections` must match the complete prior observation and change
 only its date and evidence reference; its value, stage and scope remain unchanged.
+When a status update draws on several documents, cite the dated observation in `status.source_id`
+and list supporting evidence for the site or phase in `context_source_ids` (v2).
 
 For two records of the same phase on one campus, a v2 withdrawal can name the surviving
 project by stable key in `duplicate_of`. Cite evidence already linked to the survivor and check
