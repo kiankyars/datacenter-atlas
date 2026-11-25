@@ -1,0 +1,2830 @@
+{
+  "format": "datacenter-atlas-update-input-v2",
+  "updated_at": "2026-11-26",
+  "output": "verified_construction_core/2026-11-26-research-hundredeightyeighth",
+  "base_dataset": "verified_construction_core/2026-11-26-research-hundredeightyseventh",
+  "base_manifest_sha256": "b12d8d3c0d8a4db07812894254390d53b600b27077eb89e81a3aee5929a19d47",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-26-hundredeightyeighth-primary-sources.json",
+      "sha256": "14f5de791c101a084630d86521431ce8de3c13dc77d75d35ced3e7b40cc02adb"
+    }
+  ],
+  "additions": [
+    {
+      "physical_site_stable_key": "curated:elea-spo2-sao-bernardo-do-campo-anchieta",
+      "project_stable_key": "curated:elea-spo2-sao-bernardo-do-campo-anchieta:existing-operations",
+      "site_name": "Elea SPO2, São Bernardo do Campo",
+      "name": "Elea SPO2, São Bernardo do Campo, existing operations",
+      "country": "Brazil",
+      "country_iso_a2": "BR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-25",
+        "source_id": "am188-elea-status",
+        "summary": "IX.br documented active service at Elea SPO2 on November 25."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -46.56945,
+            -23.677827
+          ]
+        },
+        "source_id": "am188-elea-ibge",
+        "identity_source_ids": [
+          "am188-elea-previous-operator",
+          "am188-elea-acquisition",
+          "am188-elea-property",
+          "am188-elea-address",
+          "am188-elea-portfolio"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "IBGE_CNEFE_level_1_named_former_DXC_pavilion_address_point",
+        "precision": "Census location of the former DXC pavilion on the acquired property. The exact footprint and expanded campus perimeter are unspecified.",
+        "identity_review": "The census identifies the DXC pavilion on Via Anchieta in Jordanópolis. Elea’s parent identifies DXC as the vendor, Elea confirms the completed São Bernardo transaction, and the current operator gives the same neighborhood and route at number 1241. SPO1 and SPO3 are separate Elea campuses. BR.Digital uses its own SPO2 code on a different street in São Paulo.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The census gives a coordinate quality class but no measured horizontal accuracy for the establishment point."
+      },
+      "roles": [
+        {
+          "party": "Elea Data Centers",
+          "role": "operator",
+          "source_id": "am188-elea-property",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "am188-elea-previous-operator",
+        "am188-elea-acquisition",
+        "am188-elea-portfolio"
+      ],
+      "distinctness_review": "Checked operator and project aliases, address, and named properties across 1,677 sites, 1,825 projects and all 231 entries in each imported-record, mapping and decision layer. The nearest prior geometry is ASAP SP1, São Paulo, 13,165 m away.",
+      "successor_review": "The operator distinguishes the acquired operating data center from its future campus expansion. The observation concerns existing operations only."
+    },
+    {
+      "physical_site_stable_key": "curated:casey-data-park-clyde-north",
+      "project_stable_key": "curated:casey-data-park-clyde-north:proposed-campus",
+      "site_name": "Casey Data Park",
+      "name": "Casey Data Park — proposed two-building campus",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-22",
+        "source_id": "next188-casey-hansard",
+        "summary": "On September 22, 2026, the Victorian Legislative Council recorded a petition concerning the proposed Clyde North data centre, application PA26-0190."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            145.3271,
+            -38.0911
+          ]
+        },
+        "source_id": "next188-casey-parcels",
+        "identity_source_ids": [
+          "next188-casey-register",
+          "next188-casey-developer",
+          "next188-casey-plan"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "proposed_campus_cadastral_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Area-weighted centroid of the union of proposed Vicmap lots 12 and 13 on PS930476 in MGA zone 55, transformed to WGS84 and rounded to four decimal places.",
+        "precision": "Representative point for the proposed 16.2-hectare campus. The developer places both buildings on this portion of the larger property.",
+        "identity_review": "The KLM Spatial master plan locates the two buildings on the northwestern portion of the 53.2-hectare parent landholding. The union of the two corresponding proposed subdivision lots has an area of 16.24 hectares.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The proposal and cadastral records give no numerical horizontal accuracy for this representative campus point."
+      },
+      "roles": [],
+      "context_source_ids": [
+        "next188-casey-developer",
+        "next188-casey-register"
+      ],
+      "distinctness_review": "The proposed two buildings are a single campus. Neither the name, permit, applicant nor street address occurs in the snapshot 187 projects or their identity records. Vocus DC-MEL04 Mitcham is the nearest listed site, 32.4 km away.",
+      "successor_review": "The municipal register records further information on September 24. On October 30 the City of Casey said the application would be considered in December and distinguished estate-wide earthworks under a separate permit. The planning register still lists the assessment as in progress."
+    },
+    {
+      "physical_site_stable_key": "curated:western-downs-digital-park-kogan",
+      "project_stable_key": "curated:western-downs-digital-park-kogan:proposed-campus",
+      "site_name": "Western Downs Digital Park",
+      "name": "Western Downs Digital Park — proposed four-building campus",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-11-18",
+        "source_id": "apac188-kogan-submission",
+        "summary": "On November 18, 2026, Western Downs Regional Council recorded the applicant’s response to public submissions on the proposed campus at 1933 Dalby–Kogan Road."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            150.9091,
+            -27.0926
+          ]
+        },
+        "source_id": "apac188-kogan-cadastre",
+        "identity_source_ids": [
+          "apac188-kogan-lot",
+          "apac188-kogan-referral",
+          "apac188-kogan-assessment"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "primary_project_parcel_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Centroid of Queensland cadastral Lot 125 on DY316 in GDA2020 / MGA zone 56, transformed to WGS84 and rounded to four decimal places.",
+        "precision": "Representative point on the 725.5-hectare primary property, inside the main proposed development footprint.",
+        "identity_review": "EPBC referral section 2.2.5 distinguishes the primary parcel from adjoining properties. The parcel centroid falls inside the central development area on the applicant’s Figure 2-2.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastre and project assessment give no surveyed positional accuracy for this representative campus point."
+      },
+      "roles": [
+        {
+          "party": "Zerra DC",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "apac188-kogan-sponsor"
+        },
+        {
+          "party": "Australian subsidiary of Anthropic",
+          "role": "tenant",
+          "relationship_scope": "intended",
+          "source_id": "apac188-kogan-tenant"
+        }
+      ],
+      "context_source_ids": [
+        "apac188-kogan-sponsor",
+        "apac188-kogan-tenant",
+        "apac188-kogan-assessment"
+      ],
+      "distinctness_review": "One campus spans four proposed buildings. The land, council application, developer and project name are distinct from prior sites. The nearest snapshot 187 site is NEXTDC B1 Brisbane Data Centre, 20 Wharf Street, Brisbane City, 214.0 km away.",
+      "successor_review": "A November 20 referral response was lodged on the council register. The material-change-of-use application was still in progress at review. A separate road-access decision covers that access only."
+    },
+    {
+      "physical_site_stable_key": "curated:gingerah-project-meridien-data-centre",
+      "project_stable_key": "curated:gingerah-project-meridien-data-centre:proposed-campus",
+      "site_name": "Project Meridien Data Centre",
+      "name": "Project Meridien — proposed data centre campus",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-11-12",
+        "source_id": "apac188-meridien-notice",
+        "summary": "On November 12, 2026, the National Environmental Protection Agency reported that public consultation had closed on the proposed Meridien renewable energy hub and data centre."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            121.8167,
+            -18.8167
+          ]
+        },
+        "source_id": "apac188-meridien-concept",
+        "identity_source_ids": [
+          "apac188-meridien-referral-geometry",
+          "apac188-meridien-description"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "proposed_campus_conceptual_footprint",
+        "authority": "compiled_reference",
+        "derivation": "georeferenced_source_map",
+        "method": "A whole-arcminute geographic grid intersection inside the labelled data-centre area in Figure 4, independently verified by registering the project boundary against the open federal referral polygon.",
+        "precision": "Representative point within the proposed data-centre area on the applicant’s conceptual layout. Individual buildings and the eventual campus boundaries are unresolved.",
+        "identity_review": "The applicant distinguishes the data centre from the wider renewable energy hub. The labelled block contains the selected grid intersection under both the printed graticule and a registration using five federal referral polygon corners.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The conceptual layout may change and supplies no surveyed campus boundary or accuracy for this representative point."
+      },
+      "roles": [
+        {
+          "party": "Gingerah Energy No.1 Pty Ltd",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "apac188-meridien-description"
+        }
+      ],
+      "context_source_ids": [
+        "apac188-meridien-description"
+      ],
+      "distinctness_review": "One commercial data-centre project is represented at the separate campus indicated on the Meridien project plan. The nearest snapshot 187 site is NEXTDC PH1 Port Hedland, 378.1 km away.",
+      "successor_review": "The recorded outcome of the October 21–November 4 public comment period is a referral-process notice. The federal referral remains under consideration. The applicant says detailed campus design and phase siting are still to be refined."
+    },
+    {
+      "name": "Green Campus ZRH2 Dielsdorf — existing operations",
+      "site_name": "Green Campus ZRH2 Dielsdorf",
+      "physical_site_stable_key": "curated:green-campus-zrh2-dielsdorf",
+      "project_stable_key": "curated:green-campus-zrh2-dielsdorf:existing-operations",
+      "country": "Switzerland",
+      "country_iso_a2": "CH",
+      "roles": [
+        {
+          "party": "Green Datacenter AG",
+          "role": "operator",
+          "source_id": "green188-facility",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [],
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-19",
+        "source_id": "green188-20261119",
+        "summary": "Green reported that customers operate servers at its Dielsdorf facilities, whose recovered heat is in use. The observation covers existing campus operations."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            8.461355,
+            47.481375
+          ]
+        },
+        "source_id": "green188-federal-address",
+        "identity_source_ids": [
+          "green188-facility",
+          "green188-campus-address"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "matched_civic_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "WGS84 point returned for the exact numbered address in the swisstopo building address directory.",
+        "precision": "Campus address point at Niederhaslistrasse 4c, one of Green’s two listed civic numbers for the campus.",
+        "identity_review": "Green names Campus ZRH2 in Dielsdorf and lists 4a/c as its campus delivery addresses. The Swiss directory identifies 4c as an existing address in the matching municipality and postcode.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source gives no measured horizontal error for this address point."
+      },
+      "distinctness_review": "Reviewed Dielsdorf, its named street and Green campus aliases across canonical and inherited records. The nearest prior site is NTT Zurich 1 Data Center, Hofwisenstrasse 56, 8153 Rümlang, 7.0 km away.",
+      "successor_review": "Green’s campus page distinguishes the existing data centres from a third building. The dated November report confirms the operating campus, without dating the building works."
+    },
+    {
+      "physical_site_stable_key": "curated:brdigital-recife-jadan-center",
+      "project_stable_key": "curated:brdigital-recife-jadan-center:existing-operations",
+      "site_name": "BR.Digital Recife, Jadan Center",
+      "name": "BR.Digital Recife, existing operations at Jadan Center",
+      "country": "Brazil",
+      "country_iso_a2": "BR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-25",
+        "source_id": "lat188-pe-brdigital-status",
+        "summary": "IX.br reported active service at BR.Digital Recife, Jadan Center on November 25."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -34.895212,
+            -8.062859
+          ]
+        },
+        "source_id": "lat188-2611606-cnefe",
+        "identity_source_ids": [
+          "lat188-rce-host",
+          "lat188-br-branch-filing",
+          "lat188-fac-6604"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "IBGE_CNEFE_2022_level_1_georeferenced_commercial_address",
+        "precision": "Original level-1 census address point for the named commercial building. Individual service areas are unspecified.",
+        "identity_review": "IX.br identifies BR.Digital at number 412. The company’s branch filing and the census independently name that property Jadan Center. The facility directory’s RCE1 entry shortens the civic number to 41 on the same street. The canonical location follows the agreement between the IX.br service address, the corporate filing and the census; no particular floor is selected.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The census reports the coordinate quality class but gives no measured horizontal error for the address."
+      },
+      "roles": [
+        {
+          "party": "BR.Digital",
+          "role": "operator",
+          "source_id": "lat188-fac-6604",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "lat188-br-dc-locations",
+        "lat188-br-dc-services"
+      ],
+      "distinctness_review": "Checked operator and project aliases, address, and named properties across 1,677 sites, 1,825 projects and all 231 entries in each imported-record, mapping and decision layer. The nearest prior geometry is HOTlink Recife, Madalena, 1,899 m away.",
+      "successor_review": "IX.br identifies BR.Digital at number 412. The company’s branch filing and the census independently name that property Jadan Center. The facility directory’s RCE1 entry shortens the civic number to 41 on the same street. The canonical location follows the agreement between the IX.br service address, the corporate filing and the census; no particular floor is selected."
+    },
+    {
+      "physical_site_stable_key": "curated:sempre-telecom-teleporto-bh-belo-horizonte",
+      "project_stable_key": "curated:sempre-telecom-teleporto-bh-belo-horizonte:existing-operations",
+      "site_name": "Sempre Telecom, Teleporto BH, Belo Horizonte",
+      "name": "Sempre Telecom, existing data center operations at Teleporto BH",
+      "country": "Brazil",
+      "country_iso_a2": "BR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-25",
+        "source_id": "lat188-mg-sempretelecom-status",
+        "summary": "IX.br reported active service at Sempre Telecom, Teleporto BH, Belo Horizonte on November 25."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -44.024745,
+            -19.929002
+          ]
+        },
+        "source_id": "lat188-3106200-cnefe",
+        "identity_source_ids": [
+          "lat188-sempre-host",
+          "lat188-fac-13914",
+          "lat188-sempre-site-customer"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "IBGE_CNEFE_2022_level_1_georeferenced_commercial_address",
+        "precision": "Original level-1 census address point for the named commercial building. Individual service areas are unspecified.",
+        "identity_review": "The census identifies Teleporto BH at the full address in the IX.br commercial directory. The facility registrant identifies the host as Sempre (Brasil TecPar). TelCables Brasil independently names the Sempre Telecom data center in Belo Horizonte. The selected operation is the Sempre facility at the Teleporto BH property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The census reports the coordinate quality class but gives no measured horizontal error for the address."
+      },
+      "roles": [
+        {
+          "party": "Brasil TecPar",
+          "role": "operator",
+          "source_id": "lat188-fac-13914",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "lat188-sempre-site-customer"
+      ],
+      "distinctness_review": "Checked operator and project aliases, address, and named properties across 1,677 sites, 1,825 projects and all 231 entries in each imported-record, mapping and decision layer. The nearest prior geometry is Century Telecom Contagem, Cinco, 3,942 m away.",
+      "successor_review": "The census identifies Teleporto BH at the full address in the IX.br commercial directory. The facility registrant identifies the host as Sempre (Brasil TecPar). TelCables Brasil independently names the Sempre Telecom data center in Belo Horizonte. The selected operation is the Sempre facility at the Teleporto BH property."
+    },
+    {
+      "physical_site_stable_key": "curated:telium-porto-alegre-independencia",
+      "project_stable_key": "curated:telium-porto-alegre-independencia:existing-operations",
+      "site_name": "Telium Porto Alegre, Independência",
+      "name": "Telium Porto Alegre, existing data center operations",
+      "country": "Brazil",
+      "country_iso_a2": "BR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-25",
+        "source_id": "lat188-rs-telium-status",
+        "summary": "IX.br reported active service at Telium Porto Alegre on November 25."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -51.20763995,
+            -30.02915983
+          ]
+        },
+        "source_id": "lat188-telium-poa-place",
+        "identity_source_ids": [
+          "lat188-telium-poa-host",
+          "lat188-fac-13052",
+          "lat188-telium-public-offices",
+          "lat188-e21-address"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "Overture_Maps_address_matched_commercial_property_place_point",
+        "precision": "Place point for a separately named business at the same civic number. It represents the shared commercial building.",
+        "identity_review": "The IX.br directory and Telium’s company address agree on Avenida Independência 1299. The operator-maintained facility registration names Telium at this address. E21 at the same street number independently verifies the shared commercial property used by the licensed place record. The locator applies to the building as a whole.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The place source provides no measured horizontal accuracy for the commercial building."
+      },
+      "roles": [
+        {
+          "party": "Telium Telecomunicações Ltda.",
+          "role": "operator",
+          "source_id": "lat188-fac-13052",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "lat188-telium-commercial-offering"
+      ],
+      "distinctness_review": "Checked operator and project aliases, address, and named properties across 1,677 sites, 1,825 projects and all 231 entries in each imported-record, mapping and decision layer. The nearest prior geometry is Elea POA1, Porto Alegre, 1,819 m away.",
+      "successor_review": "The IX.br directory and Telium’s company address agree on Avenida Independência 1299. The operator-maintained facility registration names Telium at this address. E21 at the same street number independently verifies the shared commercial property used by the licensed place record. The locator applies to the building as a whole."
+    }
+  ],
+  "locator_corrections": [
+    {
+      "physical_site_stable_key": "curated:everest-digital-goiania-jardim-goias",
+      "site_id": "vcc-site-a7c5daec64e6a00d46c7",
+      "replaces_geometry_evidence_id": "06b13108-eff7-5012-9b2e-467889905919",
+      "reason": "The shared Parquet shard citation identified a different contributor record. Cite the Everest Digital place feature and its own Meta attribution and CDLA-Permissive-2.0 licence.",
+      "displacement_review": "The coordinate pair read directly from the same published native feature exactly matches the existing site point. Displacement is zero.",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -49.24135076,
+            -16.68937852
+          ]
+        },
+        "source_id": "geometry188-goiania-overture",
+        "scope": "reviewed_site_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "Overture_Maps_named_addressed_commercial_place_point",
+        "precision": "Named place point at the published commercial facility address.",
+        "identity_review": "The operator-maintained registry and IX.br both give Avenida Fued José Sebba 700, Térreo 2. Soluti names the property and the facility. The selected licensed point identifies Everest at that full address.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The place record provides no surveyed horizontal accuracy."
+      }
+    },
+    {
+      "physical_site_stable_key": "curated:ascenty-cps01-campinas-techno-park",
+      "site_id": "vcc-site-5fbe56f0b655ed8b6b39",
+      "replaces_geometry_evidence_id": "1d00e160-8a91-5fe1-aea2-d4948d627226",
+      "reason": "The shared Parquet shard citation identified a different contributor record. Cite the Campinas 1 Data Center place feature and its own Meta attribution and CDLA-Permissive-2.0 licence.",
+      "displacement_review": "The coordinate pair read directly from the same published native feature exactly matches the existing site point. Displacement is zero.",
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -47.153411,
+            -22.848313
+          ]
+        },
+        "source_id": "geometry188-campinas-overture",
+        "scope": "reviewed_site_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "authority": "compiled_reference",
+        "derivation": "direct_geometry",
+        "method": "Overture_Maps_named_addressed_commercial_place_point",
+        "precision": "Named place point at the published commercial facility address.",
+        "identity_review": "Ascenty registers CPS01 at Avenida Pierre Simon de Laplace 1211. IX.br identifies the same property. The licensed Overture record names Campinas 1 Data Center at 1211 Techno Park and agrees with the operator-published facility location. The campus in Vinhedo is separately retained.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The place record provides no surveyed horizontal accuracy."
+      }
+    }
+  ],
+  "operating_model_updates": [
+    {
+      "project_stable_key": "curated:green-campus-zrh2-dielsdorf:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "green188-facility",
+      "identity_review": "Under the Dielsdorf campus services, Green offers colocation starting at half a rack. This covers existing campus operations."
+    },
+    {
+      "project_stable_key": "curated:equinix-ty15-tokyo:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ty15",
+      "identity_review": "The Tokyo TY15 facility page names TY15 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-jk1-jakarta:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-jk1",
+      "identity_review": "The Jakarta JK1 facility page names JK1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-va1-burnaby-4185-still-creek-drive:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-va1",
+      "identity_review": "The Vancouver VA1 facility page names VA1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ka1-kamloops-1460-bunker-road:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ka1",
+      "identity_review": "The Kamloops KA1 facility page names KA1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sofia-nedelcho-bonchev-33:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-so2",
+      "identity_review": "The Sofia SO2 facility page names SO2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sao-joao-meriti-maria-soares-sendas:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-rj3",
+      "identity_review": "The Rio de Janeiro RJ3 facility page names RJ3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-bx1-bordeaux-bruges:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-bx1",
+      "identity_review": "The Bordeaux BX1 facility page names BX1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-tr5-markham-8100-warden-avenue:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-tr5",
+      "identity_review": "The Toronto TR5 facility page names TR5 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-bo2-billerica-41-alexander-road:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-bo2",
+      "identity_review": "The Boston BO2 facility page names BO2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-am7-amsterdam-kuiperbergweg:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-am7",
+      "identity_review": "The Amsterdam AM7 facility page names AM7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-cl3-calgary-5300-86-avenue-se:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-cl3",
+      "identity_review": "The Calgary CL3 facility page names CL3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:khazna-masdar-ad1-host:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ad1",
+      "identity_review": "The Abu Dhabi AD1 facility page names AD1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-hk6-tsuen-wan:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-hk6",
+      "identity_review": "The Hong Kong HK6 facility page names HK6 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-tr1-toronto-151-front-street-west:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-tr1",
+      "identity_review": "The Toronto TR1 facility page names TR1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-apodaca-aristoteles-119:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-mo1",
+      "identity_review": "The Monterrey MO1 facility page names MO1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ot1-gatineau-200-avenue-lepine:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ot1",
+      "identity_review": "The Ottawa OT1 facility page names OT1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-milan-via-savona-125:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ml2",
+      "identity_review": "The Milan ML2 facility page names ML2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-bogota-zona-franca-manzana-6:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-bg1",
+      "identity_review": "The Bogota BG1 facility page names BG1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-london-matrix-coronation-road:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ld3",
+      "identity_review": "The London LD3 facility page names LD3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-barueri-alameda-araguaia-3641:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sp2",
+      "identity_review": "The Sao Paulo SP2 facility page names SP2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-mb1-mumbai:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-mb1",
+      "identity_review": "The Mumbai MB1 facility page names MB1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-fr4:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-fr4",
+      "identity_review": "The Frankfurt FR4 facility page names FR4 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-longovilo-camino-de-la-fruta:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-st4",
+      "identity_review": "The Santiago ST4 facility page names ST4 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-wa3-warsaw-aleje-jerozolimskie-213:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-wa3",
+      "identity_review": "The Warsaw WA3 facility page names WA3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-adelaide-274-hindley-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ae1",
+      "identity_review": "The Adelaide AE1 facility page names AE1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-de1-centennial-9706-e-easter-ave:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-de1",
+      "identity_review": "The Denver DE1 facility page names DE1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-cl1-calgary-315-8th-avenue-sw:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-cl1",
+      "identity_review": "The Calgary CL1 facility page names CL1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-se3-seattle:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-se3",
+      "identity_review": "The Seattle SE3 facility page names SE3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-enschede-auke-vleerstraat-1:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-en1",
+      "identity_review": "The Enschede EN1 facility page names EN1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sofia-5030-street-10:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-so1",
+      "identity_review": "The Sofia SO1 facility page names SO1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-wa2-warsaw-poleczki-23:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-wa2",
+      "identity_review": "The Warsaw WA2 facility page names WA2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-zwolle-telfordstraat-3:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-zw1",
+      "identity_review": "The Zwolle ZW1 facility page names ZW1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ny6:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ny6",
+      "identity_review": "The New York NY6 facility page names NY6 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-samsung-sds-sangam-seoul:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sl1",
+      "identity_review": "The Seoul SL1 facility page names SL1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ny13-elmsford-401-fieldcrest-drive:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ny13",
+      "identity_review": "The New York NY13 facility page names NY13 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-cn1-chennai:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-cn1",
+      "identity_review": "The Chennai CN1 facility page names CN1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-barka-al-oqda-mc1:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-mc1",
+      "identity_review": "The Muscat MC1 facility page names MC1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sv11:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sv11",
+      "identity_review": "The Silicon Valley SV11 facility page names SV11 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-mn3-makati:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-mn3",
+      "identity_review": "The Manila MN3 facility page names MN3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-mi2-miami-36-ne-2nd-street-suite-550:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-mi2",
+      "identity_review": "The Miami MI2 facility page names MI2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-osaka-os3-keihanshin-obp:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-os3",
+      "identity_review": "The Osaka OS3 facility page names OS3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-pa5-aubervilliers-bat254:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-pa5",
+      "identity_review": "The Paris PA5 facility page names PA5 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-spanga-finspangsgatan-48:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sk3",
+      "identity_review": "The Stockholm SK3 facility page names SK3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-silverwater-8-14-egerton-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sy6",
+      "identity_review": "The Sydney SY6 facility page names SY6 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-mi3-boca-raton-4680-conference-way-south:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-mi3",
+      "identity_review": "The Miami MI3 facility page names MI3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sj1-saint-john-7-mcintosh-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sj1",
+      "identity_review": "The Saint John SJ1 facility page names SJ1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ty1-tokyo:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ty1",
+      "identity_review": "The Tokyo TY1 facility page names TY1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ld10:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ld10",
+      "identity_review": "The London LD10 facility page names LD10 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-tambore-north-campus:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sp6",
+      "identity_review": "The Sao Paulo SP6 facility page names SP6 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ny3:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ny3",
+      "identity_review": "The New York NY3 facility page names NY3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:khazna-meydan-dx2-host:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-dx2",
+      "identity_review": "The Dubai DX2 facility page names DX2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-at1-atlanta:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-at1",
+      "identity_review": "The Atlanta AT1 facility page names AT1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ny1-newark-165-halsey-st:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ny1",
+      "identity_review": "The New York NY1 facility page names NY1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-la7-torrance-1501-francisco-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-la7",
+      "identity_review": "The Los Angeles LA7 facility page names LA7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-bromma-mariehallsvagen-36:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sk1",
+      "identity_review": "The Stockholm SK1 facility page names SK1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-pa2:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-pa2",
+      "identity_review": "The Paris PA2 facility page names PA2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ld7:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ld7",
+      "identity_review": "The London LD7 facility page names LD7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-wollongong-lathe-place:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sy7",
+      "identity_review": "The Sydney SY7 facility page names SY7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sv10:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sv10",
+      "identity_review": "The Silicon Valley SV10 facility page names SV10 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-rio-estrada-adhemar-bebiano-1380:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-rj2",
+      "identity_review": "The Rio de Janeiro RJ2 facility page names RJ2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-melbourne-22-36-walsh-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-me5",
+      "identity_review": "The Melbourne ME5 facility page names ME5 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-paris-courbevoie-energy-park-building-9:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-pa7",
+      "identity_review": "The Paris PA7 facility page names PA7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sao-paulo-miguel-couto-58:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sp1",
+      "identity_review": "The Sao Paulo SP1 facility page names SP1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-se2-seattle:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-se2",
+      "identity_review": "The Seattle SE2 facility page names SE2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ld11x:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ld11x",
+      "identity_review": "The London LD11x facility page names LD11X and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-pa3:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-pa3",
+      "identity_review": "The Paris PA3 facility page names PA3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ny7-north-bergen-5851-west-side-ave:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ny7",
+      "identity_review": "The New York NY7 facility page names NY7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-sv2-santa-clara-1350-duane-avenue:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sv2",
+      "identity_review": "The Silicon Valley SV2 facility page names SV2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-brisbane-54-58-alfred-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-br1",
+      "identity_review": "The Brisbane BR1 facility page names BR1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ty4-tokyo:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ty4",
+      "identity_review": "The Tokyo TY4 facility page names TY4 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-la1-los-angeles-600-w-7th-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-la1",
+      "identity_review": "The Los Angeles LA1 facility page names LA1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-dublin-citywest-unit-4027:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-db1",
+      "identity_review": "The Dublin DB1 facility page names DB1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-accra-appolonia-ac1:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ac1",
+      "identity_review": "The Accra AC1 facility page names AC1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-canberra-51-dacre-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ca1",
+      "identity_review": "The Canberra CA1 facility page names CA1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-lima-calle-centauro-115:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-lm1",
+      "identity_review": "The Lima LM1 facility page names LM1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-basiglio-ennio-doris-13:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ml3",
+      "identity_review": "The Milan ML3 facility page names ML3 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-salalah-janaif-sn1:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sn1",
+      "identity_review": "The Salalah SN1 facility page names SN1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-se4-kent:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-se4",
+      "identity_review": "The Seattle SE4 facility page names SE4 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-genoa-lungobisagno-istria:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-gn1",
+      "identity_review": "The Genoa GN1 facility page names GN1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-stockholm-kvastvagen-25:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sk2",
+      "identity_review": "The Stockholm SK2 facility page names SK2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ny9-new-york-111-8th-ave:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ny9",
+      "identity_review": "The New York NY9 facility page names NY9 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-da7-plano-6653-pinecrest-dr:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-da7",
+      "identity_review": "The Dallas DA7 facility page names DA7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ch7-westmont-111-plaza-drive:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ch7",
+      "identity_review": "The Chicago CH7 facility page names CH7 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-barcelona-carrer-acer-30-32:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ba1",
+      "identity_review": "The Barcelona BA1 facility page names BA1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-md2-alcobendas-valgrande:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-md2",
+      "identity_review": "The Madrid MD2 facility page names MD2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-amsterdam-gyroscoopweg-2e-2f:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-am8",
+      "identity_review": "The Amsterdam AM8 facility page names AM8 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-cl2-calgary-1930-maynard-road-se:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-cl2",
+      "identity_review": "The Calgary CL2 facility page names CL2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-wi1-winnipeg-1450-waverley-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-wi1",
+      "identity_review": "The Winnipeg WI1 facility page names WI1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-da4-dallas-2323-bryan-st:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-da4",
+      "identity_review": "The Dallas DA4 facility page names DA4 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-perth-3-tully-road:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-pe1",
+      "identity_review": "The Perth PE1 facility page names PE1 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-melbourne-2-davis-court:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-me4",
+      "identity_review": "The Melbourne ME4 facility page names ME4 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-barueri-avenida-ceci-1900:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-sp4",
+      "identity_review": "The Sao Paulo SP4 facility page names SP4 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-ld6:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-ld6",
+      "identity_review": "The London LD6 facility page names LD6 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:equinix-dublin-kilcarbery-park-unit-7:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-equinix-model-db2",
+      "identity_review": "The Dublin DB2 facility page names DB2 and reports colocation floor space in the specification table. The claim covers this operating facility."
+    },
+    {
+      "project_stable_key": "curated:atnorth-ice01-hafnarfjordur-steinhella:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-atnorth-ice01",
+      "identity_review": "atNorth identifies ICE01 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-atl1-coda-760-west-peachtree:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-atl1",
+      "identity_review": "DataBank identifies ATL1 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:coresite-at2-marietta-1130-powers-ferry:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-coresite-at2",
+      "identity_review": "CoreSite identifies AT2 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-cgy1-calgary:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-cgy1",
+      "identity_review": "Cologix identifies CGY1 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-van4-vancouver-west-cordova:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-van4",
+      "identity_review": "Cologix identifies VAN4 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-mtl7-montreal:existing-colocation",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-mtl7",
+      "identity_review": "Cologix identifies MTL7 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-mtl3-montreal:existing-colocation",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-mtl3",
+      "identity_review": "Cologix identifies MTL3 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-jax1-jacksonville-west-church-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-jax1",
+      "identity_review": "Cologix identifies JAX1 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:atnorth-ice02-reykjanesbaer-campus:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-atnorth-ice02",
+      "identity_review": "atNorth identifies ICE02 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-den1-englewood-inverness-parkway:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-den1",
+      "identity_review": "DataBank identifies DEN1 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-mtl8-montreal-frederick-banting:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-mtl8",
+      "identity_review": "Cologix identifies MTL8 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:equinix-md4x:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-equinix-md4x",
+      "identity_review": "Equinix identifies MD4x as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-jax2-jacksonville-spring-park-road:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-jax2",
+      "identity_review": "Cologix identifies JAX2 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-markham-105-clegg-road-campus:tor4-existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-tor4",
+      "identity_review": "Cologix identifies TOR4 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-mtl9-drummondville-rue-canadien:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-mtl9",
+      "identity_review": "Cologix identifies MTL9 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:minneapolis-511-building-11th-avenue-south:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-min1",
+      "identity_review": "Cologix identifies MIN1 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:equinix-abidjan-vitib-ab1:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-equinix-ab1",
+      "identity_review": "Equinix identifies AB1 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:coresite-sv2-1656-mccarthy-boulevard-milpitas:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-coresite-sv2",
+      "identity_review": "CoreSite identifies SV2 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-van2-vancouver:existing-colocation",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-van2",
+      "identity_review": "Cologix identifies VAN2 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-dfw2-richardson-904-quality-way:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-dfw2",
+      "identity_review": "DataBank identifies DFW2 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-den3-denver-1500-champa-street:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-den3",
+      "identity_review": "DataBank identifies DEN3 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-ewr2-piscataway:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-ewr2",
+      "identity_review": "DataBank identifies EWR2 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:equinix-jh1-nusajaya:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-equinix-jh1",
+      "identity_review": "Equinix identifies JH1 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-pit2-summit-park-campus:pit2-existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-pit2",
+      "identity_review": "DataBank identifies PIT2 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-plano-campus-dominion-parkway:dfw3-existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-dfw3",
+      "identity_review": "DataBank identifies DFW3 as a facility providing colocation. Operator announcement of the opening of the Plano facility, identified as DFW3 in the body identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:cologix-mtl10-longueuil-rue-beriault:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-cologix-mtl10",
+      "identity_review": "Cologix identifies MTL10 as a facility providing colocation. Facility page heading identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:databank-dfw1-downtown-dallas-400-south-akard:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "root188-model-databank-dfw1",
+      "identity_review": "DataBank identifies DFW1 as a facility providing colocation. Facility page title and description identifies the specific operating property."
+    },
+    {
+      "project_stable_key": "curated:brdigital-recife-jadan-center:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "lat188-br-recife-colocation",
+      "identity_review": "BR.Digital explicitly offers data centers and colocation in Recife. Its Recife data center registration and the IX.br Recife host directory together identify the operating property at Jadan Center."
+    }
+  ],
+  "efficiency_observations": [
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2016-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2016-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2016-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2016-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2016-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2016-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2016-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.16,
+      "base": 1.16,
+      "high": 1.16,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2016-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2016-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2016-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2016-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.15,
+      "base": 1.15,
+      "high": 1.15,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2016-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2016-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2016-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2016-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2016-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2016-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2016-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2017-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2017-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2017-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2017-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2017-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2017-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2017-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2017-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2017-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.14,
+      "base": 1.14,
+      "high": 1.14,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2017-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2017-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.14,
+      "base": 1.14,
+      "high": 1.14,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2017-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2017-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2017-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2017-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2017-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2017-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2017-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2018-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2018-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2018-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2018-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2018-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2018-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2018-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2018-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2018-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.16,
+      "base": 1.16,
+      "high": 1.16,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2018-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2018-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2018-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2018-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2018-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2018-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2018-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2018-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2018-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2019-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2019-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2019-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2019-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2019-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2019-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2019-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2019-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2019-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.16,
+      "base": 1.16,
+      "high": 1.16,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2019-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2019-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.15,
+      "base": 1.15,
+      "high": 1.15,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2019-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2019-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2019-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2019-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2019-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2019-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2019-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2020-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2020-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2020-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2020-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2020-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2020-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2020-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2020-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2020-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2020-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2020-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.16,
+      "base": 1.16,
+      "high": 1.16,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2020-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2020-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2020-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2020-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2020-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2020-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2020-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2021-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2021-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2021-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2021-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2021-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2021-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2021-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2021-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2021-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2021-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2021-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.14,
+      "base": 1.14,
+      "high": 1.14,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2021-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2021-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2021-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2021-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2021-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-papillion-fireball-group-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2021-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.15,
+      "base": 1.15,
+      "high": 1.15,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2021-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Papillion, Nebraska campus, 2021-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2022-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2022-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-fredericia-taulov-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Fredericia, Denmark campus, 2022-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2022-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.08,
+      "base": 1.08,
+      "high": 1.08,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2022-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-new-albany-ohio-beech-road-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.14,
+      "base": 1.14,
+      "high": 1.14,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the New Albany, Ohio campus, 2022-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-papillion-fireball-group-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q1",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.18,
+      "base": 1.18,
+      "high": 1.18,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-03-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Papillion, Nebraska campus, 2022-Q1."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2022-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2022-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-fredericia-taulov-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Fredericia, Denmark campus, 2022-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2022-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2022-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-new-albany-ohio-beech-road-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the New Albany, Ohio campus, 2022-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-papillion-fireball-group-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q2",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-06-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Papillion, Nebraska campus, 2022-Q2."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2022-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2022-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-fredericia-taulov-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.11,
+      "base": 1.11,
+      "high": 1.11,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Fredericia, Denmark campus, 2022-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2022-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2022-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-new-albany-ohio-beech-road-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.18,
+      "base": 1.18,
+      "high": 1.18,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the New Albany, Ohio campus, 2022-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-papillion-fireball-group-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q3",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-09-30",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Papillion, Nebraska campus, 2022-Q3."
+    },
+    {
+      "project_stable_key": "curated:google-douglas-county-georgia-data-center:existing-campus-operations",
+      "source_id": "google188-campus-pue-2022-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.07,
+      "base": 1.07,
+      "high": 1.07,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Douglas County, Georgia campus, 2022-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-fredericia-taulov-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.12,
+      "base": 1.12,
+      "high": 1.12,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Fredericia, Denmark campus, 2022-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-hamina-summa-data-centre-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.09,
+      "base": 1.09,
+      "high": 1.09,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Hamina, Finland campus, 2022-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-mayes-county-pryor-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.07,
+      "base": 1.07,
+      "high": 1.07,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Mayes County, Oklahoma campus, 2022-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-new-albany-ohio-beech-road-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.13,
+      "base": 1.13,
+      "high": 1.13,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the New Albany, Ohio campus, 2022-Q4."
+    },
+    {
+      "project_stable_key": "curated:google-papillion-fireball-group-data-center-campus:existing-operations",
+      "source_id": "google188-campus-pue-2022-Q4",
+      "metric": "pue",
+      "stage": "measured",
+      "low": 1.1,
+      "base": 1.1,
+      "high": 1.1,
+      "unit": "ratio",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2022-12-31",
+      "target_date": null,
+      "notes": "Quarterly PUE for the Papillion, Nebraska campus, 2022-Q4."
+    },
+    {
+      "project_stable_key": "curated:northc-frankfurt3-ruesselsheimer:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.0,
+      "base": 0.0,
+      "high": 0.0,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for Frankfurt 3 in 2025, in litres per kilowatt-hour of IT energy. The register reports zero at its published precision."
+    },
+    {
+      "project_stable_key": "curated:noris-network-muenchen-ost-aschheim-data-center:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.1,
+      "base": 0.1,
+      "high": 0.1,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for MUC5 in 2025, in litres per kilowatt-hour of IT energy."
+    },
+    {
+      "project_stable_key": "curated:northc-munich1-balan:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.0,
+      "base": 0.0,
+      "high": 0.0,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for München 1 in 2025, in litres per kilowatt-hour of IT energy. The register reports zero at its published precision."
+    },
+    {
+      "project_stable_key": "curated:atlasedge-dus001-hilden-data-centre:dus001-operating-facility",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.5,
+      "base": 0.5,
+      "high": 0.5,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for AtlasEdge Technology Services NRW GmbH - DUS001 in 2025, in litres per kilowatt-hour of IT energy."
+    },
+    {
+      "project_stable_key": "curated:atlasedge-leverkusen-dornierstrasse-campus:lev001-operating-facility",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 1.15,
+      "base": 1.15,
+      "high": 1.15,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for AtlasEdge Technology Services NRW GmbH - LEV001 in 2025, in litres per kilowatt-hour of IT energy."
+    },
+    {
+      "project_stable_key": "curated:atlasedge-str001-boeblingen-data-centre:str001-operating-facility",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 3.62,
+      "base": 3.62,
+      "high": 3.62,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for AtlasEdge Technology Services Stuttgart GmbH - STR001 in 2025, in litres per kilowatt-hour of IT energy."
+    },
+    {
+      "project_stable_key": "curated:iron-mountain-fra-2-frankfurt-heinrich-lanz-allee-47:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 1.32,
+      "base": 1.32,
+      "high": 1.32,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for Iron Mountain FRA-2 in 2025, in litres per kilowatt-hour of IT energy."
+    },
+    {
+      "project_stable_key": "curated:northc-berlin-2-gradestrasse:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.0,
+      "base": 0.0,
+      "high": 0.0,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for Berlin 2 in 2025, in litres per kilowatt-hour of IT energy. The register reports zero at its published precision."
+    },
+    {
+      "project_stable_key": "curated:northc-dusseldorf-1-in-der-steele:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.0,
+      "base": 0.0,
+      "high": 0.0,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for Düsseldorf 1 in 2025, in litres per kilowatt-hour of IT energy. The register reports zero at its published precision."
+    },
+    {
+      "project_stable_key": "curated:northc-hamburg-1-suderstrasse:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.0,
+      "base": 0.0,
+      "high": 0.0,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for Hamburg 1 in 2025, in litres per kilowatt-hour of IT energy. The register reports zero at its published precision."
+    },
+    {
+      "project_stable_key": "curated:northc-munich-2-wamslerstrasse:existing-operations",
+      "source_id": "wue188-rzreg-2025",
+      "metric": "wue",
+      "stage": "measured",
+      "as_of_date": "2025-12-31",
+      "target_date": null,
+      "low": 0.0,
+      "base": 0.0,
+      "high": 0.0,
+      "unit": "L/kWh",
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual WUE reported for München 2 in 2025, in litres per kilowatt-hour of IT energy. The register reports zero at its published precision."
+    }
+  ],
+  "power_observations": [
+    {
+      "project_stable_key": "curated:western-downs-digital-park-kogan:proposed-campus",
+      "source_id": "apac188-kogan-assessment",
+      "as_of_date": "2026-09-25",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "low": 1440,
+      "base": 1440,
+      "high": 1440,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "target_date": null,
+      "notes": "Approximate planned combined IT capacity of the four proposed buildings across all stages."
+    },
+    {
+      "project_stable_key": "curated:gingerah-project-meridien-data-centre:proposed-campus",
+      "source_id": "apac188-meridien-description",
+      "as_of_date": "2026-09-11",
+      "metric": "critical_it_mw",
+      "stage": "planned",
+      "low": 1000,
+      "base": 1000,
+      "high": 1000,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "target_date": null,
+      "notes": "Ultimate planned campus IT capacity of up to 1,000 MW across all proposed stages."
+    }
+  ]
+}
