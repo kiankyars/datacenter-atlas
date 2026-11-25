@@ -550,6 +550,11 @@ publication does not depend on reaching a site-count target or product-version m
    If the capture has a legacy evidence ID, its source may explicitly name that
    `reuse_evidence_id`. The ID must already exist, and the URL, content hash,
    canonical metadata and hash scope must match the existing evidence exactly.
+   An inherited campus locator pins `reuse_from_project_id`, its primary `geometry_evidence_id`
+   and all `geometry_identity_evidence_ids`. If the baseline has several geometry sources,
+   also supply `geometry_evidence_ids`: the complete, unique bundle must match both the site
+   and the donor project's geometry evidence. Inheritance retains every source's metadata and
+   roles, the exact locator and its uncertainty; it adds only the new project associations.
 3. Record the reviewed changes in `definitions/atlas-update-YYYY-MM-DD.json`, retaining stable
    site and project identifiers and pinning the previous dataset manifest. Build the dated
    snapshot with `python3 scripts/build_dataset_update.py --input definitions/atlas-update-YYYY-MM-DD.json`,

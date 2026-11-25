@@ -229,7 +229,7 @@ def _site_from_project(project, name):
 
 def _inherited_campus_locator(locator, site, baseline_projects, baseline_evidence):
     """Reuse a pinned baseline locator, without reinterpreting its legacy sources."""
-    allowed = {"reuse_from_project_id", "geometry_evidence_id", "geometry_identity_evidence_ids",
+    allowed = {"reuse_from_project_id", "geometry_evidence_id", "geometry_evidence_ids", "geometry_identity_evidence_ids",
                "scope", "identity_review"}
     _require(set(locator) <= allowed, "inherited campus locator does not permit geometry or provenance overrides")
     _require(site is not None, "locator inheritance requires an existing baseline site")
@@ -255,20 +255,40 @@ def _inherited_campus_locator(locator, site, baseline_projects, baseline_evidenc
         "geometry_authority_classes": "geometry_authority_class", "geometry_use_scopes": "geometry_use_scope",
         "geometry_precision_scopes": "geometry_precision_scope", "geometry_evidence_ids": "geometry_evidence_id",
     }
+    explicit_bundle = "geometry_evidence_ids" in locator
     _require(all(json.loads(site[field + "_json"]) == [reference[target]]
-                 for field, target in provenance_fields.items()),
+                 for field, target in provenance_fields.items()
+                 if not (explicit_bundle and field == "geometry_evidence_ids")),
              "baseline project and site locator provenance and precision must agree exactly")
     geometry_id = _text(locator.get("geometry_evidence_id"), "inherited geometry evidence ID")
     _require(geometry_id == reference["geometry_evidence_id"], "inherited geometry evidence ID must match the baseline project")
+    geometry_ids = [geometry_id]
+    if explicit_bundle:
+        geometry_ids = locator["geometry_evidence_ids"]
+        site_geometry_ids = json.loads(site["geometry_evidence_ids_json"])
+        for values, label in ((geometry_ids, "inherited"), (site_geometry_ids, "baseline site")):
+            _require(isinstance(values, list) and bool(values)
+                     and all(isinstance(value, str) and value.strip() for value in values)
+                     and len(values) == len(set(values)),
+                     f"{label} geometry evidence IDs must be a nonempty unique list")
+        _require(geometry_id in geometry_ids, "inherited geometry evidence bundle must include its primary evidence")
+        _require(set(geometry_ids) == set(site_geometry_ids),
+                 "inherited geometry evidence bundle must match the exact baseline site bundle")
     identity_ids = locator.get("geometry_identity_evidence_ids")
     _require(isinstance(identity_ids, list) and all(isinstance(value, str) and value for value in identity_ids)
              and len(identity_ids) == len(set(identity_ids)), "inherited geometry identity evidence IDs must be an explicit unique list")
-    for evidence_id, role in [(geometry_id, "geometry")] + [(value, "context:geometry_identity") for value in identity_ids]:
+    for evidence_id, role in [(value, "geometry") for value in geometry_ids] + [(value, "context:geometry_identity") for value in identity_ids]:
         evidence = baseline_evidence.get(evidence_id)
         _require(evidence is not None, "inherited locator evidence must exist in the baseline")
         _require(reference_id in json.loads(evidence["project_ids_json"])
                  and role in json.loads(evidence["roles_json"]),
                  "inherited locator evidence must have its baseline project association and geometry role")
+    if explicit_bundle:
+        expected_geometry_ids = {evidence_id for evidence_id, evidence in baseline_evidence.items()
+                                 if reference_id in json.loads(evidence["project_ids_json"])
+                                 and "geometry" in json.loads(evidence["roles_json"])}
+        _require(set(geometry_ids) == expected_geometry_ids,
+                 "inherited locator must pin all baseline project geometry evidence")
     _require(baseline_evidence[geometry_id]["source_url"] == reference["geometry_source_url"],
              "inherited geometry source URL must match the baseline evidence")
     expected_identity_ids = {evidence_id for evidence_id, evidence in baseline_evidence.items()
@@ -277,7 +297,7 @@ def _inherited_campus_locator(locator, site, baseline_projects, baseline_evidenc
     _require(set(identity_ids) == expected_identity_ids,
              "inherited locator must pin all baseline geometry identity evidence")
     fields = scalar_fields + tuple(provenance_fields.values()) + ("geometry_source_url",)
-    return {field: reference[field] for field in fields}, [geometry_id, *identity_ids]
+    return {field: reference[field] for field in fields}, [*geometry_ids, *identity_ids]
 
 
 

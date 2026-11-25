@@ -15,7 +15,7 @@ import unittest
 from unittest.mock import patch
 from uuid import NAMESPACE_URL, uuid5
 
-from datacenter_atlas.dataset_update import ROOT, UpdateError, build_update, update_payloads, validate_update
+from datacenter_atlas.dataset_update import ROOT, UpdateError, _inherited_campus_locator, build_update, update_payloads, validate_update
 from datacenter_atlas import models, public_site
 
 
@@ -877,6 +877,180 @@ class InheritedCampusLocatorTests(unittest.TestCase):
                 self.spec["additions"][0]["roles"][0][field] = value
                 with self.assertRaisesRegex(UpdateError, expected):
                     self.payloads()
+
+
+class InheritedGeometryBundleTests(unittest.TestCase):
+    """One primary point and two coordinate-contract sources from the real Yguazú baseline."""
+
+    BASELINE = ROOT / "verified_construction_core/2026-11-11-research-hundredsixtieth"
+    REFERENCE_ID = "20a32e9d-3c57-520d-aeb8-ad999d43fee3"
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tables = {name: list(csv.DictReader(io.StringIO((cls.BASELINE / name).read_text())))
+                      for name in ("sites.csv", "projects.csv", "evidence.csv")}
+
+    def setUp(self):
+        self.projects = {row["project_id"]: copy.deepcopy(row) for row in self.tables["projects.csv"]}
+        self.evidence = {row["evidence_id"]: copy.deepcopy(row) for row in self.tables["evidence.csv"]}
+        self.reference = self.projects[self.REFERENCE_ID]
+        self.site = copy.deepcopy(next(row for row in self.tables["sites.csv"] if row["site_id"] == self.reference["site_id"]))
+        self.geometry_ids = json.loads(self.site["geometry_evidence_ids_json"])
+        self.identity_ids = sorted(key for key, row in self.evidence.items()
+                                   if self.REFERENCE_ID in json.loads(row["project_ids_json"])
+                                   and "context:geometry_identity" in json.loads(row["roles_json"]))
+        self.locator = {"reuse_from_project_id": self.REFERENCE_ID,
+                        "geometry_evidence_id": self.reference["geometry_evidence_id"],
+                        "geometry_evidence_ids": self.geometry_ids, "geometry_identity_evidence_ids": self.identity_ids,
+                        "scope": "campus_locator", "identity_review": "Same combined Zunz data-centre/substation campus."}
+
+    def inherit(self, locator=None):
+        return _inherited_campus_locator(self.locator if locator is None else locator,
+                                         self.site, self.projects, self.evidence)
+
+    def test_bundle_requires_explicit_complete_unique_ids_and_primary(self):
+        with self.assertRaisesRegex(UpdateError, "must agree exactly"):
+            self.inherit({key: value for key, value in self.locator.items() if key != "geometry_evidence_ids"})
+        for values, message in (
+            (None, "nonempty unique list"), ([], "nonempty unique list"),
+            (self.geometry_ids[0], "nonempty unique list"),
+            ([*self.geometry_ids, self.geometry_ids[0]], "nonempty unique list"),
+            ([*self.geometry_ids, " "], "nonempty unique list"), ([*self.geometry_ids, 1], "nonempty unique list"),
+            (self.geometry_ids[1:], "include its primary"),
+            (self.geometry_ids[:1], "exact baseline site bundle"),
+            ([*self.geometry_ids, "unknown"], "exact baseline site bundle"),
+        ):
+            with self.subTest(values=values), self.assertRaisesRegex(UpdateError, message):
+                self.inherit({**self.locator, "geometry_evidence_ids": values})
+
+    def test_supporting_geometry_requires_baseline_row_role_and_donor(self):
+        for evidence_id in self.geometry_ids:
+            original = self.evidence[evidence_id]
+            for field in (None, "roles_json", "project_ids_json"):
+                with self.subTest(evidence_id=evidence_id, field=field):
+                    if field is None:
+                        del self.evidence[evidence_id]
+                    else:
+                        self.evidence[evidence_id] = {**original, field: "[]"}
+                    with self.assertRaisesRegex(UpdateError, "exist in the baseline" if field is None else "association and geometry role"):
+                        self.inherit()
+                    self.evidence[evidence_id] = original
+
+    def test_site_and_donor_geometry_bundles_must_agree_exactly(self):
+        original = self.site["geometry_evidence_ids_json"]
+        for values, message in ((self.geometry_ids[:1], "exact baseline site bundle"),
+                                ([*self.geometry_ids, self.geometry_ids[0]], "nonempty unique list")):
+            with self.subTest(values=values), self.assertRaisesRegex(UpdateError, message):
+                self.site["geometry_evidence_ids_json"] = json.dumps(values)
+                self.inherit()
+        self.site["geometry_evidence_ids_json"] = original
+        extra = self.evidence[self.reference["status_evidence_id"]]
+        extra["roles_json"] = json.dumps([*json.loads(extra["roles_json"]), "geometry"])
+        with self.assertRaisesRegex(UpdateError, "pin all baseline project geometry evidence"):
+            self.inherit()
+
+    def test_bundle_cannot_promote_unrelated_or_same_batch_sources(self):
+        unrelated = next(row for row in self.evidence.values()
+                         if self.REFERENCE_ID not in json.loads(row["project_ids_json"])
+                         and "geometry" in json.loads(row["roles_json"]))
+        for evidence_id, message in ((unrelated["evidence_id"], "association and geometry role"),
+                                     ("new-in-this-update", "exist in the baseline")):
+            with self.subTest(evidence_id=evidence_id), self.assertRaisesRegex(UpdateError, message):
+                bundle = [*self.geometry_ids, evidence_id]
+                self.site["geometry_evidence_ids_json"] = json.dumps(bundle)
+                self.inherit({**self.locator, "geometry_evidence_ids": bundle})
+
+    def test_bundle_preserves_scalar_provenance_and_source_url_guards(self):
+        fields = ("latitude", "longitude", "geometry_json", "geometry_type", "horizontal_uncertainty_metres",
+                  "horizontal_uncertainty_unknown_reason")
+        fields += tuple(field for field in self.site if field.startswith("geometry_")
+                        and field.endswith("_json") and field != "geometry_evidence_ids_json")
+        for field in fields:
+            original = self.site[field]
+            with self.subTest(field=field), self.assertRaisesRegex(UpdateError, "must agree exactly"):
+                self.site[field] = '["changed"]' if field.endswith("_json") else "changed"
+                self.inherit()
+            self.site[field] = original
+        self.reference["geometry_source_url"] = "https://example.org/different-source"
+        with self.assertRaisesRegex(UpdateError, "source URL must match"):
+            self.inherit()
+
+    def test_bundle_preserves_identity_scope_and_override_guards(self):
+        other = next(row for row in self.projects.values() if row["site_id"] != self.site["site_id"])
+        for change, message in (
+            ({"geometry_evidence_id": self.geometry_ids[1]}, "must match the baseline project"),
+            ({"geometry_identity_evidence_ids": []}, "pin all baseline geometry identity"),
+            ({"geometry_identity_evidence_ids": [self.identity_ids[0]] * 2}, "explicit unique list"),
+            ({"geometry_identity_evidence_ids": ["unknown"]}, "exist in the baseline"),
+            ({"reuse_from_project_id": other["project_id"]}, "same baseline site"),
+            ({"scope": "project_locator"}, "campus scope"), ({"identity_review": ""}, "locator identity review"),
+        ):
+            with self.subTest(change=change), self.assertRaisesRegex(UpdateError, message):
+                self.inherit({**self.locator, **change})
+        for field in ("geometry", "source_id", "method", "derivation", "authority", "precision", "horizontal_uncertainty_metres"):
+            with self.subTest(field=field), self.assertRaisesRegex(UpdateError, "does not permit"):
+                self.inherit({**self.locator, field: "override"})
+
+    def test_actual_update_preserves_bundle_metadata_and_all_existing_projects(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            shutil.copytree(self.BASELINE, root / "base")
+            packet = json.loads((ROOT / "sources/research-countries-2026-11-11-hundredsixtieth-primary-sources.json").read_bytes())
+            source = next(row for row in packet["sources"] if row["id"] == "root160-hive-q2-10q")
+            raw = json.dumps({"sources": [source]}).encode()
+            (root / "source.json").write_bytes(raw)
+            addition = {
+                "project_stable_key": "curated:hive-yguazu-paraguay-campus:existing-operations",
+                "physical_site_stable_key": self.reference["physical_site_stable_key"],
+                "existing_site_id": self.site["site_id"], "site_name": self.site["name"],
+                "name": "HIVE Yguazú existing operations", "country": "Paraguay", "country_iso_a2": "PY",
+                "site_identity_review": "Same combined campus; existing operations are distinct from unfinished expansion.",
+                "distinctness_review": "One existing site with an additional project, not a new campus.",
+                "successor_review": "The November report separates active operations from ongoing expansion.",
+                "status": {"value": "operational", "as_of": "2026-10-31", "source_id": source["id"],
+                           "summary": "The October31 portfolio table reports actual operating equipment at Yguazú."},
+                "locator": self.locator, "context_source_ids": [source["id"]],
+                "roles": [{"party": "HIVE Digital Technologies Ltd.", "role": "owner", "relationship_scope": "current", "source_id": source["id"]}],
+            }
+            spec = {"format": "datacenter-atlas-update-input-v1", "updated_at": "2026-11-11", "base_dataset": "base",
+                    "base_manifest_sha256": hashlib.sha256((self.BASELINE / "manifest.json").read_bytes()).hexdigest(),
+                    "source_files": [{"path": "source.json", "sha256": hashlib.sha256(raw).hexdigest()}], "additions": [addition]}
+            path = root / "input.json"
+            path.write_text(json.dumps(spec))
+            payloads, manifest = update_payloads(path, root=root)
+            self.assertEqual((payloads, manifest), update_payloads(path, root=root))
+            self.assertEqual([manifest["counts"][key] for key in ("physical_sites", "projects", "evidence")], [1315, 1428, 7373])
+            projects = {row["project_id"]: row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))}
+            for original in self.tables["projects.csv"]:
+                self.assertEqual(projects[original["project_id"]], original)
+            pid = str(uuid5(NAMESPACE_URL, addition["project_stable_key"]))
+            site = next(row for row in csv.DictReader(io.StringIO(payloads["sites.csv"].decode())) if row["site_id"] == self.site["site_id"])
+            for original, actual in ((self.reference, projects[pid]), (self.site, site)):
+                for field in original:
+                    if field.startswith(("geometry_", "horizontal_uncertainty")) or field in {"latitude", "longitude"}:
+                        self.assertEqual(actual[field], original[field], field)
+            selected = set(self.geometry_ids + self.identity_ids + [self.reference["status_evidence_id"]])
+            self.assertEqual(len(selected), 11)
+            evidence = {row["evidence_id"]: row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))}
+            self.assertEqual(set(evidence), set(self.evidence))
+            for original in self.tables["evidence.csv"]:
+                expected = copy.deepcopy(original)
+                if original["evidence_id"] in selected:
+                    expected["project_ids_json"] = json.dumps(sorted(set(json.loads(original["project_ids_json"])) | {pid}), separators=(",", ":"))
+                self.assertEqual(evidence[original["evidence_id"]], expected)
+            feature = next(row for row in json.loads(payloads["sites.geojson"])["features"] if row["id"] == self.site["site_id"])
+            self.assertEqual(feature["geometry"], json.loads(self.site["geometry_json"]))
+            self.assertEqual(feature["properties"]["project_count"], 2)
+            addition["locator"]["geometry_evidence_ids"] = list(reversed(self.geometry_ids))
+            path.write_text(json.dumps(spec))
+            reordered, _ = update_payloads(path, root=root)
+            for name in ("sites.csv", "projects.csv", "evidence.csv", "sites.geojson", "source-records.json", "identity-mapping.json"):
+                self.assertEqual(payloads[name], reordered[name], name)
+            for observed, message in (("2026-07-01", "older than 90"), ("2026-11-12", "future")):
+                addition["status"]["as_of"] = observed
+                path.write_text(json.dumps(spec))
+                with self.subTest(observed=observed), self.assertRaisesRegex(UpdateError, message):
+                    update_payloads(path, root=root)
 
 
 class RetainedImportedStatusTests(unittest.TestCase):
