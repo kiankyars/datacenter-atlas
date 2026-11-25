@@ -1284,6 +1284,13 @@ at Via Vigonovese 52A.
 Sify's FY2026 report identifies six existing facilities in its operating portfolio.
 The roster covers a reporting year, so each facility keeps its prior status date.
 
+NEXTDC's November 20 operating roster adds eight Australian facilities and places
+the M4 Melbourne and S7 Sydney developments on hold. Teraco identifies operating
+labs at Digital Realty's Cloud House in London, NRT12 in Inzai and ACC6 in Ashburn.
+El Corte Inglés confirms Kumo's Murcia facility was operating on November 17.
+Digital Core REIT reported occupied space at BUR10 in Burbank and LAX11 in
+El Segundo on September 30. It sold its interest in LAX11 on November 3.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and

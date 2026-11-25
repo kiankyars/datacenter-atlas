@@ -1,0 +1,857 @@
+{
+  "format": "datacenter-atlas-update-input-v1",
+  "updated_at": "2026-11-25",
+  "output": "verified_construction_core/2026-11-25-research-hundredsixtysecond",
+  "base_dataset": "verified_construction_core/2026-11-25-research-hundredsixtyfirst",
+  "base_manifest_sha256": "1c213677fae23750677ba441e664c5c71e71d39de0f90ceb87800350c66a4c6f",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-25-hundredsixtysecond-primary-sources.json",
+      "sha256": "250ed57d2c74557ca7a7e1dc333da6088c9d697b33e1bff4b53e0068342e2b25"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:digital-realty-lhr19-cloud-house:existing-operations",
+      "physical_site_stable_key": "curated:digital-realty-lhr19-cloud-house",
+      "site_name": "Digital Realty LHR19 Cloud House, London",
+      "name": "Digital Realty LHR19 — existing Cloud House operations",
+      "country": "United Kingdom",
+      "country_iso_a2": "GB",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-16",
+        "source_id": "root162-teraco",
+        "summary": "Teraco reports the London lab operating inside Digital Realty LHR19. The data centre hosts the lab at Cloud House in Docklands."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -0.0182918,
+            51.4968332
+          ]
+        },
+        "source_id": "lhr162-cloud-house-os-uprn",
+        "identity_source_ids": [
+          "lhr162-tower-hamlets-conversion",
+          "lhr162-tower-hamlets-site-uprn",
+          "root162-lhr19"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "OS_Open_UPRN_6155368_native_longitude_latitude",
+        "precision": "OS Open UPRN address point for the 1 Muirfield Crescent / 47 Millharbour property. It identifies the Cloud House member of the operator’s Cloud House and Cloud House West site. It does not locate separate data halls or define the campus boundary. The release gives no surveyed building-centre accuracy.",
+        "identity_review": "Tower Hamlets links UPRN 6155368 to the approved conversion of Archway House into a data centre and to the exact 1 Muirfield Crescent address. Its planning-site BNG point matches the OS record exactly. The operator’s LHR19 page identifies the Cloud House and Cloud House West site but its plotted coordinate is about 170 m from the matched property point.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "OS Open UPRN supplies no feature-specific horizontal accuracy or coordinate epoch for this address point."
+      },
+      "context_source_ids": [
+        "lhr162-tower-hamlets-conversion",
+        "lhr162-tower-hamlets-site-uprn",
+        "root162-lhr19"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "root162-lhr19"
+        }
+      ],
+      "distinctness_review": "No Cloud House, LHR19, Bonnington House or Millharbour identity was found among baseline sites, projects, imported records or identity mappings. All 1,317 complete geometries were compared. The closest mapped site was Equinix LD8, 6/7/8/9 Harbour Exchange Square, London Docklands (277.5 m), at a different address.",
+      "successor_review": "The November 19–20 Stream Networks maintenance notice names Cloud House as the intended route for traffic. Its maintenance completion notice does not separately confirm actual rerouting. November 16 is the selected operating observation.",
+      "scoped_project_details": {
+        "address": "Cloud House, 1 Muirfield Crescent, London E14 9SZ",
+        "scope": "The commercial host facility includes Cloud House and Cloud House West. The address point identifies Cloud House."
+      }
+    },
+    {
+      "project_stable_key": "curated:nextdc-p1-perth:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-p1-perth",
+      "site_name": "NEXTDC P1 Perth (4 Millrose Drive, Malaga)",
+      "name": "NEXTDC P1 Perth — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC P1 Perth appears in the Western Australia operational roster dated November 20, 2026. NEXTDC also reports continuing capacity build-out at this operating facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            115.89594567000006,
+            -31.864388200153506
+          ]
+        },
+        "source_id": "perth162-p1-address-point",
+        "identity_source_ids": [
+          "perth162-site-addresses",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "government_address_property_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Property centroid for 4 Millrose Drive, Malaga (GAWA_147188640), as returned in EPSG:4326 by Geoscience Australia. It represents the property address. The source gives no surveyed building position, point accuracy or coordinate epoch.",
+        "identity_review": "Operator specifications match the government feature on number, street, locality and postcode. One numbered property address matches GAWA_147188640.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address database gives the point type as a property centroid. Site-specific horizontal accuracy is unspecified."
+      },
+      "context_source_ids": [
+        "perth162-site-addresses",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked operating codes, Perth aliases and exact addresses in 1,317 physical sites, 1,430 projects, 231 source records and their mapping records and decisions. Compared all 1,317 complete geometries. The nearest atlas site is Equinix PE1 on 3 Tully Road, 9.6 km away. Its operator and street address differ. P1 and P2 occupy distinct addresses in the operator table.",
+      "successor_review": "The operator’s November 20 facility list and Perth specifications identify the operating site. Ongoing incremental fit-out is outside the scope of this project. A search for subsequent closure or a change of operator through November 25 found no later dated original report for the site.",
+      "scoped_project_details": {
+        "address": "4 Millrose Drive, Malaga, Western Australia",
+        "scope": "Existing operating facility. Incremental capacity build-out is distinct.",
+        "location_limits": "Property centroid for 4 Millrose Drive, Malaga (GAWA_147188640), as returned in EPSG:4326 by Geoscience Australia. It represents the property address. The source gives no surveyed building position, point accuracy or coordinate epoch."
+      }
+    },
+    {
+      "project_stable_key": "curated:nextdc-p2-perth:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-p2-perth",
+      "site_name": "NEXTDC P2 Perth (11 Newcastle Street, Perth)",
+      "name": "NEXTDC P2 Perth — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC P2 Perth appears in the Western Australia operational roster dated November 20, 2026. NEXTDC also reports continuing capacity build-out at this operating facility."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            115.86810745000002,
+            -31.949992690152303
+          ]
+        },
+        "source_id": "perth162-p2-address-point",
+        "identity_source_ids": [
+          "perth162-site-addresses",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "government_address_property_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Property centroid for 11 Newcastle Street, Perth (GAWA_720246583), as returned in EPSG:4326 by Geoscience Australia. It represents the property address. The source gives no surveyed building position, point accuracy or coordinate epoch.",
+        "identity_review": "Operator specifications match the government feature on number, street, locality and postcode. One numbered property address matches GAWA_720246583.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The address database gives the point type as a property centroid. Site-specific horizontal accuracy is unspecified."
+      },
+      "context_source_ids": [
+        "perth162-site-addresses",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked operating codes, Perth aliases and exact addresses in 1,317 physical sites, 1,430 projects, 231 source records and their mapping records and decisions. Compared all 1,317 complete geometries. The nearest atlas site is Equinix PE1 on 3 Tully Road, 0.85 km away. Its operator and street address differ. P1 and P2 occupy distinct addresses in the operator table.",
+      "successor_review": "The operator’s November 20 facility list and Perth specifications identify the operating site. Ongoing incremental fit-out is outside the scope of this project. A search for subsequent closure or a change of operator through November 25 found no later dated original report for the site.",
+      "scoped_project_details": {
+        "address": "11 Newcastle Street, Perth, Western Australia",
+        "scope": "Existing operating facility. Incremental capacity build-out is distinct.",
+        "location_limits": "Property centroid for 11 Newcastle Street, Perth (GAWA_720246583), as returned in EPSG:4326 by Geoscience Australia. It represents the property address. The source gives no surveyed building position, point accuracy or coordinate epoch."
+      }
+    },
+    {
+      "project_stable_key": "curated:nextdc-a1-adelaide:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-a1-adelaide",
+      "site_name": "NEXTDC A1 Adelaide",
+      "name": "NEXTDC A1 Adelaide — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC lists A1 among its operating facilities as of November 20, 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            138.60786331000008,
+            -34.925684340113946
+          ]
+        },
+        "source_id": "aus162-a1-point",
+        "identity_source_ids": [
+          "aus162-a1",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_property_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Geoscience Australia supplies a property centroid for 125 FROME STREET, ADELAIDE, SA, 5000 (GASA_721536586). The point represents the address. Survey accuracy and equipment position are unknown.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source-specific horizontal accuracy and epoch are unspecified.",
+        "identity_review": "Checked all site and project records, imported records and both mapping arrays for Frome|NEXTDC A1|A1 Adelaide. Compared every complete baseline site geometry. The closest previously mapped site is Equinix AE1, 274 Hindley Street, Adelaide, 1,739 metres away. NEXTDC identifies A1 at 125 Frome Street, Adelaide."
+      },
+      "context_source_ids": [
+        "aus162-a1",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked all site and project records, imported records and both mapping arrays for Frome|NEXTDC A1|A1 Adelaide. Compared every complete baseline site geometry. The closest previously mapped site is Equinix AE1, 274 Hindley Street, Adelaide, 1,739 metres away. NEXTDC identifies A1 at 125 Frome Street, Adelaide.",
+      "successor_review": "The AGM explicitly dates the operating roster to November 20, 2026. The operator facility directory identifies the corresponding host. The records reviewed through November 25 contain no later site-specific status change."
+    },
+    {
+      "project_stable_key": "curated:nextdc-c1-canberra:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-c1-canberra",
+      "site_name": "NEXTDC C1 Canberra",
+      "name": "NEXTDC C1 Canberra — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC lists C1 among its operating facilities as of November 20, 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            149.09619734000012,
+            -35.24601452011036
+          ]
+        },
+        "source_id": "aus162-c1-point",
+        "identity_source_ids": [
+          "aus162-c1",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_frontage_centre_setback",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Geoscience Australia supplies a frontage centre setback for 19 BATTYE STREET, BRUCE, ACT, 2617 (GAACT714858950). The point represents the address. Survey accuracy and equipment position are unknown.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source-specific horizontal accuracy and epoch are unspecified.",
+        "identity_review": "Checked all site and project records, imported records and both mapping arrays for Battye|NEXTDC C1|C1 Bruce. Compared every complete baseline site geometry. The closest previously mapped site is Equinix CA1, 51 Dacre Street, Mitchell, 5,591 metres away. NEXTDC identifies C1 at 19 Battye Street, Bruce."
+      },
+      "context_source_ids": [
+        "aus162-c1",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked all site and project records, imported records and both mapping arrays for Battye|NEXTDC C1|C1 Bruce. Compared every complete baseline site geometry. The closest previously mapped site is Equinix CA1, 51 Dacre Street, Mitchell, 5,591 metres away. NEXTDC identifies C1 at 19 Battye Street, Bruce.",
+      "successor_review": "The AGM explicitly dates the operating roster to November 20, 2026. The operator facility directory identifies the corresponding host. The records reviewed through November 25 contain no later site-specific status change."
+    },
+    {
+      "project_stable_key": "curated:nextdc-d1-darwin:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-d1-darwin",
+      "site_name": "NEXTDC D1 Darwin",
+      "name": "NEXTDC D1 Darwin — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC lists D1 among its operating facilities as of November 20, 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            130.84392631000003,
+            -12.456296859602029
+          ]
+        },
+        "source_id": "aus162-d1-point",
+        "identity_source_ids": [
+          "aus162-d1",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_property_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Geoscience Australia supplies a property centroid for 8 RYKO COURT, DARWIN CITY, NT, 0800 (GANT_719952044). The point represents the address. Survey accuracy and equipment position are unknown.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source-specific horizontal accuracy and epoch are unspecified.",
+        "identity_review": "Checked all site and project records, imported records and both mapping arrays for Ryko|NEXTDC D1|D1 Darwin|Darwin City Exchange. Compared every complete baseline site geometry. The closest previously mapped site is Princeton Digital Group SB1 Surabaya, 2,061,314 metres away. NEXTDC identifies D1 at 8 Ryko Court, Darwin City."
+      },
+      "context_source_ids": [
+        "aus162-d1",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked all site and project records, imported records and both mapping arrays for Ryko|NEXTDC D1|D1 Darwin|Darwin City Exchange. Compared every complete baseline site geometry. The closest previously mapped site is Princeton Digital Group SB1 Surabaya, 2,061,314 metres away. NEXTDC identifies D1 at 8 Ryko Court, Darwin City.",
+      "successor_review": "The AGM explicitly dates the operating roster to November 20, 2026. The operator facility directory identifies the corresponding host. The records reviewed through November 25 contain no later site-specific status change."
+    },
+    {
+      "project_stable_key": "curated:nextdc-ph1-port-hedland:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-ph1-port-hedland",
+      "site_name": "NEXTDC PH1 Port Hedland",
+      "name": "NEXTDC PH1 Port Hedland — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC lists PH1 among its operating facilities as of November 20, 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            118.61173411000006,
+            -20.379668480383348
+          ]
+        },
+        "source_id": "aus162-ph1-point",
+        "identity_source_ids": [
+          "aus162-ph1",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_property_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Geoscience Australia supplies a property centroid for 17 LORETO CIRCUIT, PORT HEDLAND, WA, 6721 (GAWA_718826048). The point represents the address. Survey accuracy and equipment position are unknown.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source-specific horizontal accuracy and epoch are unspecified.",
+        "identity_review": "Checked all site and project records, imported records and both mapping arrays for Loreto|NEXTDC PH1|Port Hedland|Pilbara Cable. Compared every complete baseline site geometry. The closest previously mapped site is Equinix PE1, 3 Tully Road, East Perth, 1,310,542 metres away. NEXTDC identifies PH1 at 17 Loreto Circuit, Port Hedland."
+      },
+      "context_source_ids": [
+        "aus162-ph1",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked all site and project records, imported records and both mapping arrays for Loreto|NEXTDC PH1|Port Hedland|Pilbara Cable. Compared every complete baseline site geometry. The closest previously mapped site is Equinix PE1, 3 Tully Road, East Perth, 1,310,542 metres away. NEXTDC identifies PH1 at 17 Loreto Circuit, Port Hedland.",
+      "successor_review": "The AGM explicitly dates the operating roster to November 20, 2026. The operator facility directory identifies the corresponding host. The records reviewed through November 25 contain no later site-specific status change."
+    },
+    {
+      "project_stable_key": "curated:nextdc-sc1-sunshine-coast:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-sc1-sunshine-coast",
+      "site_name": "NEXTDC SC1 Sunshine Coast",
+      "name": "NEXTDC SC1 Sunshine Coast — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC lists SC1 among its operating facilities as of November 20, 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            153.0929581900001,
+            -26.659622990242735
+          ]
+        },
+        "source_id": "aus162-sc1-point",
+        "identity_source_ids": [
+          "aus162-sc1",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_property_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Geoscience Australia supplies a property centroid for LOT 76, 44 MAUD STREET, MAROOCHYDORE, QLD, 4558 (GAQLD155531653). The point represents the address. Survey accuracy and equipment position are unknown.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source-specific horizontal accuracy and epoch are unspecified.",
+        "identity_review": "Checked all site and project records, imported records and both mapping arrays for Maud Street|Maud St[, ]|NEXTDC SC1|SC1 Maroochydore|Sunshine Coast International Broadband. Compared every complete baseline site geometry. The closest previously mapped site is NEXTDC B2 Brisbane Data Centre, 454 St Pauls Terrace, Fortitude Valley, 88,189 metres away. NEXTDC identifies SC1 at 44 Maud Street, Maroochydore."
+      },
+      "context_source_ids": [
+        "aus162-sc1",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked all site and project records, imported records and both mapping arrays for Maud Street|Maud St[, ]|NEXTDC SC1|SC1 Maroochydore|Sunshine Coast International Broadband. Compared every complete baseline site geometry. The closest previously mapped site is NEXTDC B2 Brisbane Data Centre, 454 St Pauls Terrace, Fortitude Valley, 88,189 metres away. NEXTDC identifies SC1 at 44 Maud Street, Maroochydore.",
+      "successor_review": "The AGM explicitly dates the operating roster to November 20, 2026. The operator facility directory identifies the corresponding host. The records reviewed through November 25 contain no later site-specific status change."
+    },
+    {
+      "project_stable_key": "curated:nextdc-s2-sydney:existing-operations",
+      "physical_site_stable_key": "curated:nextdc-s2-sydney",
+      "site_name": "NEXTDC S2 Sydney",
+      "name": "NEXTDC S2 Sydney — existing data centre operations",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC lists S2 among its operating facilities as of November 20, 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.12521276000007,
+            -33.78633590012753
+          ]
+        },
+        "source_id": "aus162-s2-point",
+        "identity_source_ids": [
+          "aus162-s2",
+          "perth162-national-address-catalogue"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_property_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience_Australia_National_Address_Points_publisher_returned_WGS84_point",
+        "precision": "Geoscience Australia supplies a property centroid for 6 GIFFNOCK AVENUE, MACQUARIE PARK, NSW, 2113 (GANSW710849275). The point represents the address. Survey accuracy and equipment position are unknown. For the operator’s 6–8 street range, this selects the numbered 6 frontage property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Source-specific horizontal accuracy and epoch are unspecified.",
+        "identity_review": "Checked all site and project records, imported records and both mapping arrays for Giffnock|NEXTDC S2|S2 Macquarie Park|S2 Sydney. Compared every complete baseline site geometry. The closest previously mapped site is Macquarie IC3 Super West Facility, 564 metres away. NEXTDC identifies S2 at 6–8 Giffnock Avenue, Macquarie Park."
+      },
+      "context_source_ids": [
+        "aus162-s2",
+        "perth162-national-address-catalogue"
+      ],
+      "roles": [
+        {
+          "party": "NEXTDC Limited",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "perth162-agm"
+        }
+      ],
+      "distinctness_review": "Checked all site and project records, imported records and both mapping arrays for Giffnock|NEXTDC S2|S2 Macquarie Park|S2 Sydney. Compared every complete baseline site geometry. The closest previously mapped site is Macquarie IC3 Super West Facility, 564 metres away. NEXTDC identifies S2 at 6–8 Giffnock Avenue, Macquarie Park.",
+      "successor_review": "The AGM explicitly dates the operating roster to November 20, 2026. The operator facility directory identifies the corresponding host. The records reviewed through November 25 contain no later site-specific status change."
+    },
+    {
+      "project_stable_key": "curated:kumo-murcia-espinardo:existing-operations",
+      "physical_site_stable_key": "curated:kumo-murcia-espinardo",
+      "site_name": "Kumo Murcia Data Center, Espinardo",
+      "name": "Kumo Murcia Data Center — existing operations",
+      "country": "Spain",
+      "country_iso_a2": "ES",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-17",
+        "source_id": "eu162-eci-murcia-operating",
+        "summary": "El Corte Inglés reports that Kumo operates the existing Murcia site. Its initial opening was in 2014."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.1708915585717952,
+            38.02461181357117
+          ]
+        },
+        "source_id": "eu162-espinardo-civic-number",
+        "identity_source_ids": [
+          "eu162-eci-murcia-operating",
+          "eu162-aenor-espinardo",
+          "eu162-kumo-murcia-constructed-facility"
+        ],
+        "scope": "project_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "CartoCiudad_native_numbered_address_14.30.G30_300300342877",
+        "precision": "Government address point for Santiago Navarro 8, postal code 30100, matched to the audited Espinardo service location. The point represents the numbered address; survey accuracy, datum realization and epoch are unspecified.",
+        "identity_review": "All 1,317 sites and complete geometries, 1,430 projects, 231 source records and both 231-entry mapping lists were screened. KIO matches resolve to QRO3, Querétaro, Mexico. The Spanish KIO facility was renamed Kumo. The nearest existing Atlas site is SP01 Granada, 250.85 km away.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "CartoCiudad does not report a positional accuracy for this individual address record."
+      },
+      "context_source_ids": [
+        "eu162-eci-murcia-operating",
+        "eu162-aenor-espinardo",
+        "eu162-kumo-murcia-constructed-facility"
+      ],
+      "roles": [
+        {
+          "party": "Kumo Networks S.A.U.",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "eu162-eci-murcia-operating"
+        }
+      ],
+      "distinctness_review": "All 1,317 sites and complete geometries, 1,430 projects, 231 source records and both 231-entry mapping lists were screened. KIO matches resolve to QRO3, Querétaro, Mexico. The Spanish KIO facility was renamed Kumo. The nearest existing Atlas site is SP01 Granada, 250.85 km away.",
+      "successor_review": "The operator’s November 19 Spanish-language article describes the same Paterna inauguration and existing Murcia site. The facilities listing identifies the 2014 opening. The technical certification supersedes the predecessor name. A bounded review through November 25 found no later independent dated change to Murcia operations.",
+      "scoped_project_details": {
+        "address": "Calle Santiago Navarro 8, Complejo de Espinardo, 30100 Murcia",
+        "former_name": "KIO/Murcia Data Center, KIO Networks España",
+        "historical_test": "The Uptime constructed-facility letter records 528 kW of demonstrated total peak IT load at the 2014 verification.",
+        "locator_scope": "Government address point for Santiago Navarro 8, postal code 30100, matched to the audited Espinardo service location. The point represents the numbered address; survey accuracy, datum realization and epoch are unspecified."
+      }
+    },
+    {
+      "project_stable_key": "curated:mc-digital-realty-inzai-otsuka-2-4:nrt12-existing-operations",
+      "physical_site_stable_key": "curated:mc-digital-realty-inzai-otsuka-2-4",
+      "site_name": "MC Digital Realty Inzai (Ōtsuka 2-chōme 4)",
+      "name": "MC Digital Realty NRT12 — existing data centre operations",
+      "country": "Japan",
+      "country_iso_a2": "JP",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-16",
+        "source_id": "root162-teraco",
+        "summary": "On November 16, Teraco names NRT12 as the Tokyo host of the Digital Realty Innovation Lab network. Digital Realty and its Japanese operator identify the operating colocation facility."
+      },
+      "context_source_ids": [
+        "nrt162-address",
+        "nrt162-inzai-cadastre",
+        "nrt162-campus"
+      ],
+      "locator": {
+        "geometry": {
+          "coordinates": [
+            140.118927,
+            35.807934
+          ],
+          "type": "Point"
+        },
+        "source_id": "nrt162-gsi",
+        "identity_source_ids": [
+          "nrt162-address",
+          "nrt162-inzai-cadastre",
+          "nrt162-campus"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "government_block_address_within_verified_campus_parcel",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "GSI_native_block_address_reference_checked_against_MOJ_parcel_4_1",
+        "precision": "GSI block address reference for Ōtsuka 2-chōme 4. The point lies within the official 4-1 parcel at the operator’s address on the shared Inzai campus. Individual building positions and site boundaries remain unspecified.",
+        "identity_review": "Digital Realty lists NRT12 at 2-4-1 Ōtsuka, and Chiba Prefecture identifies NRT12 at block 4. GSI supplies the block point, and the Ministry of Justice cadastral polygon confirms the returned coordinate lies within the specified lot. MC Digital Realty identifies NRT12 as part of its Inzai campus.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Address reference on a shared parcel. Building-specific accuracy, uncertainty and coordinate epoch are unspecified."
+      },
+      "roles": [
+        {
+          "party": "MC Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "nrt162-campus"
+        }
+      ],
+      "distinctness_review": "The exact project code, developer and street aliases have no matches in 1,317 sites, 1,430 projects or the 231 imported identities and mapping decisions. Full-geometry checks locate SCSK netXDC 148 m away, Colt 310 m away and Equinix TY12x/TY13x 685 m away. Their operators and addresses distinguish them. The Chiba register separately lists SCSK at Ōtsuka 2-6-1 and NRT10 at 2-9-1. This record covers NRT12 on the 2-4 part of the campus.",
+      "successor_review": "The November 16 host list and both operator profiles identify NRT12. The other NRT buildings are reported separately. The lab is a service within the operating building.",
+      "scoped_project_details": {
+        "address": "2-4-1 Ōtsuka, Inzai, Chiba, Japan",
+        "scope": "NRT12 existing operations; the shared campus reference represents the Ōtsuka 2-chōme 4 property.",
+        "location_limits": "GSI block address reference for Ōtsuka 2-chōme 4. The point lies within the official 4-1 parcel at the operator’s address on the shared Inzai campus. Individual building positions and site boundaries remain unspecified."
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-bur10-burbank:colocation",
+      "physical_site_stable_key": "curated:digital-realty-bur10-burbank",
+      "site_name": "Digital Realty BUR10, Burbank",
+      "name": "Digital Realty BUR10 colocation facility, Burbank",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "us162-dcr-q3-portfolio",
+        "summary": "The REIT reported 88.1% occupancy and customer IT load at 3015 Winona Avenue in its September 30 in-service colocation portfolio."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -118.343747,
+            34.19984841
+          ]
+        },
+        "source_id": "us162-lacounty-bur10",
+        "identity_source_ids": [
+          "us162-dcr-q3-portfolio",
+          "us162-digitalrealty-bur10"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Los_Angeles_County_Assessor_published_CENTER_LON_and_CENTER_LAT",
+        "precision": "Parcel-center address locator from the County Assessor. The published point identifies the titled parcel, with unknown horizontal accuracy and no building-level precision.",
+        "identity_review": "No match for the facility code, street address or AIN in 1,317 sites, 1,430 projects, 231 source records or either 231-entry identity mapping list. The nearest baseline geometry is West7Center (1200 W 7th Street, Los Angeles, California), 17,967.14 metres away.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes the parcel center without a numerical accuracy estimate or datum realization."
+      },
+      "context_source_ids": [
+        "us162-dcr-q3-portfolio",
+        "us162-digitalrealty-bur10"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us162-digitalrealty-bur10"
+        }
+      ],
+      "distinctness_review": "No match for the facility code, street address or AIN in 1,317 sites, 1,430 projects, 231 source records or either 231-entry identity mapping list. The nearest baseline geometry is West7Center (1200 W 7th Street, Los Angeles, California), 17,967.14 metres away.",
+      "successor_review": "The latest reviewed, dated physical observation is the September 30 in-service portfolio. The operator continues to list this facility at the same address. The Los Angeles property in the REIT’s November 3 divestment was 200 North Nash Street in El Segundo. Burbank is a separate property.",
+      "scoped_project_details": {
+        "facility_code": "BUR10",
+        "address": "3015 Winona Avenue, Burbank, CA 91504",
+        "assessment_parcel": "2466-022-046",
+        "occupancy": "88.1% on September 30, 2026, in the REIT’s Los Angeles colocation portfolio.",
+        "location_limits": "Parcel-center address locator from the County Assessor. The published point identifies the titled parcel, with unknown horizontal accuracy and no building-level precision."
+      }
+    },
+    {
+      "project_stable_key": "curated:digital-realty-lax11-el-segundo:colocation",
+      "physical_site_stable_key": "curated:digital-realty-lax11-el-segundo",
+      "site_name": "Digital Realty LAX11, El Segundo",
+      "name": "Digital Realty LAX11 colocation facility, El Segundo",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-09-30",
+        "source_id": "us162-dcr-q3-portfolio",
+        "summary": "The REIT reported 81.1% occupancy and customer IT load at 200 North Nash Street in its September 30 in-service colocation portfolio."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -118.38624551,
+            33.91767857
+          ]
+        },
+        "source_id": "us162-lacounty-lax11",
+        "identity_source_ids": [
+          "us162-dcr-q3-portfolio",
+          "us162-digitalrealty-lax11"
+        ],
+        "scope": "project_locator",
+        "scope_class": "official_tax_parcel_centroid",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Los_Angeles_County_Assessor_published_CENTER_LON_and_CENTER_LAT",
+        "precision": "Parcel-center address locator from the County Assessor. The published point identifies the titled parcel, with unknown horizontal accuracy and no building-level precision.",
+        "identity_review": "No match for the facility code, street address or AIN in 1,317 sites, 1,430 projects, 231 source records or either 231-entry identity mapping list. The nearest baseline geometry is Equinix LA4 Los Angeles (445 North Douglas Street, El Segundo), 494.54 metres away. Digital Realty separately lists LAX12 at 2260 East El Segundo Boulevard. The north and south 200 Nash parcels are distinct.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The county publishes the parcel center without a numerical accuracy estimate or datum realization."
+      },
+      "context_source_ids": [
+        "us162-dcr-q3-portfolio",
+        "us162-digitalrealty-lax11",
+        "us162-dcr-october-circular",
+        "us162-dcr-november-disposal"
+      ],
+      "roles": [
+        {
+          "party": "Digital Realty",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "us162-digitalrealty-lax11"
+        }
+      ],
+      "distinctness_review": "No match for the facility code, street address or AIN in 1,317 sites, 1,430 projects, 231 source records or either 231-entry identity mapping list. The nearest baseline geometry is Equinix LA4 Los Angeles (445 North Douglas Street, El Segundo), 494.54 metres away. Digital Realty separately lists LAX12 at 2260 East El Segundo Boulevard. The north and south 200 Nash parcels are distinct.",
+      "successor_review": "The latest reviewed, dated physical observation is the September 30 in-service portfolio. The operator continues to list this facility at the same address. The October 7 circular identifies this property as the Los Angeles Facility. The November 3 filing confirms the REIT sold its entire interest in it. That transaction dates an ownership change only.",
+      "scoped_project_details": {
+        "facility_code": "LAX11",
+        "address": "200 North Nash Street, El Segundo, CA 90245",
+        "assessment_parcel": "4138-003-046",
+        "occupancy": "81.1% on September 30, 2026, in the REIT’s Los Angeles colocation portfolio.",
+        "location_limits": "Parcel-center address locator from the County Assessor. The published point identifies the titled parcel, with unknown horizontal accuracy and no building-level precision."
+      }
+    }
+  ],
+  "status_updates": [
+    {
+      "project_stable_key": "curated:digital-realty-acc6-ashburn-44461-chilum-place:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-16",
+        "source_id": "root162-teraco",
+        "summary": "Teraco reports that the Northern Virginia lab is operating and names Digital Realty ACC6 as its host."
+      },
+      "identity_review": "ACC6 identifies the existing Digital Realty colocation facility on Chilum Place. The lab is a service inside the building.",
+      "successor_review": "The November 17 Singapore launch describes the wider network. No subsequent ACC6-specific physical change was found in the reviewed operator announcements."
+    },
+    {
+      "project_stable_key": "curated:nextdc-b1-brisbane:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC places B1 in its operational facility list as at November 20, 2026 (AGM presentation, slide 15)."
+      },
+      "identity_review": "The regional operating table identifies B1 by the same operator, facility code and state as the existing project NEXTDC B1 Brisbane — existing data-centre operations.",
+      "successor_review": "The dated roster supports continued operation of the existing facility. Separate expansion work has a different scope."
+    },
+    {
+      "project_stable_key": "curated:nextdc-b2-brisbane:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC places B2 in its operational facility list as at November 20, 2026 (AGM presentation, slide 15)."
+      },
+      "identity_review": "The regional operating table identifies B2 by the same operator, facility code and state as the existing project NEXTDC B2 Brisbane — existing data-centre operations.",
+      "successor_review": "The dated roster supports continued operation of the existing facility. Separate expansion work has a different scope."
+    },
+    {
+      "project_stable_key": "curated:nextdc-s1-sydney:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC places S1 in its operational facility list as at November 20, 2026 (AGM presentation, slide 15)."
+      },
+      "identity_review": "The regional operating table identifies S1 by the same operator, facility code and state as the existing project NEXTDC S1 Sydney — existing data-centre operations.",
+      "successor_review": "The dated roster supports continued operation of the existing facility. Separate expansion work has a different scope."
+    },
+    {
+      "project_stable_key": "curated:nextdc-s6-sydney:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC places S6 in its operational facility list as at November 20, 2026 (AGM presentation, slide 15)."
+      },
+      "identity_review": "The regional operating table identifies S6 by the same operator, facility code and state as the existing project NEXTDC S6 Sydney — existing data-centre operations.",
+      "successor_review": "The dated roster supports continued operation of the existing facility. Separate expansion work has a different scope."
+    },
+    {
+      "project_stable_key": "curated:nextdc-m1-melbourne-port-melbourne:existing-operations",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC places M1 in its operational facility list as at November 20, 2026 (AGM presentation, slide 15)."
+      },
+      "identity_review": "The regional operating table identifies M1 by the same operator, facility code and state as the existing project NEXTDC M1 Melbourne — existing data-centre operations.",
+      "successor_review": "The dated roster supports continued operation of the existing facility. Separate expansion work has a different scope."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:nextdc-m4-port-melbourne",
+      "status": {
+        "value": "paused",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC listed M4 among development sites on hold as of November 20. The pause applies to new development commitments for this project."
+      },
+      "identity_review": "The announced overall M4 development is identified by NEXTDC’s site code. The AGM does not report the stage of any individual works package.",
+      "successor_review": "The November 20 AGM portfolio and FY27 guidance identify the hold. No subsequent change in this project’s development decision was found in the reviewed sources."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:nextdc-s7-eastern-creek",
+      "status": {
+        "value": "paused",
+        "as_of": "2026-11-20",
+        "source_id": "perth162-agm",
+        "summary": "NEXTDC listed S7 among development sites on hold as of November 20. The pause applies to new development commitments for this project."
+      },
+      "identity_review": "The announced overall S7 development is identified by NEXTDC’s site code. The AGM does not report the stage of any individual works package.",
+      "successor_review": "The November 20 AGM portfolio and FY27 guidance identify the hold. No subsequent change in this project’s development decision was found in the reviewed sources."
+    }
+  ],
+  "context_updates": [
+    {
+      "project_stable_key": "curated:teraco-isando-campus-jb1-jb3-jb5:existing-operations",
+      "source_ids": [
+        "root162-teraco"
+      ],
+      "context_kind": "identity",
+      "summary": "Teraco reports live infrastructure testing inside JB3 at its Isando campus on November 16. The installation is within the existing commercial facility.",
+      "identity_review": "The operator names JB3. The existing project also covers JB1 and JB5, so this observation is attached specifically to JB3.",
+      "preserve_status_as_of": "2025-05-30"
+    },
+    {
+      "project_stable_key": "curated:digital-realty-digital-loyang-campus:existing-sin11-sin12-operations",
+      "source_ids": [
+        "root162-sin11-news"
+      ],
+      "context_kind": "identity",
+      "summary": "Digital Realty opened its infrastructure testing lab in SIN11 on November 17. SIN11 is one of the two facilities included in this campus record.",
+      "identity_review": "Digital Realty names SIN11 directly. The existing record covers both SIN11 and SIN12.",
+      "preserve_status_as_of": "2026-08-24"
+    },
+    {
+      "project_stable_key": "curated:teraco-ct1-rondebosch-data-centre:existing-operations",
+      "source_ids": [
+        "root162-cape-power"
+      ],
+      "context_kind": "power_readiness",
+      "summary": "Teraco reports that wind electricity began reaching its Cape Town data centres in September 2026. The operator reports this across its local portfolio and gives no separate volume for this site.",
+      "identity_review": "The operator lists CT1 Rondebosch and CT2 Brackenfell as its Cape Town facilities. This electricity disclosure concerns the existing operations.",
+      "preserve_status_as_of": "2025-11-12"
+    },
+    {
+      "project_stable_key": "curated:teraco-ct2-brackenfell-brackengate:existing-operations",
+      "source_ids": [
+        "root162-cape-power"
+      ],
+      "context_kind": "power_readiness",
+      "summary": "Teraco reports that wind electricity began reaching its Cape Town data centres in September 2026. The operator reports this across its local portfolio and gives no separate volume for this site.",
+      "identity_review": "The operator lists CT1 Rondebosch and CT2 Brackenfell as its Cape Town facilities. This electricity disclosure concerns the existing operations.",
+      "preserve_status_as_of": "2026-05-28"
+    }
+  ]
+}
