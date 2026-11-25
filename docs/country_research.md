@@ -53,7 +53,9 @@ their own coordinates, addresses, site plans or maps, or permit, planning, cadas
 address records. Do not copy coordinates from map apps or facility directories whose terms forbid
 reuse, such as Google Maps or PeeringDB; from updates dated 7 November 2026 the builder rejects them.
 For an OpenStreetMap locator, match the feature name or civic address to the operator’s
-facility, record the object ID and version, and preserve ODbL attribution. Use regional
+facility and record the object ID and version. Set the geometry evidence license to
+`ODbL-1.0` and credit © OpenStreetMap contributors so the downloads carry the attribution.
+If a developer's plan supplies a marker, cite the plan and retain its original terms. Use regional
 extracts for bulk research and follow the service’s usage limits for individual queries.
 See the [OSM data access policy](https://operations.osmfoundation.org/policies/api/)
 and [Overpass usage guidance](https://dev.overpass-api.de/overpass-doc/en/preface/commons.html).
