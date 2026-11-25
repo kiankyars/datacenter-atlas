@@ -2441,6 +2441,40 @@ class EfficiencyObservationTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "duplicate or conflicting"):
             self.payloads()
 
+    def test_annual_wue_accepts_reported_zero_alongside_pue(self):
+        pue, source = self.quarterly_observation()
+        source.update(source_reporting_period="2025", date_semantics="The full 2025 calendar year.")
+        pue["as_of_date"] = "2025-12-31"
+        legacy = json.loads(self.payloads()[0]["schema.json"])
+        field = "projects.csv:efficiency_observations_json"
+        self.assertEqual(legacy["embedded_array_items"][field]["allowed_metrics"], ["pue"])
+        self.assertNotIn("wue", legacy["embedded_types"]["typed_metric_observation"]["unit_by_metric"])
+        wue = {**pue, "metric": "wue", "unit": "L/kWh", "low": 0, "base": 0, "high": 0,
+               "notes": "Annual WUE for the campus at the register's reported precision."}
+        self.spec["efficiency_observations"].append(wue)
+        payloads, _ = self.payloads()
+        schema = json.loads(payloads["schema.json"])
+        self.assertEqual(schema["embedded_array_items"][field]["allowed_metrics"], ["pue", "wue"])
+        self.assertEqual(schema["embedded_types"]["typed_metric_observation"]["unit_by_metric"]["wue"], "L/kWh")
+        project = next(r for r in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                       if r["project_stable_key"] == wue["project_stable_key"])
+        power, water = json.loads(project["efficiency_observations_json"])
+        self.assertEqual((power["metric"], power["base"], power["unit"]), ("pue", 1.09, "ratio"))
+        self.assertEqual((water["metric"], water["base"], water["unit"]), ("wue", 0, "L/kWh"))
+        self.assertEqual(power["evidence_id"], water["evidence_id"])
+        evidence = next(r for r in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                        if r["evidence_id"] == water["evidence_id"])
+        self.assertEqual(json.loads(evidence["roles_json"]), ["typed_metric:pue", "typed_metric:wue"])
+        self.assertEqual(json.loads(evidence["project_ids_json"]), [project["project_id"]])
+        for changes, error in (({"unit": "ratio"}, "metric/unit"), ({"base": None}, "not finite"),
+                               ({"low": -0.1}, "interval"), ({"as_of_date": "2025-06-30"}, "reporting period")):
+            with self.subTest(changes=changes), self.assertRaisesRegex(UpdateError, error):
+                self.spec["efficiency_observations"] = [pue, {**wue, **changes}]
+                self.payloads()
+        self.spec["efficiency_observations"] = [pue, wue, wue.copy()]
+        with self.assertRaisesRegex(UpdateError, "duplicate or conflicting"):
+            self.payloads()
+
     def test_annual_average_uses_calendar_year_end(self):
         action, source = self.quarterly_observation()
         source.update(source_reporting_period="2025", date_semantics="Calendar year average reported for 2025.")

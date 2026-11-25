@@ -22,13 +22,16 @@ from uuid import NAMESPACE_URL, uuid5
 from .models import LifecycleStatus, OperatingModel
 from .public_site import CDLA_LICENSE_FILE, CDLA_PERMISSIVE, validate_dataset
 from .verified_construction_core import (
-    EFFICIENCY_METRICS, ENERGY_METRICS, POWER_METRICS, VerifiedConstructionCoreError, _validate_typed_observation,
+    EFFICIENCY_METRICS, ENERGY_METRICS, METRIC_UNITS, POWER_METRICS, VerifiedConstructionCoreError,
+    _validate_typed_observation,
 )
 
 
 class UpdateError(ValueError):
     """An update cannot be applied without losing its evidence or identity."""
 
+
+UPDATE_METRIC_UNITS = {**METRIC_UNITS, "wue": "L/kWh"}
 
 ACTIVE_STATUSES = {
     "site_preparation", "clearing", "civil_works", "foundations", "shell",
@@ -219,7 +222,7 @@ def _metric_observation(item, source, details, category, allowed_metrics):
     observation = {key: value for key, value in item.items() if key not in {"project_stable_key", "source_id"}}
     observation["evidence_id"] = source["evidence_id"]
     try:
-        _validate_typed_observation(observation, allowed_metrics)
+        _validate_typed_observation(observation, allowed_metrics, metric_units=UPDATE_METRIC_UNITS)
     except (VerifiedConstructionCoreError, TypeError) as exc:
         raise UpdateError(f"invalid {category} observation: {exc}") from exc
     if observation["metric"] == "pue":
@@ -856,7 +859,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
 
     added_metrics = {}
     identity = ("metric", "stage", "as_of_date", "target_date")
-    for category, allowed_metrics in (("power", POWER_METRICS), ("efficiency", EFFICIENCY_METRICS),
+    for category, allowed_metrics in (("power", POWER_METRICS), ("efficiency", EFFICIENCY_METRICS | {"wue"}),
                                       ("annual_energy", ENERGY_METRICS)):
         action_key = category + "_observations"
         metric_actions = spec.get(action_key, [])
@@ -960,6 +963,14 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                       snapshot_only_records=sum(not item.get("project_id") for item in inherited_resolutions),
                       imported_source_references=sum(bool(row.get("source_record_id")) for row in evidence))
     schema = {key: value for key, value in schema.items() if key not in {"draft_id", "base_preview_id", "v018_draft_contract", "inherited_baseline_annotations"}}
+    if any(item["metric"] == "wue" for item in added_metrics.get("added_efficiency_observations", [])):
+        efficiency = schema["embedded_array_items"]["projects.csv:efficiency_observations_json"]
+        efficiency["allowed_metrics"] = sorted(set(efficiency["allowed_metrics"]) | {"wue"})
+        efficiency["description"] = (
+            "Typed efficiency observations with stage, date and evidence. PUE is a dimensionless energy ratio. "
+            "WUE is litres of facility water per kWh of IT energy. A reported zero is a numeric reading."
+        )
+        schema["embedded_types"]["typed_metric_observation"]["unit_by_metric"]["wue"] = UPDATE_METRIC_UNITS["wue"]
     for name, table in schema["tables"].items():
         for field in table["fields"]:
             if "allowed_values" in field and field["logical_type"] == "string":

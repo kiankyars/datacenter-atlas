@@ -138,6 +138,7 @@ test('vocabulary labels: bootstrap first, then built-in, then humanized code', (
   assert.equal(Core.vocabDescription(vocab, 'statuses', 'shell'), 'Envelope');
   assert.equal(Core.statusLabel('mep_electrical', vocab), 'MEP / electrical');
   assert.equal(Core.statusLabel('brand_new_stage', vocab), 'Brand new stage');
+  assert.equal(Core.vocabLabel(null, 'power_metrics', 'wue'), 'WUE');
   assert.equal(Core.vocabLabel(null, 'evidence_roles', 'typed_metric:critical_it_mw'), 'Typed metric: critical it mw');
   assert.equal(Core.vocabLabel({}, 'statuses', ''), '');
   assert.equal(Core.vocabLabel({ statuses: { __proto__: { label: 'x' } } }, 'statuses', 'toString'), 'ToString');
@@ -666,6 +667,7 @@ test('relative URL helpers', () => {
 });
 
 test('formatPowerValue shows a range only when bounds differ', () => {
+  assert.equal(Core.formatPowerValue({ low: 0, base: 0, high: 0, unit: 'L/kWh' }), '0 L/kWh');
   assert.equal(Core.formatPowerValue({ low: 5.28, base: 5.28, high: 5.28, unit: 'MW' }), '5.28 MW');
   assert.equal(Core.formatPowerValue({ low: 10, base: 20, high: 30, unit: 'MW' }), '10–30 MW');
   assert.equal(Core.formatPowerValue({ low: null, base: 1.4, high: null, unit: 'ratio' }), '1.4 ratio');

@@ -1205,7 +1205,7 @@ def _finite_number(value: Any) -> bool:
 
 
 def _validate_typed_observation(
-    observation: Any, allowed_metrics: set[str]
+    observation: Any, allowed_metrics: set[str], *, metric_units: Mapping[str, str] = METRIC_UNITS
 ) -> dict[str, Any]:
     fields = {
         "as_of_date",
@@ -1224,7 +1224,7 @@ def _validate_typed_observation(
     if not isinstance(observation, dict) or set(observation) != fields:
         raise VerifiedConstructionCoreError("typed-metric observation schema differs")
     metric = observation["metric"]
-    if metric not in allowed_metrics or observation["unit"] != METRIC_UNITS[metric]:
+    if metric not in allowed_metrics or observation["unit"] != metric_units[metric]:
         raise VerifiedConstructionCoreError("typed-metric metric/unit differs")
     low = observation["low"]
     base = observation["base"]

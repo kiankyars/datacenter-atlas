@@ -1070,6 +1070,55 @@ class PublishedSnapshotTests(unittest.TestCase):
                         "SELECT last_observed_physical_status, COUNT(*) FROM projects GROUP BY 1"
                     ).fetchall(), [(status, len(projects))])
 
+    def test_reported_zero_wue_survives_downloads_api_and_site_evidence(self):
+        with tempfile.TemporaryDirectory(prefix="atlas-facility-wue-") as temporary:
+            base = Path(temporary)
+            root = make_fixture_root(base)
+            directory = add_published_fixture(root)
+            projects = read_csv(directory / "projects.csv")
+            project = projects[0]
+            evidence_id = project["status_evidence_id"]
+            observations = [
+                {**POWER[0], "metric": metric, "stage": "measured", "unit": unit, "low": value,
+                 "base": value, "high": value, "evidence_id": evidence_id}
+                for metric, unit, value in (("pue", "ratio", 1.2), ("wue", "L/kWh", 0))
+            ]
+            fields = [*PROJECT_FIELDS, _field("efficiency_observations_json", "json_array")]
+            for row in projects:
+                row["efficiency_observations_json"] = _compact(observations if row is project else [])
+            _write_csv(directory / "projects.csv", fields, projects)
+            schema = read_json(directory / "schema.json")
+            schema["tables"]["projects.csv"]["fields"] = fields
+            description = "PUE in ratio units and WUE in L/kWh."
+            schema["embedded_array_items"] = {
+                "projects.csv:efficiency_observations_json": {
+                    "item_type": "typed_metric_observation", "allowed_metrics": ["pue", "wue"],
+                    "description": description,
+                },
+            }
+            (directory / "schema.json").write_text(json.dumps(schema))
+            _reseal(directory)
+            output = base / "out"
+            public_site.build_site(output, root=root, base_url=LOCAL)
+            downloads = output / "downloads/latest"
+            item = next(r for r in read_csv(downloads / "projects.csv") if r["project_id"] == project["project_id"])
+            self.assertEqual(json.loads(item["efficiency_observations_json"]), observations)
+            item = next(r for r in read_json(output / "api/v1/projects.json") if r["project_id"] == project["project_id"])
+            self.assertEqual(item["efficiency_observations"], observations)
+            self.assertNotIn("wue", read_json(output / "api/v1/stats.json")["by_power_metric"])
+            with sqlite3.connect(downloads / "atlas.sqlite") as connection:
+                rows = connection.execute("SELECT metric, base, unit, evidence_id FROM efficiency_observations "
+                                          "WHERE project_id = ? ORDER BY metric", (project["project_id"],)).fetchall()
+                self.assertEqual(rows, [("pue", 1.2, "ratio", evidence_id), ("wue", 0.0, "L/kWh", evidence_id)])
+            html = (output / "sites" / project["site_id"] / "index.html").read_text()
+            water_row = next(row for row in re.findall(r"<tr>(.*?)</tr>", html, re.S) if "<td>WUE</td>" in row)
+            self.assertIn("0 L/kWh", water_row)
+            self.assertIn(f'href="#evidence-{evidence_id}"', water_row)
+            projects_resource = next(r for r in read_json(downloads / "datapackage.json")["resources"]
+                                     if r["name"] == "projects")
+            field = next(f for f in projects_resource["schema"]["fields"] if f["name"] == "efficiency_observations_json")
+            self.assertEqual(field["description"], description)
+
     def test_update_preserves_observation_dates_and_reports_their_actual_range(self):
         with tempfile.TemporaryDirectory(prefix="atlas-published-") as temporary:
             base = Path(temporary)

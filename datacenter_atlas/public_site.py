@@ -2637,7 +2637,7 @@ def _json_schemas(context: _Context) -> dict[str, dict[str, Any]]:
     }
     for file_name in TABLE_FILES:
         table = TABLE_NAMES[file_name]
-        column_descriptions = descriptions.get("tables", {}).get(file_name, {})
+        column_descriptions = _table_descriptions(context, atlas, file_name)
         properties: dict[str, Any] = {}
         for spec in atlas.fields[file_name]:
             column = spec["name"]
@@ -4081,11 +4081,22 @@ def _datapackage(context: _Context, atlas: Atlas, blobs: Mapping[str, bytes]) ->
     return _json_text(package, pretty=True).encode("utf-8")
 
 
+def _table_descriptions(context: _Context, atlas: Atlas, file_name: str) -> dict[str, str]:
+    """Apply the version's own embedded-field descriptions to the common dictionary."""
+    descriptions = dict(context.descriptions.get("tables", {}).get(file_name, {}))
+    for spec in atlas.fields[file_name]:
+        key = f"{file_name}:{spec['name']}"
+        definition = (atlas.schema.get("embedded_array_items") or {}).get(key, {})
+        if definition.get("description"):
+            descriptions[spec["name"]] = definition["description"]
+    return descriptions
+
+
 def _table_resource(
     context: _Context, atlas: Atlas, file_name: str, record: FileRecord, licenses: Sequence[Mapping[str, str]]
 ) -> dict[str, Any]:
     table = TABLE_NAMES[file_name]
-    descriptions = context.descriptions.get("tables", {}).get(file_name, {})
+    descriptions = _table_descriptions(context, atlas, file_name)
     fields = []
     for spec in atlas.fields[file_name]:
         logical = str(spec.get("logical_type", "string"))
@@ -5854,7 +5865,7 @@ def _dictionary_page(context: _Context) -> _Page:
     descriptions = context.descriptions
     sections = []
     for file_name in TABLE_FILES:
-        table_descriptions = descriptions.get("tables", {}).get(file_name, {})
+        table_descriptions = _table_descriptions(context, atlas, file_name)
         rows = []
         for spec in atlas.fields[file_name]:
             name = spec["name"]
@@ -6721,7 +6732,7 @@ def _llms_full_txt(context: _Context) -> str:
     for file_name in TABLE_FILES:
         sections.append(f"## {file_name}")
         sections.append("")
-        table_descriptions = descriptions.get("tables", {}).get(file_name, {})
+        table_descriptions = _table_descriptions(context, atlas, file_name)
         for spec in atlas.fields[file_name]:
             name = spec["name"]
             empty = "may be empty (unknown)" if spec.get("allows_empty_string") else "always present"
