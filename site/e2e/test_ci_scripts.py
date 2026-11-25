@@ -168,7 +168,8 @@ def _facts(**changes):
             {"country": "Germany", "country_iso_a2": "DE", "site_count": 1},
         ],
         "projects": projects,
-        "evidence": [{"evidence_id": "e-osm", "license": "ODbL-1.0"}, {"evidence_id": "e1", "license": "x"}],
+        "evidence": [{"evidence_id": "e-osm", "kind": "openstreetmap", "license": "ODbL-1.0"},
+                     {"evidence_id": "e1", "license": "x"}],
         "config": {
             "site_name": "Data Center Atlas", "base_url": BASE, "versions_root": "verified_construction_core",
             "repository_url": "https://github.com/example/atlas", "status_window_days": 90,
@@ -212,6 +213,44 @@ def test_metadata_write_then_check_is_clean(tmp_path):
     assert f'version: "{DATASET_ID}"' in citation and 'date-released: "2026-10-02"' in citation
     assert "ODbL 1.0" in citation and "doi:" not in citation
     assert "final release" not in citation and "release gates" not in citation
+
+
+@pytest.mark.parametrize(("credit", "terms"), [
+    ("OpenStreetMap contributors", "ODbL-1.0"),
+    ("Contains information from OpenStreetMap, which is made available under the Open Database License (ODbL).",
+     "ODbL-1.0"),
+    ("OpenStreetMap contributors / Nominatim", "ODbL-1.0"),
+    ("OpenStreetMap contributors; Nominatim", "ODbL-1.0"),
+    ("OpenStreetMap contributors", "ODbL 1.0. https://www.openstreetmap.org/copyright"),
+    ("OpenStreetMap contributors", "Open Database License 1.0 (ODbL). https://www.openstreetmap.org/copyright"),
+    ("OpenStreetMap contributors",
+     "Open Data Commons Open Database License (ODbL) 1.0. https://www.openstreetmap.org/copyright"),
+    ("Industrial estate developer (parcel plan), © OpenStreetMap contributors (road control)",
+     "Estate map © Industrial estate developer. Attributed factual parcel-interior locator derived from "
+     "the estate map with © OpenStreetMap contributors, ODbL-1.0 (https://www.openstreetmap.org/copyright)."),
+])
+def test_osm_geometry_counts_licensed_projects_and_distinct_sites(credit, terms):
+    evidence = [{"evidence_id": "geometry", "license": terms, "attribution": credit}]
+    projects = [
+        {"site_id": "shared", "geometry_evidence_id": "geometry"},
+        {"site_id": "shared", "geometry_evidence_id": "geometry"},
+        {"site_id": "other", "status_evidence_id": "geometry", "geometry_evidence_id": "unrelated"},
+    ]
+    assert check_public_metadata.osm_geometry_counts(_facts(evidence=evidence, projects=projects)) == (2, 1)
+
+
+@pytest.mark.parametrize(("credit", "terms"), [
+    ("Municipal survey", "ODbL-1.0"),
+    ("Municipal survey, independent of OpenStreetMap", "ODbL-1.0"),
+    ("OpenStreetMap contributors", "ODbL-1.0 does not apply to this geometry."),
+    ("OpenStreetMap contributors", "Not licensed under the Open Database License (ODbL) 1.0."),
+    ("© OpenStreetMap contributors", "Estate map only. No geometry derived from OpenStreetMap (ODbL-1.0)."),
+    ("© OpenStreetMap contributors", "This map shows a separate OpenStreetMap basemap licensed under ODbL-1.0."),
+])
+def test_osm_geometry_counts_require_applicable_osm_terms(credit, terms):
+    evidence = [{"evidence_id": "geometry", "attribution": credit, "license": terms}]
+    projects = [{"site_id": "site", "geometry_evidence_id": "geometry"}]
+    assert check_public_metadata.osm_geometry_counts(_facts(evidence=evidence, projects=projects)) == (0, 0)
 
 
 def test_metadata_does_not_require_release_gates(tmp_path):

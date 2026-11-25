@@ -206,12 +206,28 @@ def _exception_sentence(facts: Facts, *, markdown: bool) -> str:
     return f"{subject} ({listed}) {verb} host-estate context only, not a reviewed locator{where}"
 
 
+_ODBL_NOTICE = re.compile(
+    r"(?:^|(?:^|[.;]\s*|\bwith\s+)© OpenStreetMap contributors,\s*)"
+    r"(?:ODbL[- ]1\.0|(?:Open Data Commons )?Open Database License (?:\(ODbL\) 1\.0|1\.0(?: \(ODbL\))?))"
+    r"(?:\.? \(?https://www\.openstreetmap\.org/copyright/?\)?)?\.?$",
+    re.IGNORECASE,
+)
+
+
+def _osm_geometry_licence(evidence: Mapping[str, Any]) -> bool:
+    terms = str(evidence.get("license") or "").strip()
+    credits = str(evidence.get("attribution") or "").casefold()
+    credited = (evidence.get("kind") == "openstreetmap" or "openstreetmap contributors" in credits
+                or credits.startswith("contains information from openstreetmap"))
+    return credited and bool(_ODBL_NOTICE.search(terms))
+
+
 def osm_geometry_counts(facts: Facts) -> tuple[int, int]:
-    """(projects, sites) whose geometry evidence row is licensed ODbL-1.0 (OpenStreetMap)."""
-    licences = {item.get("evidence_id"): item.get("license") for item in facts.evidence}
+    """Count projects and distinct sites with OpenStreetMap-licensed geometry evidence."""
+    osm_ids = {item["evidence_id"] for item in facts.evidence if _osm_geometry_licence(item)}
     projects = [
         project for project in facts.projects
-        if licences.get(project.get("geometry_evidence_id")) == "ODbL-1.0"
+        if project.get("geometry_evidence_id") in osm_ids
     ]
     return len(projects), len({project.get("site_id") for project in projects})
 
