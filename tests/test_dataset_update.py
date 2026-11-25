@@ -669,6 +669,55 @@ class DatasetUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "capture predates publication"):
             self.payloads()
 
+    def test_map_features_in_one_download_keep_their_own_credit_and_license(self):
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        download = self.sources["sources"][0]
+        phases = self.spec["additions"]
+        other = copy.deepcopy(phases[0])
+        other.update(physical_site_stable_key="curated:second", project_stable_key="curated:second:construction")
+        other["locator"]["geometry"]["coordinates"] = [-99.0, 30.2]
+        phases.append(other)
+        for phase, feature, provider, license_id in zip(
+            phases, ("first", "second"), ("Provider A", "Provider B"), ("Apache-2.0", "CDLA-Permissive-2.0"), strict=True
+        ):
+            self.sources["sources"].append({
+                **download, "id": feature, "source_feature_id": feature, "kind": "open_map",
+                "title": f"Map feature {feature}", "license": license_id, "attribution": provider,
+                "extraction": {"feature_id": feature, "source_license": license_id},
+            })
+            phase["locator"]["source_id"] = feature
+        payloads, _ = self.payloads()
+        evidence = {r["evidence_id"]: r for r in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))}
+        projects = {r["project_stable_key"]: r for r in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))}
+        identity = f"{download['source_url']}#{download['content_hash']}"
+        for phase, source in zip(phases, self.sources["sources"][1:], strict=True):
+            row = projects[phase["project_stable_key"]]
+            feature_id = str(uuid5(NAMESPACE_URL, identity + "#feature=" + source["source_feature_id"]))
+            self.assertEqual(row["geometry_evidence_id"], feature_id)
+            self.assertEqual(row["status_evidence_id"], str(uuid5(NAMESPACE_URL, identity)))
+            self.assertEqual(json.loads(evidence[feature_id]["project_ids_json"]), [row["project_id"]])
+            for key in ("source_url", "content_hash", "license", "attribution"):
+                self.assertEqual(evidence[feature_id][key], source[key])
+        self.assertIn(b"Provider B. Full licence in CDLA-Permissive-2.0.txt", payloads["ATTRIBUTION.txt"])
+
+    def test_feature_scoped_sources_reject_mismatched_identity_license_or_reuse(self):
+        source = self.sources["sources"][0]
+        source.update(title="Map feature first", source_feature_id="first",
+                      extraction={"feature_id": "first", "source_license": source["license"]})
+        with self.assertRaisesRegex(UpdateError, "requires a v2 update"):
+            self.payloads()
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        for patch_values, message in [
+            ({"extraction": {}}, "match the extracted feature"),
+            ({"source_feature_id": "different"}, "match the extracted feature"),
+            ({"license": "Apache-2.0"}, "extracted feature license"),
+            ({"title": "Map record", "content_hash_scope": "file for first"}, "published title or hash scope"),
+            ({"reuse_evidence_id": "another-feature"}, "only reuse the same feature"),
+        ]:
+            with self.subTest(patch_values=patch_values), patch.dict(source, patch_values):
+                with self.assertRaisesRegex(UpdateError, message):
+                    self.payloads()
+
     def test_duplicate_campus_and_host_estate_admission_fail(self):
         self.spec["additions"].append(copy.deepcopy(self.spec["additions"][0]))
         with self.assertRaisesRegex(UpdateError, "only one action"):

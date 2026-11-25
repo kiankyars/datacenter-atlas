@@ -132,7 +132,7 @@ def _csv_bytes(rows, fields):
     return out.getvalue().encode()
 
 
-def _source(row, updated):
+def _source(row, updated, *, is_v2):
     for field in ("id", "kind", "title", "source_url", "publisher", "source_family", "license", "attribution", "summary"):
         _text(row.get(field), f"source {field}")
     url = urlsplit(row["source_url"])
@@ -146,8 +146,18 @@ def _source(row, updated):
         _require(_date(published) <= retrieved.date(), "source capture predates publication")
     digest = row.get("content_hash", "")
     _require(len(digest) == 64 and all(c in "0123456789abcdef" for c in digest), "source needs a SHA-256 content hash")
+    identity = f"{row['source_url']}#{digest}"
+    if "source_feature_id" in row:
+        _require(is_v2, "feature-scoped evidence requires a v2 update")
+        feature_id = _text(row["source_feature_id"], "source feature ID")
+        extraction = row.get("extraction")
+        _require(isinstance(extraction, dict) and extraction.get("feature_id") == feature_id,
+                 "source feature ID must match the extracted feature")
+        if "source_license" in extraction:
+            _require(extraction["source_license"] == row["license"], "source license must match the extracted feature license")
+        identity += f"#feature={feature_id}"
     return {
-        "evidence_id": str(uuid5(NAMESPACE_URL, f"{row['source_url']}#{digest}")),
+        "evidence_id": str(uuid5(NAMESPACE_URL, identity)),
         **{key: row.get(key, "") for key in (
             "kind", "title", "source_url", "publisher", "source_family", "license",
             "attribution", "published_at", "retrieved_at", "content_hash",
@@ -466,7 +476,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         source_files.append(item)
         for record in json.loads(raw)["sources"]:
             _require(record["id"] not in sources, "duplicate source ID")
-            sources[record["id"]] = _source(record, updated)
+            sources[record["id"]] = _source(record, updated, is_v2=is_v2)
             source_details[record["id"]] = record
     schema = json.loads((base_path / "schema.json").read_bytes())
     tables = {name: list(csv.DictReader(io.StringIO((base_path / name).read_text()))) for name in ("sites.csv", "projects.csv", "evidence.csv")}
@@ -490,8 +500,14 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     evidence_by_id = {row["evidence_id"]: row for row in evidence}
     for source_id, source in sources.items():
         details = source_details[source_id]
+        if "source_feature_id" in details:
+            visible_fields = ("title", "content_hash_scope") if "content_hash_scope" in evidence_fields else ("title",)
+            _require(any(details["source_feature_id"] in (details.get(field) or "") for field in visible_fields),
+                     "source feature ID must appear in the published title or hash scope")
         if "reuse_evidence_id" in details:
             evidence_id = _text(details["reuse_evidence_id"], "reused baseline evidence ID")
+            if "source_feature_id" in details:
+                _require(evidence_id == source["evidence_id"], "feature-scoped evidence can only reuse the same feature")
             previous = baseline_evidence.get(evidence_id)
             _require(previous is not None, "reused evidence ID must exist in the baseline")
             fields = ("kind", "title", "source_url", "publisher", "source_family", "license", "attribution",

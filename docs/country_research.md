@@ -80,6 +80,13 @@ extracts for bulk research and follow the service’s usage limits for individua
 See the [OSM data access policy](https://operations.osmfoundation.org/policies/api/)
 and [Overpass usage guidance](https://dev.overpass-api.de/overpass-doc/en/preface/commons.html).
 
+When a map download combines features from different providers, cite the individual
+feature. In a v2 source, set `source_feature_id` and `extraction.feature_id` to its native ID,
+and include that ID in the title or hash scope for people using the CSV. Keep the URL and
+SHA-256 of the original download. Take the attribution and licence from the feature and, when
+it specifies a licence code, record it in both `license` and `extraction.source_license`.
+For Overture Places, the provider determines the licence. See [Overture’s attribution table](https://docs.overturemaps.org/attribution/#places).
+
 Use `locator_corrections` to replace restricted map-service coordinates and imported town,
 county or state points as better documented facility locations become available.
 
