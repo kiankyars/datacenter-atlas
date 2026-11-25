@@ -1291,6 +1291,12 @@ El Corte Inglés confirms Kumo's Murcia facility was operating on November 17.
 Digital Core REIT reported occupied space at BUR10 in Burbank and LAX11 in
 El Segundo on September 30. It sold its interest in LAX11 on November 3.
 
+The September 30 filing also identifies occupied facilities in Santa Clara and
+Markham. NEXTDC's November roster confirms operations at NE1 in Newman and at
+the existing KL1 campus in Kuala Lumpur. Australia's national address register
+supplies property or frontage points for Newman, M2 and M3 in Melbourne, and S3
+in Sydney.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
