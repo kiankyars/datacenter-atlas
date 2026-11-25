@@ -191,6 +191,33 @@ class ProjectNarrativeTests(unittest.TestCase):
         self.assertEqual(result["status"]["evidence_id"], identifier)
         self.assertEqual(result["context"], [{"text": context, "evidence_id": identifier}])
 
+    def test_shared_status_can_supply_reviewed_context_for_a_different_project(self):
+        first, shared_id = self.add_source("campus", projects=["p", "q"],
+                                           roles=["physical_status", "context:identity"],
+                                           text="The first building opened.")
+        second, second_id = self.add_source("construction", roles=["physical_status"])
+        self.modern(second, second_id, context=["campus"])
+        self.atlas.projects.append({**self.project, "project_id": "q", "project_stable_key": "curated:two",
+                                    "status_evidence_id": shared_id})
+        self.provenance["source_projections"]["campus"] = first
+        update = {"project_stable_key": "curated:one", "source_ids": ["campus"], "context_kind": "identity",
+                  "preserve_status_as_of": self.project["status_as_of"],
+                  "summary": "The operator expects the second building to open next year."}
+        self.assertEqual(self.load()["p"]["context"], [])
+        self.provenance["update"]["context_updates"] = [update]
+        narrative = self.load()["p"]
+        self.assertEqual(narrative["status"]["evidence_id"], second_id)
+        self.assertEqual(narrative["context"], [{"text": update["summary"], "evidence_id": shared_id}])
+        update["preserve_status_as_of"] = "2026-09-01"
+        self.assertEqual(self.load()["p"]["context"], [])
+        update["preserve_status_as_of"] = self.project["status_as_of"]
+        evidence = self.atlas.evidence_by_id[shared_id]
+        evidence["kind"] = "government_cadastral_api"
+        self.assertEqual(self.load()["p"]["context"], [])
+        evidence["kind"] = first["kind"]
+        evidence["project_ids"] = ["p"]
+        self.assertEqual(self.load()["p"]["context"], [])
+
     def test_multisource_update_keeps_each_complete_source_summary(self):
         first, fid = self.add_source("first", text="Building A supports 200 racks as of 2024; occupancy is unknown.")
         second, sid = self.add_source("second", text="Building B supports 300 racks as of 2024; this is not IT power.")

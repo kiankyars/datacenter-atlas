@@ -137,6 +137,7 @@ def _associated(evidence: Mapping[str, Any], project: Mapping[str, Any]) -> bool
 
 def _suitable_report(
     evidence: Mapping[str, Any], project: Mapping[str, Any], source: Mapping[str, Any] | None = None,
+    *, reviewed_shared_status: bool = False,
 ) -> bool:
     if (evidence.get("kind") in _MAP_KINDS
             or (evidence.get("evidence_id") == project.get("geometry_evidence_id")
@@ -147,7 +148,8 @@ def _suitable_report(
                            "context:source_location_identity", "context:site_distinctness"}:
         return False
     # Previous physical observations do not become present-tense project copy.
-    if "physical_status" in roles and evidence.get("evidence_id") != project.get("status_evidence_id"):
+    if ("physical_status" in roles and evidence.get("evidence_id") != project.get("status_evidence_id")
+            and not reviewed_shared_status):
         return False
     return True
 
@@ -168,6 +170,7 @@ def load_project_narratives(
     """
     root = root.resolve()
     projects = {row["project_stable_key"]: row for row in atlas.projects if row.get("project_stable_key")}
+    status_by_project = {row["project_id"]: row.get("status_evidence_id") for row in atlas.projects}
     evidence_by_id = atlas.evidence_by_id
     result: dict[str, dict[str, Any]] = {}
     scoped_context: dict[tuple[str, str], str] = {}
@@ -177,8 +180,10 @@ def load_project_narratives(
 
     def report(project: Mapping[str, Any], evidence: Mapping[str, Any], text: Any,
                source: Mapping[str, Any] | None = None) -> None:
-        text = scoped_context.get((project["project_id"], evidence["evidence_id"]), _text(text))
-        if not text or not _associated(evidence, project) or not _suitable_report(evidence, project, source):
+        scoped = scoped_context.get((project["project_id"], evidence["evidence_id"]))
+        text = scoped or _text(text)
+        if (not text or not _associated(evidence, project)
+                or not _suitable_report(evidence, project, source, reviewed_shared_status=bool(scoped))):
             return
         narrative = item(project)
         entry = {"text": text, "evidence_id": evidence["evidence_id"]}
@@ -213,7 +218,18 @@ def load_project_narratives(
                 continue
             source = sources.get(source_ids[0])
             evidence = modern_evidence(source, project)
-            if evidence and _suitable_report(evidence, project, source):
+            if not evidence:
+                continue
+            # Evidence roles span projects. A report on a different building can
+            # also have a reviewed excerpt tied to this project's current observation.
+            reviewed_shared_status = (
+                project.get("status_as_of") is not None
+                and change.get("preserve_status_as_of") == project["status_as_of"]
+                and f"context:{change.get('context_kind')}" in evidence.get("roles", [])
+                and any(status_by_project.get(pid) == evidence["evidence_id"]
+                        for pid in evidence["project_ids"] if pid != project["project_id"])
+            )
+            if _suitable_report(evidence, project, source, reviewed_shared_status=reviewed_shared_status):
                 # Lineage is newest first. A shared document may have different
                 # reviewed excerpts for each project, so neither source ID nor
                 # document hash alone is a sufficient prose key.
