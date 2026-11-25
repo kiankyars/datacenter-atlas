@@ -1273,6 +1273,17 @@ engineering report; a webpage modification date had been mistaken for physical
 evidence. The snapshot contains **1,315 sites,
 1,427 projects and 7,373 evidence records in 90 countries**.
 
+## 25 November 2026
+
+HIVE's October 31 operating portfolio identifies Toronto at 15 City View Drive and
+the existing Yguazú operation in Paraguay. Yguazú shares the mapped campus with the
+electrical expansion already recorded there. In Padua, Planetel's designer confirmed
+completion of TERRA-1 on November 18. The city address register locates the facility
+at Via Vigonovese 52A.
+
+Sify's FY2026 report identifies six existing facilities in its operating portfolio.
+The roster covers a reporting year, so each facility keeps its prior status date.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
