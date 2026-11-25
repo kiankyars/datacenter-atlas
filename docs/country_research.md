@@ -1334,6 +1334,11 @@ Shaoguan’s November 24 project review identified China Mobile’s Phase 2 and 
 Telecom’s Shaotang campus as under construction. China Mobile’s separate Shaotang
 project was still in preparation.
 
+Saragon’s November 23 release distinguishes ten operating US facilities from three
+pending purchases. Exhibit A of the seller’s SEC filing identifies the ten by address.
+In Auckland, the November 13 completeness decision for 100 Halsey Street covers an
+application that places a data centre in Building 2. Resource consent is still pending.
+
 ## 25 October 2026
 
 `verified_construction_core/2026-10-25-research-sixtysecond` adds three commercial sites and
