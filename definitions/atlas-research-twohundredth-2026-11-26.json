@@ -1,0 +1,527 @@
+{
+  "format": "datacenter-atlas-update-input-v2",
+  "updated_at": "2026-11-26",
+  "output": "verified_construction_core/2026-11-26-research-twohundredth",
+  "base_dataset": "verified_construction_core/2026-11-26-research-hundredninetyninth",
+  "base_manifest_sha256": "f84517b4f35e5e7735ce58ad6440cfca89e11812d840911362c8b16586bcc2dd",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-26-twohundredth-primary-sources.json",
+      "sha256": "64532c36862ad604d2eb643e388389fceeaa1ca6c4bd17b2ec26e03b5946efd4"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:skyonline-buenos-aires-balcarce-479:existing-operations",
+      "physical_site_stable_key": "curated:skyonline-buenos-aires-balcarce-479",
+      "site_name": "SkyOnline Buenos Aires, Balcarce 479",
+      "name": "SkyOnline Buenos Aires — existing colocation operations",
+      "country": "Argentina",
+      "country_iso_a2": "AR",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-03",
+        "source_id": "ar200-interview",
+        "summary": "SkyOnline’s CEO and COO described current private-cloud and colocation service at the company’s downtown Buenos Aires data center in an interview published November 3."
+      },
+      "roles": [
+        {
+          "party": "SkyOnline",
+          "role": "operator",
+          "relationship_scope": "current",
+          "source_id": "ar200-operator"
+        }
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -58.3709327,
+            -34.6133874
+          ]
+        },
+        "source_id": "ar200-parcel",
+        "identity_source_ids": [
+          "ar200-identity",
+          "ar200-inventory",
+          "ar200-operator"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_reference_point",
+        "authority": "compiled_reference",
+        "method": "Centroid of the city cadastral parcel computed in WGS 84 / UTM zone 21S and transformed to WGS 84.",
+        "derivation": "coordinate_transform",
+        "precision": "Host-property reference point for the parcel containing the commercial facility at Balcarce 479.",
+        "identity_review": "The municipal property inventory assigns Balcarce 479 to section 2, block 50, parcel 6. The operator’s address and the TÜV certificate identify the commercial colocation facility on that property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes a parcel boundary without numerical point accuracy."
+      },
+      "context_source_ids": [
+        "ar200-identity"
+      ],
+      "distinctness_review": "Snapshot 199 has two Argentine sites, SyT on Suipacha and Datrix BUE1. Neither is the SkyOnline or Diveo property at Balcarce 479. The nearest baseline site is SyT, about 1.06 km away.",
+      "successor_review": "The November 3 interview distinguishes current service from the next stage of the proposed expansion. The record covers the existing commercial facility."
+    },
+    {
+      "physical_site_stable_key": "curated:dataspace-greystanes-australia",
+      "project_stable_key": "curated:dataspace-greystanes-australia:existing-operations",
+      "name": "Dataspace Greystanes — existing data centre operations",
+      "site_name": "Dataspace Greystanes, 6 Bellevue Circuit, Pemulwuy",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-17",
+        "source_id": "apac200-dataspace-launch",
+        "summary": "Dataspace confirmed ongoing customer service across its five established facilities at launch. Its Greystanes data centre is one of those facilities."
+      },
+      "roles": [
+        {
+          "party": "Dataspace",
+          "role": "operator",
+          "source_id": "apac200-dataspace-launch",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "apac200-greystanes-capacity"
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            150.92391093,
+            -33.82142852
+          ]
+        },
+        "source_id": "apac200-greystanes-civic",
+        "identity_source_ids": [
+          "apac200-greystanes-property",
+          "apac200-greystanes-capacity",
+          "apac200-accc"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience Australia National Address Points, property centroid",
+        "precision": "G-NAF property centroid at 6 Bellevue Circuit, Pemulwuy.",
+        "identity_review": "6 Bellevue Circuit, Pemulwuy matches the identified former Fujitsu facility. Dataspace lists Greystanes among the operating properties acquired from Fujitsu.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The registry reports the type of property address point without an individual horizontal tolerance."
+      },
+      "distinctness_review": "This is the existing former Fujitsu site at 6 Bellevue Circuit, Pemulwuy. The nearest recorded Australian site is Wetherill Park Data Centre, 2 Davis Road, Wetherill Park, 2.2 km away.",
+      "successor_review": "The November 8 ACCC determination identifies this facility in Fujitsu’s operating portfolio. Dataspace’s November 17 launch and its named facility specification confirm continued operations after the change of operator."
+    },
+    {
+      "physical_site_stable_key": "curated:dataspace-homebush-australia",
+      "project_stable_key": "curated:dataspace-homebush-australia:existing-operations",
+      "name": "Dataspace Homebush — existing data centre operations",
+      "site_name": "Dataspace Homebush, 4 Figtree Drive, Sydney Olympic Park",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-17",
+        "source_id": "apac200-dataspace-launch",
+        "summary": "Dataspace confirmed ongoing customer service across its five established facilities at launch. Its Homebush data centre is one of those facilities."
+      },
+      "roles": [
+        {
+          "party": "Dataspace",
+          "role": "operator",
+          "source_id": "apac200-dataspace-launch",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "apac200-homebush-capacity"
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            151.07164226,
+            -33.84980912
+          ]
+        },
+        "source_id": "apac200-homebush-civic",
+        "identity_source_ids": [
+          "apac200-homebush-property",
+          "apac200-homebush-capacity",
+          "apac200-accc"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience Australia National Address Points, property centroid",
+        "precision": "G-NAF property centroid at 4 Figtree Drive, Sydney Olympic Park.",
+        "identity_review": "4 Figtree Drive, Sydney Olympic Park matches the identified former Fujitsu facility. Dataspace lists Homebush among the operating properties acquired from Fujitsu.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The registry reports the type of property address point without an individual horizontal tolerance."
+      },
+      "distinctness_review": "This is the existing former Fujitsu site at 4 Figtree Drive, Sydney Olympic Park. The nearest recorded Australian site is Equinix SY6, 8-14 Egerton Street, Silverwater, 2.3 km away.",
+      "successor_review": "The November 8 ACCC determination identifies this facility in Fujitsu’s operating portfolio. Dataspace’s November 17 launch and its named facility specification confirm continued operations after the change of operator."
+    },
+    {
+      "physical_site_stable_key": "curated:dataspace-noble-park-australia",
+      "project_stable_key": "curated:dataspace-noble-park-australia:existing-operations",
+      "name": "Dataspace Noble Park — existing data centre operations",
+      "site_name": "Dataspace Noble Park, 3–5 Summit Road, Noble Park North",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-17",
+        "source_id": "apac200-dataspace-launch",
+        "summary": "Dataspace confirmed ongoing customer service across its five established facilities at launch. Its Noble Park data centre is one of those facilities."
+      },
+      "roles": [
+        {
+          "party": "Dataspace",
+          "role": "operator",
+          "source_id": "apac200-dataspace-launch",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "apac200-noble-park-capacity"
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            145.18496688,
+            -37.94818985
+          ]
+        },
+        "source_id": "apac200-noble-park-civic",
+        "identity_source_ids": [
+          "apac200-noble-park-property",
+          "apac200-noble-park-capacity",
+          "apac200-accc"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience Australia National Address Points, frontage centre setback",
+        "precision": "G-NAF frontage centre setback at 3–5 Summit Road, Noble Park North.",
+        "identity_review": "3–5 Summit Road, Noble Park North matches the identified former Fujitsu facility. Dataspace lists Noble Park among the operating properties acquired from Fujitsu.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The registry reports the type of property address point without an individual horizontal tolerance."
+      },
+      "distinctness_review": "This is the existing former Fujitsu site at 3–5 Summit Road, Noble Park North. The nearest recorded Australian site is Vocus DC-MEL04 Mitcham, 14.2 km away.",
+      "successor_review": "The November 8 ACCC determination identifies this facility in Fujitsu’s operating portfolio. Dataspace’s November 17 launch and its named facility specification confirm continued operations after the change of operator."
+    },
+    {
+      "physical_site_stable_key": "curated:dataspace-malaga-australia",
+      "project_stable_key": "curated:dataspace-malaga-australia:existing-operations",
+      "name": "Dataspace Malaga — existing data centre operations",
+      "site_name": "Dataspace Malaga, 16 Mulgul Road, Malaga",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-17",
+        "source_id": "apac200-dataspace-launch",
+        "summary": "Dataspace confirmed ongoing customer service across its five established facilities at launch. Its Malaga data centre is one of those facilities."
+      },
+      "roles": [
+        {
+          "party": "Dataspace",
+          "role": "operator",
+          "source_id": "apac200-dataspace-launch",
+          "relationship_scope": "current"
+        },
+        {
+          "party": "Centuria Industrial REIT",
+          "role": "owner",
+          "source_id": "apac200-malaga-property",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "apac200-malaga-capacity"
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            115.89588677,
+            -31.86007578
+          ]
+        },
+        "source_id": "apac200-malaga-civic",
+        "identity_source_ids": [
+          "apac200-malaga-property",
+          "apac200-malaga-capacity",
+          "apac200-accc"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "official_numbered_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Geoscience Australia National Address Points, property centroid",
+        "precision": "G-NAF property centroid at 16 Mulgul Road, Malaga.",
+        "identity_review": "16 Mulgul Road, Malaga matches the identified former Fujitsu facility. Dataspace lists Malaga among the operating properties acquired from Fujitsu.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The registry reports the type of property address point without an individual horizontal tolerance."
+      },
+      "distinctness_review": "This is the existing former Fujitsu site at 16 Mulgul Road, Malaga. The nearest recorded Australian site is NEXTDC P1 Perth (4 Millrose Drive, Malaga), 0.5 km away.",
+      "successor_review": "The November 8 ACCC determination identifies this facility in Fujitsu’s operating portfolio. Dataspace’s November 17 launch and its named facility specification confirm continued operations after the change of operator."
+    },
+    {
+      "project_stable_key": "curated:raxio-civ1-grand-bassam:existing-operations",
+      "physical_site_stable_key": "curated:raxio-civ1-grand-bassam",
+      "name": "Raxio CIV1 Grand-Bassam — existing colocation operations",
+      "site_name": "Raxio CIV1 Grand-Bassam",
+      "country_iso_a2": "CI",
+      "country": "Côte d’Ivoire",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-11",
+        "source_id": "civ200-offer",
+        "summary": "In its November 11 facility sheet, Raxio reported offering customers space for their IT equipment at CIV1 in the VITIB technology park in Grand-Bassam."
+      },
+      "roles": [
+        {
+          "party": "Raxio Group",
+          "role": "operator",
+          "source_id": "civ200-site",
+          "relationship_scope": "current"
+        }
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.7591744,
+            5.22771986
+          ]
+        },
+        "source_id": "civ200-point",
+        "identity_source_ids": [
+          "civ200-property",
+          "civ200-site"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "mapped_building_polygon_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Project the named OpenStreetMap building to UTM zone 30N, take its interior area centroid, and transform to WGS 84.",
+        "precision": "Representative locator for the commercial CIV1 property at Grand-Bassam.",
+        "identity_review": "The mapped building identifies Raxio and CIV1. The operator identifies CIV1 at VITIB, and the derived point falls within the project boundaries in the environmental assessment.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The community-mapped outline has no published positional accuracy."
+      },
+      "context_source_ids": [
+        "civ200-visit",
+        "civ200-site"
+      ],
+      "distinctness_review": "The two existing Grand-Bassam properties belong to ST DIGITAL (CIV01) and Equinix (AB1 on Lot 46). The Raxio-named building and the Raxio project boundary locate CIV1 on a distinct property within VITIB.",
+      "successor_review": "The November 13 copy of the November 11 operator sheet has identical bytes. The operator’s named facility page and commercial marketplace also identify current hosting at CIV1."
+    },
+    {
+      "project_stable_key": "curated:glesys-campus-oulu-rusko:initial-operating-capacity",
+      "physical_site_stable_key": "curated:glesys-campus-oulu-rusko",
+      "site_name": "Glesys Campus Oulu, Rusko",
+      "name": "Glesys Campus Oulu — initial operating capacity",
+      "country": "Finland",
+      "country_iso_a2": "FI",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-06",
+        "source_id": "ou200-status",
+        "summary": "In the November 6 version of its Finnish Campus Oulu page, Glesys reported that the first capacity at the campus had been built and was operating. The page gives no commissioning date."
+      },
+      "roles": [
+        {
+          "party": "Glesys",
+          "role": "operator",
+          "source_id": "ou200-status",
+          "relationship_scope": "current"
+        }
+      ],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            25.58620855,
+            65.05151928
+          ]
+        },
+        "source_id": "ou200-locator",
+        "identity_source_ids": [
+          "ou200-directory",
+          "ou200-premises",
+          "ou200-parcel-id"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_as_campus_locator",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Transform the National Land Survey’s published reference point for parcel 564-84-8-6 from EPSG:3067 to WGS 84.",
+        "precision": "Representative point for the former industrial property at Kaapelitie 4 in Rusko.",
+        "identity_review": "Glesys names Kaapelitie 4. The developed parcel matches the scale of the former Nokia complex in Trevian’s account, while Sagax lists the other parcel sharing this address as unbuilt. The national register of building permits assigns the address-matched buildings to 564-84-8-6.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The cadastral reference point represents the broad property and has no stated positional accuracy for the operating portion of the campus."
+      },
+      "context_source_ids": [
+        "ou200-construction",
+        "ou200-directory"
+      ],
+      "distinctness_review": "Snapshot 199 has no Campus Oulu, Rusko or Kaapelitie 4 site. Glesys’s own directory distinguishes the new campus from its other Oulu data centers. The separately named Nokia AI factory project and the Laakeritie planning area have different premises.",
+      "successor_review": "The October 20 interview documented work and a November target. The later Swedish, English and Finnish editions of the campus page report existing operating capacity while distinguishing the planned full build. The November 6 Finnish edition is the latest of the three reviewed versions. No opening event date or operating status for the full planned development is inferred."
+    }
+  ],
+  "context_updates": [
+    {
+      "project_stable_key": "curated:open-dc-pe2-bayan-lepas:existing-operations",
+      "preserve_status_as_of": "2026-11-06",
+      "context_kind": "environmental_performance",
+      "source_ids": [
+        "pe200-method",
+        "pe200-design"
+      ],
+      "identity_review": "The operator identifies PE2 and labels the air and liquid halls individually.",
+      "summary": "Open DC gives design PUE targets of 1.38 for the PE2 air hall and 1.20 for the liquid hall."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-erskine-park-templar-road-campus:syd10-syd11-existing-operations",
+      "preserve_status_as_of": "2026-09-04",
+      "context_kind": "environmental_performance",
+      "source_ids": [
+        "syd200-syd10",
+        "syd200-syd11"
+      ],
+      "identity_review": "The atlas project covers both Digital Realty buildings on Templar Road in Erskine Park. NABERS assigns each building a separate premises ID and rating.",
+      "summary": "For the year ended June 30, 2026, NABERS reports an annual PUE of 1.57 for SYD10 and 1.42 for SYD11."
+    }
+  ],
+  "operating_model_updates": [
+    {
+      "project_stable_key": "curated:skyonline-buenos-aires-balcarce-479:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "ar200-operator",
+      "identity_review": "SkyOnline’s facility-specific description offers colocation. The named TÜV property record ties that product to the Balcarce 479 address."
+    },
+    {
+      "project_stable_key": "curated:raxio-civ1-grand-bassam:existing-operations",
+      "source_id": "civ200-site",
+      "operating_model": "colocation",
+      "identity_review": "Raxio’s dedicated CIV1 page explicitly offers colocation at this completed commercial property in Grand-Bassam and describes providers present there."
+    },
+    {
+      "project_stable_key": "curated:xneelo-samrand-landmarks:existing-operations",
+      "source_id": "colo200-3823a253",
+      "operating_model": "colocation",
+      "identity_review": "The operator identifies Samrand as its only facility offering colocation."
+    },
+    {
+      "project_stable_key": "curated:oadc-brackenfell-viro:existing-operations",
+      "source_id": "colo200-14710f1f",
+      "operating_model": "colocation",
+      "identity_review": "OADC advertises Brackenfell as a Cape Town colocation facility."
+    },
+    {
+      "project_stable_key": "curated:paix-nairobi-britam:existing-operations",
+      "source_id": "colo200-03e61b98",
+      "operating_model": "colocation",
+      "identity_review": "PAIX identifies NBO-1 in Upper Hill as its Nairobi colocation facility."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-mombasa-mba1-miritini:existing-operations",
+      "source_id": "colo200-d53dce79",
+      "operating_model": "colocation",
+      "identity_review": "The MBA1 facility specification offers tenant colocation space at Mombasa One."
+    },
+    {
+      "project_stable_key": "curated:oadc-bree-cpt3-cape-town:existing-operations",
+      "source_id": "colo200-c7974504",
+      "operating_model": "colocation",
+      "identity_review": "OADC’s Bree facility specification lists colocation among its services."
+    },
+    {
+      "project_stable_key": "curated:syt-buenos-aires-suipacha-128:existing-colocation",
+      "source_id": "colo200-6d41a346",
+      "operating_model": "colocation",
+      "identity_review": "SyT offers commercial equipment hosting at its Buenos Aires facility in the NAP CABASE building."
+    },
+    {
+      "project_stable_key": "curated:asap-sp1-shopping-sp-market:existing-operations",
+      "source_id": "colo200-6cac830f",
+      "operating_model": "colocation",
+      "identity_review": "ASAP offers colocation at its São Paulo facility and gives the Jurubatuba street address on the same page."
+    },
+    {
+      "project_stable_key": "curated:cloudc-pac1-palhoca-pedra-branca:existing-operations",
+      "source_id": "colo200-5930f84d",
+      "operating_model": "colocation",
+      "identity_review": "ClouDC explicitly offers colocation at its data center in Palhoça."
+    }
+  ],
+  "power_observations": [
+    {
+      "project_stable_key": "curated:dataspace-greystanes-australia:existing-operations",
+      "source_id": "apac200-greystanes-capacity",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 7.0,
+      "base": 7.0,
+      "high": 7.0,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2026-11-17",
+      "target_date": null,
+      "notes": "Dataspace’s published site IT capacity at Greystanes on November 17, 2026. Capacity available for IT equipment is separate from utility supply and actual consumption."
+    },
+    {
+      "project_stable_key": "curated:dataspace-homebush-australia:existing-operations",
+      "source_id": "apac200-homebush-capacity",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 2.8,
+      "base": 2.8,
+      "high": 2.8,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2026-11-17",
+      "target_date": null,
+      "notes": "Dataspace’s published site IT capacity at Homebush on November 17, 2026. Capacity available for IT equipment is separate from utility supply and actual consumption."
+    },
+    {
+      "project_stable_key": "curated:dataspace-noble-park-australia:existing-operations",
+      "source_id": "apac200-noble-park-capacity",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 2.0,
+      "base": 2.0,
+      "high": 2.0,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2026-11-17",
+      "target_date": null,
+      "notes": "Dataspace’s published site IT capacity at Noble Park on November 17, 2026. Capacity available for IT equipment is separate from utility supply and actual consumption."
+    },
+    {
+      "project_stable_key": "curated:dataspace-malaga-australia:existing-operations",
+      "source_id": "apac200-malaga-capacity",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 1.7,
+      "base": 1.7,
+      "high": 1.7,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2026-11-17",
+      "target_date": null,
+      "notes": "Dataspace’s published site IT capacity at Malaga on November 17, 2026. Capacity available for IT equipment is separate from utility supply and actual consumption."
+    }
+  ]
+}
