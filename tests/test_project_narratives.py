@@ -70,6 +70,18 @@ class ProjectNarrativeTests(unittest.TestCase):
         self.project.pop("project_stable_key")
         self.assertEqual(self.load(), {})
 
+    def test_environmental_context_displays_the_reviewed_property_summary(self):
+        source, eid = self.add_source("water", roles=["context:environmental_performance"],
+                                      text="The report covers water use at several sites.")
+        summary = "Industrial water supplied over 90% of cooling water at this site."
+        self.version.manifest["files"] = {"review-provenance.json": {}}
+        self.provenance = {"source_projections": {"water": source}, "update": {"context_updates": [{
+            "project_stable_key": self.project["project_stable_key"], "source_ids": ["water"],
+            "context_kind": "environmental_performance", "preserve_status_as_of": self.project["status_as_of"],
+            "summary": summary,
+        }]}}
+        self.assertEqual(self.load()["p"], {"status": None, "context": [{"text": summary, "evidence_id": eid}]})
+
     def test_modern_status_context_and_caveats_without_mutation(self):
         source, identifier = self.add_source("status", roles=["physical_status"])
         self.modern(source, identifier, context=["context", "map"])

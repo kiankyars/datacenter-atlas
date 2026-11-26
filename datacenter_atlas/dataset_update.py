@@ -847,11 +847,13 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _text(item.get("identity_review"), "context identity review")
         _text(item.get("summary"), "context summary")
         _require(item.get("preserve_status_as_of") == row["status_as_of"], "context update must preserve the existing observation date")
-        _require(item.get("context_kind") in {"identity", "power_readiness"}, "unsupported context kind")
+        kind = item.get("context_kind")
+        _require(kind in {"identity", "power_readiness"} or (is_v2 and kind == "environmental_performance"),
+                 "unsupported context kind")
         source_ids = item.get("source_ids")
         _require(isinstance(source_ids, list) and source_ids and all(sid in sources for sid in source_ids), "context update needs reviewed sources")
         for source_id in source_ids:
-            associate(source_id, row["project_id"], "context:" + item["context_kind"])
+            associate(source_id, row["project_id"], "context:" + kind)
         contextualized.append(key)
 
     withdrawal_keys = {item["project_stable_key"] for item in spec.get("withdrawals", [])}

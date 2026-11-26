@@ -375,6 +375,29 @@ class DatasetUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "unknown context project"):
             self.payloads()
 
+    def test_environmental_performance_attaches_only_evidence_in_v2(self):
+        with (BASE / "projects.csv").open() as f:
+            project = next(row for row in csv.DictReader(f) if json.loads(row["power_observations_json"]))
+        self.spec.update(format="datacenter-atlas-update-input-v2", additions=[])
+        summary = "The operator reports that industrial water supplies over 90% of this site's cooling water."
+        self.sources["sources"][0].update(title="Site water use", summary=summary)
+        control, _ = self.payloads()
+        self.spec["context_updates"] = [{
+            "project_stable_key": project["project_stable_key"], "source_ids": ["work"],
+            "context_kind": "environmental_performance", "preserve_status_as_of": project["status_as_of"],
+            "identity_review": "The operator identifies this site in its water disclosure.", "summary": summary,
+        }]
+        payloads, _ = self.payloads()
+        for file in ("projects.csv", "sites.csv", "sites.geojson", "schema.json"):
+            self.assertEqual(payloads[file], control[file], file)
+        record = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                      if row["source_url"] == self.sources["sources"][0]["source_url"])
+        self.assertEqual(json.loads(record["project_ids_json"]), [project["project_id"]])
+        self.assertEqual(json.loads(record["roles_json"]), ["context:environmental_performance"])
+        self.spec["format"] = "datacenter-atlas-update-input-v1"
+        with self.assertRaisesRegex(UpdateError, "unsupported context kind"):
+            self.payloads()
+
     def test_exact_ninety_day_admission_boundary(self):
         self.spec["additions"][0]["status"]["as_of"] = "2026-07-15"
         self.payloads()

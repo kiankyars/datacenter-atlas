@@ -526,6 +526,8 @@ publication does not depend on reaching a site-count target or product-version m
    Supporting grid-work records can be associated with an existing project using `context_updates`
    and `context_kind: power_readiness`. Include the identity review, source IDs and unchanged
    `preserve_status_as_of`. This adds evidence only: status, location and capacity stay unchanged.
+   A v2 `context_updates` entry can use `environmental_performance` for property-specific
+   disclosures such as the reported share of cooling water supplied by industrial water.
    Records imported with the status `partially_operational` (part of the project operates; the other
    phases are not established) or `proposed` (announcement, permission and physical work are not
    established) can be moved to any other recognised status. A `partially_operational` record can
