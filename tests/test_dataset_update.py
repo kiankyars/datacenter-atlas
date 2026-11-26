@@ -829,6 +829,26 @@ class NewCampusAdmissionTests(unittest.TestCase):
         }]
         return original, repeated, manifest
 
+    def test_duplicate_with_a_water_measurement_must_retain_it_on_the_surviving_project(self):
+        first, second = self.spec["additions"]
+        second["status"] = copy.deepcopy(first["status"])
+        self.sources["sources"][0].update(source_reporting_period="2025", date_semantics="Calendar year 2025.")
+        water = {"project_stable_key": second["project_stable_key"], "source_id": "work",
+                 "metric": "annual_water_consumption_m3", "stage": "measured", "as_of_date": "2025-12-31",
+                 "target_date": None, "low": 0, "base": 0, "high": 0, "unit": "m³/year",
+                 "method": "reported", "confidence": 1, "notes": "Reported facility water consumption."}
+        self.spec["annual_water_observations"] = [water]
+        keeper, duplicate, _ = self.prepare_duplicate_review()
+        del self.spec["annual_water_observations"]
+        with self.assertRaisesRegex(UpdateError, "distinct project field: annual_water_observations_json"):
+            self.payloads()
+        self.spec["annual_water_observations"] = [{**water, "project_stable_key": keeper["project_stable_key"]}]
+        payloads, _ = self.payloads()
+        projects = {row["project_id"]: row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))}
+        self.assertNotIn(duplicate["project_id"], projects)
+        self.assertEqual(projects[keeper["project_id"]]["annual_water_observations_json"],
+                         duplicate["annual_water_observations_json"])
+
     def test_withdraw_duplicate_preserves_campus_source_links_and_original_project(self):
         first, second = self.spec["additions"]
         second["status"] = copy.deepcopy(first["status"])
@@ -2081,6 +2101,48 @@ class MetricDateCorrectionTests(unittest.TestCase):
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         (path.parent / "manifest.sha256").write_text(digest + "  manifest.json\n")
         self.spec["base_manifest_sha256"] = digest
+
+    def test_water_dates_must_match_the_correction_source_and_remain_unique_after_all_corrections(self):
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        self.spec.pop("metric_date_corrections")
+        key = self.project["project_stable_key"]
+        field = "annual_water_observations_json"
+        self.spec["annual_water_observations"] = []
+        for year, amount in [(2023, 0), (2024, 10)]:
+            source = {**self.sources["sources"][0], "id": str(year), "source_url": f"https://example.org/{year}",
+                      "source_reporting_period": str(year), "date_semantics": f"Calendar year {year}."}
+            self.sources["sources"].append(source)
+            self.spec["annual_water_observations"].append({
+                "project_stable_key": key, "source_id": source["id"], "metric": "annual_water_withdrawal_m3",
+                "stage": "measured", "as_of_date": f"{year}-12-31", "target_date": None, "low": amount,
+                "base": amount, "high": amount, "unit": "m³/year", "method": "reported", "confidence": 1,
+                "notes": "Reported facility water withdrawal.",
+            })
+        self.write()
+        out = self.root / "water"
+        build_update(self.input, out, root=self.root)
+        self.spec.pop("annual_water_observations")
+        self.spec.update(base_dataset=out.name, base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest())
+        with (out / "projects.csv").open() as stream:
+            project = next(row for row in csv.DictReader(stream) if row["project_stable_key"] == key)
+        first, second = json.loads(project[field])
+        correction = self.request(project, field, first)
+        correction.update(as_of_date="2024-06-30", source_id="2024")
+        self.spec["metric_date_corrections"] = [correction]
+        with self.assertRaisesRegex(UpdateError, "end of its measured reporting period"):
+            self.payloads()
+        correction["as_of_date"] = second["as_of_date"]
+        with self.assertRaisesRegex(UpdateError, "duplicate or conflicting annual_water"):
+            self.payloads()
+        swap = {**self.request(project, field, second), "as_of_date": first["as_of_date"], "source_id": "2023"}
+        self.spec["metric_date_corrections"].append(swap)
+        payloads, _ = self.payloads()
+        corrected = json.loads(self.projects(payloads)[key][field])
+        self.assertEqual(corrected, [{**first, "as_of_date": second["as_of_date"], "evidence_id": second["evidence_id"]},
+                                     {**second, "as_of_date": first["as_of_date"], "evidence_id": first["evidence_id"]}])
+        del self.sources["sources"][-1]["source_reporting_period"]
+        with self.assertRaisesRegex(UpdateError, "explicit observation date"):
+            self.payloads()
 
     def test_date_correction_preserves_claim_other_observations_history_and_reproduces(self):
         before = {path.name: path.read_bytes() for path in (self.root / "base").iterdir() if path.is_file()}

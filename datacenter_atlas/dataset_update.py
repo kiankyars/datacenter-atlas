@@ -242,6 +242,11 @@ def _metric_observation(item, source, details, category, allowed_metrics):
     _text(observation["notes"], f"{category} observation scope")
     _require(observation["stage"] != "unknown" and observation["method"] != "unknown",
              f"{category} observation needs a known stage and method")
+    _validate_metric_dates(observation, source, details, category)
+    return observation
+
+
+def _validate_metric_dates(observation, source, details, category):
     observed = _date(observation["as_of_date"])
     measured_annual = category in {"annual_energy", "annual_water"} and observation["stage"] == "measured"
     if measured_annual:
@@ -265,7 +270,6 @@ def _metric_observation(item, source, details, category, allowed_metrics):
         _text(details.get("date_semantics"), f"{category} source observation date semantics")
     retrieved = datetime.fromisoformat(source["retrieved_at"].replace("Z", "+00:00")).date()
     _require(observed <= retrieved, f"{category} observation postdates its capture")
-    return observation
 
 
 def _site_from_project(project, name):
@@ -890,8 +894,11 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _require(source["evidence_id"] != original.get("evidence_id"), "metric correction needs a different evidence capture")
         metric = _text(original.get("metric"), "existing metric")
         observations = json.loads(row[field])
-        observations[index] = {**original, "as_of_date": item["as_of_date"],
-                               "evidence_id": associate(source_id, row["project_id"], "typed_metric:" + metric)}
+        replacement = {**original, "as_of_date": item["as_of_date"]}
+        if field == water_field:
+            _validate_metric_dates(replacement, source, source_details[source_id], "annual_water")
+        replacement["evidence_id"] = associate(source_id, row["project_id"], "typed_metric:" + metric)
+        observations[index] = replacement
         row[field] = _json(observations)
         corrected_metrics.append({"project_stable_key": key, "field": field, "observation_index": index, "metric": metric,
                                   "previous_as_of_date": original.get("as_of_date"), "as_of_date": item["as_of_date"],
@@ -899,6 +906,12 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
 
     added_metrics = {}
     identity = ("metric", "stage", "as_of_date", "target_date")
+    # Check the final dates after all corrections so swapping two reporting years is valid.
+    for key in {key for key, field, _ in metric_targets if field == water_field}:
+        observations = json.loads(by_key[key][water_field])
+        identities = {tuple(row[k] for k in identity) for row in observations}
+        _require(len(identities) == len(observations),
+                 "duplicate or conflicting annual_water observation for the same metric, stage and dates")
     for category, allowed_metrics in (("power", POWER_METRICS), ("efficiency", EFFICIENCY_METRICS | {"wue"}),
                                       ("annual_energy", ENERGY_METRICS), ("annual_water", WATER_METRICS)):
         action_key = category + "_observations"
