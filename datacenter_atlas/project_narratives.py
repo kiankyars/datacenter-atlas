@@ -14,6 +14,8 @@ import re
 from typing import Any, Callable, Mapping, Sequence
 import uuid
 
+from .models import projected_evidence_id
+
 
 class ProjectNarrativeError(ValueError):
     """A pinned narrative input or its dataset lineage failed verification."""
@@ -225,9 +227,12 @@ def load_project_narratives(
     def modern_evidence(source: Any, project: Mapping[str, Any] | None = None) -> Mapping[str, Any] | None:
         if not isinstance(source, dict):
             return None
-        identifier = source.get("reuse_evidence_id") or str(uuid.uuid5(
-            uuid.NAMESPACE_URL, f"{source.get('source_url')}#{source.get('content_hash')}",
-        ))
+        url, digest = source.get("source_url"), source.get("content_hash")
+        if not url or not digest:
+            return None
+        identifier = source.get("reuse_evidence_id") or projected_evidence_id(
+            url, digest, source.get("source_feature_id"),
+        )
         evidence = evidence_by_id.get(identifier)
         if (evidence and (project is None or _associated(evidence, project))
                 and evidence.get("source_url") == source.get("source_url")

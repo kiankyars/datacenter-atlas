@@ -5,6 +5,15 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import StrEnum
 from math import isfinite
+from uuid import NAMESPACE_URL, uuid5
+
+
+def projected_evidence_id(source_url: str, content_hash: str, feature_id: str | None = None) -> str:
+    """Identify a reviewed source document or an individual record within it."""
+    identity = f"{source_url}#{content_hash}"
+    if feature_id is not None:
+        identity += f"#feature={feature_id}"
+    return str(uuid5(NAMESPACE_URL, identity))
 
 
 class EntityKind(StrEnum):

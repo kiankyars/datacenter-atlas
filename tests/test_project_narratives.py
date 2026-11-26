@@ -34,7 +34,7 @@ class ProjectNarrativeTests(unittest.TestCase):
                                       (provenances or {}).get(version.path, self.provenance))
 
     def add_source(self, key, *, curated=False, text="Useful fact.", url=None, digest=None,
-                   roles=None, projects=None, kind="company_disclosure"):
+                   roles=None, projects=None, kind="company_disclosure", feature_id=None):
         source = {"key": key, "id": key, "source_url": url or f"https://example.com/{key}",
                   "content_hash": digest or hashlib.sha256(key.encode()).hexdigest(),
                   "summary": text, "excerpt": text, "kind": kind}
@@ -42,6 +42,10 @@ class ProjectNarrativeTests(unittest.TestCase):
             uuid.UUID("aa3d9079-c7f8-4a77-84d9-75ae2097549f") if curated else uuid.NAMESPACE_URL,
             (f"evidence|curated-official|{key}|{source['content_hash']}" if curated
              else f"{source['source_url']}#{source['content_hash']}")))
+        if feature_id is not None:
+            source["source_feature_id"] = feature_id
+            identifier = str(uuid.uuid5(uuid.NAMESPACE_URL,
+                f"{source['source_url']}#{source['content_hash']}#feature={feature_id}"))
         evidence = {**source, "evidence_id": identifier, "project_ids": ["p"] if projects is None else projects,
                     "roles": ["context:identity"] if roles is None else roles}
         self.atlas.evidence_by_id[identifier] = evidence
@@ -298,6 +302,21 @@ class ProjectNarrativeTests(unittest.TestCase):
         self.assertEqual(self.load()["p"]["context"], [
             {"text": first["summary"], "evidence_id": fid},
             {"text": second["summary"], "evidence_id": sid},
+        ])
+
+    def test_register_rows_in_one_download_keep_their_own_citations(self):
+        register, _ = self.add_source("register")
+        common = {"url": register["source_url"], "digest": register["content_hash"],
+                  "roles": ["context:environmental_performance"]}
+        first, first_id = self.add_source("building-a", feature_id="rating-1", text="Building A: 1.57.", **common)
+        second, second_id = self.add_source("building-b", feature_id="rating-2", text="Building B: 1.42.", **common)
+        self.version.manifest["files"] = {"review-provenance.json": {}}
+        self.provenance = {"source_projections": {"a": first, "b": second}, "update": {"context_updates": [
+            {"project_stable_key": "curated:one", "source_ids": ["a", "b"]},
+        ]}}
+        self.assertEqual(self.load()["p"]["context"], [
+            {"text": first["summary"], "evidence_id": first_id},
+            {"text": second["summary"], "evidence_id": second_id},
         ])
 
     def test_multisource_updates_keep_distinct_excerpts_of_a_shared_status_document(self):

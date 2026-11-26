@@ -19,7 +19,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from uuid import NAMESPACE_URL, uuid5
 
-from .models import LifecycleStatus, OperatingModel
+from .models import LifecycleStatus, OperatingModel, projected_evidence_id
 from .public_site import CDLA_LICENSE_FILE, CDLA_PERMISSIVE, validate_dataset
 from .verified_construction_core import (
     EFFICIENCY_METRICS, ENERGY_METRICS, METRIC_UNITS, POWER_METRICS, VerifiedConstructionCoreError,
@@ -150,7 +150,6 @@ def _source(row, updated, *, is_v2):
         _require(_date(published) <= retrieved.date(), "source capture predates publication")
     digest = row.get("content_hash", "")
     _require(len(digest) == 64 and all(c in "0123456789abcdef" for c in digest), "source needs a SHA-256 content hash")
-    identity = f"{row['source_url']}#{digest}"
     if "source_feature_id" in row:
         _require(is_v2, "feature-scoped evidence requires a v2 update")
         feature_id = _text(row["source_feature_id"], "source feature ID")
@@ -159,9 +158,8 @@ def _source(row, updated, *, is_v2):
                  "source feature ID must match the extracted feature")
         if "source_license" in extraction:
             _require(extraction["source_license"] == row["license"], "source license must match the extracted feature license")
-        identity += f"#feature={feature_id}"
     return {
-        "evidence_id": str(uuid5(NAMESPACE_URL, identity)),
+        "evidence_id": projected_evidence_id(row["source_url"], digest, row.get("source_feature_id")),
         **{key: row.get(key, "") for key in (
             "kind", "title", "source_url", "publisher", "source_family", "license",
             "attribution", "published_at", "retrieved_at", "content_hash",
