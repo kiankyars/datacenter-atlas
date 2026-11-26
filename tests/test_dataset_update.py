@@ -409,6 +409,119 @@ class DatasetUpdateTests(unittest.TestCase):
                     self.payloads()
                 self.spec["additions"][0]["status"]["as_of"] = "2026-09-21"
 
+    def use_facility_award(self, key):
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        url = "https://example.org/awards/101"
+        award = {
+            "certificate_id": "CF-101", "issuer": "Example Certifier", "scheme_owner": "Example Standards Body",
+            "certification_type": "constructed_facility", "assessment_type": "assessed_recertification",
+            "project_stable_key": key, "certified_scope": "The first hall at Example campus.",
+            "identity_review": "The named project covers exactly this hall.",
+            "assessment_review": "The issuer assessed the constructed hall under the scheme's recertification rules.",
+            "award_date": "2026-09-21", "award_url": url,
+        }
+        source = {**self.sources["sources"][0], "id": "award", "kind": "certification_registry",
+                  "publisher": award["issuer"], "source_url": url, "published_at": None,
+                  "constructed_facility_award": award, "source_observation_date": "2026-09-21",
+                  "source_observation_date_precision": "day", "date_semantics": "The award attests to completion by this day."}
+        self.sources["sources"].append(source)
+        status = {"value": "completed", "as_of": "2026-09-21", "source_id": "award",
+                  "summary": "The issuer recertified the constructed hall."}
+        return source, award, status
+
+    def test_constructed_facility_awards_attest_completion_by_award_date(self):
+        item = self.spec["additions"][0]
+        source, award, item["status"] = self.use_facility_award(item["project_stable_key"])
+        for assessment, publisher, publication in (("assessed_recertification", award["issuer"], None),
+                                                   ("initial_assessed_award", award["scheme_owner"], "2026-09-28")):
+            with self.subTest(assessment=assessment):
+                award["assessment_type"] = assessment
+                source.update(publisher=publisher, published_at=publication)
+                payloads, _ = self.payloads()
+                project = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                               if row["project_stable_key"] == item["project_stable_key"])
+                evidence = next(row for row in csv.DictReader(io.StringIO(payloads["evidence.csv"].decode()))
+                                if row["evidence_id"] == project["status_evidence_id"])
+                self.assertEqual((project["last_observed_physical_status"], project["status_as_of"], project["status_method"]),
+                                 ("completed", "2026-09-21", "constructed_facility_certification"))
+                self.assertEqual((evidence["kind"], evidence["published_at"], json.loads(evidence["roles_json"])),
+                                 ("certification_registry", publication or "", ["physical_status"]))
+                self.assertEqual(json.loads(payloads["review-provenance.json"])["source_projections"]["award"]
+                                 ["constructed_facility_award"], award)
+
+    def test_constructed_facility_awards_require_reviewed_original_project_scope_and_event(self):
+        item = self.spec["additions"][0]
+        source, award, status = self.use_facility_award(item["project_stable_key"])
+        item["status"] = status
+        for target, changes, message in (
+                (self.spec, {"format": "datacenter-atlas-update-input-v1"}, "requires a v2"),
+                (source, {"constructed_facility_award": None}, "assessed constructed-facility"),
+                (source, {"kind": "company_disclosure", "published_at": "2026-09-21"}, "certification registry source"),
+                (source, {"publisher": "Reseller"}, "original issuer or scheme owner"),
+                (award, {"award_url": "https://example.org/awards/102"}, "original award record"),
+                (award, {"certificate_id": ""}, "award certificate_id"),
+                (award, {"certification_type": "design"}, "assessed constructed-facility"),
+                (award, {"assessment_type": "administrative_renewal"}, "assessed constructed-facility"),
+                (award, {"assessment_type": "annual_surveillance"}, "assessed constructed-facility"),
+                (award, {"assessment_review": ""}, "award assessment_review"),
+                (award, {"project_stable_key": "other:phase"}, "cover the selected project"),
+                (award, {"certified_scope": ""}, "award certified_scope"),
+                (award, {"identity_review": ""}, "award identity_review"),
+                (award, {"award_date": None, "issue_date": status["as_of"]}, "explicitly dated assessment award"),
+                (award, {"award_date": None, "expiry_date": status["as_of"]}, "explicitly dated assessment award"),
+                (source, {"source_observation_date_precision": "month"}, "explicitly dated assessment award"),
+                (source, {"source_observation_date": "2026-09-20", "published_at": status["as_of"]}, "explicitly dated assessment award"),
+                (source, {"published_at": "2026-09-20"}, "postdates its source"),
+                (source, {"retrieved_at": "2026-09-20T12:00:00Z"}, "capture predates observation"),
+                (source, {"date_semantics": ""}, "date semantics"),
+                (status, {"value": "operational"}, "for completed status"),
+                (status, {"value": "under_construction"}, "for completed status"),
+                (status, {"as_of": "2026-01-01"}, "older than 90")):
+            with self.subTest(changes=changes), patch.dict(target, changes), self.assertRaisesRegex(UpdateError, message):
+                self.payloads()
+
+    def test_award_updates_preserve_operating_and_terminal_statuses(self):
+        # This published base includes partially operating projects. Add three terminal
+        # states using ordinary primary evidence before exercising the award pathway.
+        original = ROOT / "verified_construction_core/2026-10-14-research-ninth"
+        shutil.copytree(original, self.root / "ninth")
+        rows = list(csv.DictReader(io.StringIO((original / "projects.csv").read_text())))
+        keys = {r["last_observed_physical_status"]: r["project_stable_key"] for r in rows}
+        construction = iter(row for row in rows if row["last_observed_physical_status"] == "under_construction")
+        self.spec.update(base_dataset="ninth", base_manifest_sha256=hashlib.sha256((original / "manifest.json").read_bytes()).hexdigest(),
+                         additions=[], updated_at="2026-10-30")
+        self.sources["sources"][0].update(published_at="2026-10-20", retrieved_at="2026-10-28T12:00:00Z")
+        for state in ("decommissioned", "demolished", "repurposed"):
+            keys[state] = next(construction)["project_stable_key"]
+            self.spec["status_updates"].append({
+                "project_stable_key": keys[state], "identity_review": "Same project.", "successor_review": "Later status checked.",
+                "status": {"value": state, "as_of": "2026-10-20", "source_id": "work", "summary": f"The project was {state}."},
+            })
+        self.write()
+        interim = self.root / "interim"
+        build_update(self.input, interim, root=self.root)
+        self.spec.update(base_dataset="interim", base_manifest_sha256=hashlib.sha256((interim / "manifest.json").read_bytes()).hexdigest())
+        source, award, status = self.use_facility_award(keys["permitted"])
+        status["as_of"] = source["source_observation_date"] = award["award_date"] = "2026-10-25"
+        action = {"project_stable_key": keys["permitted"], "status": status,
+                  "identity_review": "The certificate covers this property.", "successor_review": "Checked later records."}
+        self.spec["status_updates"] = [action]
+        payloads, _ = self.payloads()
+        promoted = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                        if row["project_stable_key"] == keys["permitted"])
+        self.assertEqual((promoted["last_observed_physical_status"], promoted["status_method"]),
+                         ("completed", "constructed_facility_certification"))
+        prior = {row["project_stable_key"]: row for row in csv.DictReader(io.StringIO((interim / "projects.csv").read_text()))}
+        for group in ("status_updates", "status_corrections"):
+            self.spec["status_updates"] = []
+            self.spec[group] = [action]
+            for state in ("partially_operational", "operational", "cancelled", "decommissioned", "demolished", "repurposed"):
+                with self.subTest(group=group, state=state):
+                    action["project_stable_key"] = award["project_stable_key"] = keys[state]
+                    action.update(replaces_status_evidence_id=prior[keys[state]]["status_evidence_id"], reason="Certification review.")
+                    with self.assertRaisesRegex(UpdateError, "cannot supersede"):
+                        self.payloads()
+
     def test_published_physical_snapshot_remains_byte_reproducible(self):
         validate_update(ROOT / "definitions/atlas-update-2026-10-13.json",
                         ROOT / "verified_construction_core/2026-10-13")

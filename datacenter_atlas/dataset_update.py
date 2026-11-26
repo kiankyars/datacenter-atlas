@@ -170,7 +170,28 @@ def _source(row, updated, *, is_v2):
     }
 
 
-def _status(spec, sources, updated, *, admission=False, source_details=None):
+def _certified_completion(spec, source, details, project_key):
+    award = details.get("constructed_facility_award")
+    _require(isinstance(award, dict) and spec["value"] == LifecycleStatus.COMPLETED.value
+             and award.get("certification_type") == "constructed_facility"
+             and award.get("assessment_type") in ("initial_assessed_award", "assessed_recertification"),
+             "certificate status requires an assessed constructed-facility award for completed status")
+    for field in ("certificate_id", "issuer", "scheme_owner", "certified_scope", "assessment_review", "identity_review"):
+        _text(award.get(field), f"constructed-facility award {field}")
+    _require(source["publisher"] in (award["issuer"], award["scheme_owner"]),
+             "certificate source must be the original issuer or scheme owner")
+    url = urlsplit(source["source_url"])
+    _require(award.get("award_url") == source["source_url"] and (url.path.strip("/") or url.query),
+             "certificate source must identify the original award record")
+    _require(award.get("project_stable_key") == project_key,
+             "constructed-facility award must cover the selected project")
+    _require(award.get("award_date") == spec["as_of"] == details.get("source_observation_date")
+             and details.get("source_observation_date_precision") == "day",
+             "certificate observation must match the explicitly dated assessment award")
+    _text(details.get("date_semantics"), "source observation date semantics")
+
+
+def _status(spec, sources, updated, *, project_key, is_v2, source_details, admission=False):
     observed = _date(spec["as_of"])
     _require(spec["value"] != PROPOSED, PROPOSED_REFUSAL)
     _require(spec["value"] in STATUS_VALUES, "unrecognized project status")
@@ -180,16 +201,22 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
                  "new admission needs an announced, permitted, construction, completed or operational project")
         _require((updated - observed).days <= 90, "new admission observation is older than 90 days")
     source = sources[spec["source_id"]]
+    details = source_details[spec["source_id"]]
+    certificate = source["kind"] == "certification_registry"
+    if certificate:
+        _require(is_v2, "certification registry status requires a v2 update")
+        _certified_completion(spec, source, details, project_key)
+    else:
+        _require("constructed_facility_award" not in details, "certificate status requires a certification registry source")
     if source.get("published_at"):
         _require(observed <= _date(source["published_at"]), "observation postdates its source")
     else:
         # A dated construction photograph or operational-status entry can establish
         # its observation day even when the containing page has no publication date.
         # Keep observation, publication and retrieval dates distinct.
-        details = (source_details or {}).get(spec["source_id"], {})
         _require(details.get("source_observation_date") and
                  details.get("source_observation_date_precision") == "day" and
-                 spec["value"] in OBSERVED_STATUSES,
+                 (spec["value"] in OBSERVED_STATUSES or certificate),
                  "status observation needs a dated source")
         _text(details.get("date_semantics"), "source observation date semantics")
         _require(_date(details["source_observation_date"]) == observed,
@@ -200,7 +227,6 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
         # A named project participant's firsthand statement can be primary
         # evidence inside a report. Ordinary reporting and syndicated summaries
         # do not qualify, and the original source kind is preserved.
-        details = (source_details or {}).get(spec["source_id"], {})
         firsthand = details.get("firsthand_status_statement", {})
         _require(firsthand.get("basis") == "attributed_project_participant_statement"
                  and source.get("published_at")
@@ -211,7 +237,7 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
         _require(firsthand.get("observed_on") == spec["as_of"]
                  and firsthand.get("supported_status") == spec["value"],
                  "firsthand statement must support the selected status and observation date")
-    else:
+    elif not certificate:
         _require(source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"}, "status observation needs a primary source")
     _text(spec.get("summary"), "project status summary")
     if spec["value"] == LifecycleStatus.PERMITTED.value:
@@ -220,13 +246,13 @@ def _status(spec, sources, updated, *, admission=False, source_details=None):
         _require(spec.get("permit_decision") == "granted", "permitted status needs a granted decision")
         _text(spec.get("permit_reference"), "permit reference")
         _text(spec.get("permit_identity_review"), "permit identity review")
-    return source
-
-
-def _status_metadata(value):
-    if value == LifecycleStatus.ANNOUNCED.value:
+    if certificate:
+        return "constructed_facility_certification", "physical_status"
+    if source["kind"] in FIRSTHAND_REPORT_KINDS:
+        return "attributed_firsthand_physical_status_report", "physical_status"
+    if spec["value"] == LifecycleStatus.ANNOUNCED.value:
         return "authoritative_project_announcement", "announcement"
-    if value == LifecycleStatus.PERMITTED.value:
+    if spec["value"] == LifecycleStatus.PERMITTED.value:
         return "authoritative_construction_permit", "permit"
     return "authoritative_physical_status_update", "physical_status"
 
@@ -591,10 +617,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         _text(item.get("distinctness_review"), "site distinctness review")
         _text(item.get("successor_review"), "later-status review")
         status, locator = item["status"], item["locator"]
-        _status(status, sources, updated, admission=True, source_details=source_details)
-        status_method, status_role = _status_metadata(status["value"])
-        if sources[status["source_id"]]["kind"] in FIRSTHAND_REPORT_KINDS:
-            status_method = "attributed_firsthand_physical_status_report"
+        status_method, status_role = _status(status, sources, updated, project_key=key, is_v2=is_v2,
+                                             source_details=source_details, admission=True)
         inherited_evidence_ids = []
         if "reuse_from_project_id" in locator:
             geometry_fields, inherited_evidence_ids = _inherited_campus_locator(
@@ -782,10 +806,11 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             _require(row["last_observed_physical_status"] == PARTIALLY_OPERATIONAL,
                      "partially_operational is a retained imported status: only a record that already has it "
                      "can be refreshed with it")
-        _status(status, sources, updated, source_details=source_details)
-        status_method, status_role = _status_metadata(status["value"])
-        if sources[status["source_id"]]["kind"] in FIRSTHAND_REPORT_KINDS:
-            status_method = "attributed_firsthand_physical_status_report"
+        status_method, status_role = _status(status, sources, updated, project_key=key, is_v2=is_v2,
+                                             source_details=source_details)
+        if status_method == "constructed_facility_certification":
+            _require(row["last_observed_physical_status"] in ACTIVE_STATUSES | PLANNED_STATUSES | {PROPOSED, "paused", "completed"},
+                     "constructed-facility certification cannot supersede operation or a terminal lifecycle status")
         if correction:
             _require(item.get("replaces_status_evidence_id") == row["status_evidence_id"], "correction must name the replaced status evidence")
             _text(item.get("reason"), "status correction reason")

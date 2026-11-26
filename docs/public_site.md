@@ -514,6 +514,13 @@ publication does not depend on reaching a site-count target or product-version m
    retain that scope and must not imply an operating campus. Check
    existing campus names and aliases before adding a site; add a project to the existing site when
    the work is another building or phase at the same campus.
+   A v2 update may cite a `certification_registry` entry for `completed` when the issuer or
+   scheme owner publishes a constructed-facility award. In `constructed_facility_award`, identify
+   the certificate, issuer, scheme owner, project key and certified scope. Link the original
+   award and explain how the assessment covers the named facility or phase. For recertification,
+   cite the scheme's reassessment requirements. Use the award day for `status.as_of` and
+   `source_observation_date`. The construction finish date and service start each require
+   separate evidence.
 2. Record source URLs, retrieval dates, licences and supported facts. Preserve the observation date
    and location precision. Check for subsequent opening, cancellation or other status changes.
    Supporting grid-work records can be associated with an existing project using `context_updates`

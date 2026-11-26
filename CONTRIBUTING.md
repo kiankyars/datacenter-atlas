@@ -58,6 +58,11 @@ project identity, observation date, supported status and review. Preserve the pu
 source kind. General analysis, forecasts and summaries do not qualify. This exception does not
 establish an announcement or development consent.
 
+A certifier’s constructed-facility award can establish that the named facility or phase was
+complete by the award date. Cite the original award, identify the portion assessed and give
+the certificate number. For a renewal, show that the certifier reassessed the built facility.
+Commercial operation requires its own dated evidence.
+
 Link public sources only. Please do not upload confidential documents, copies of paywalled
 material or personal data.
 
