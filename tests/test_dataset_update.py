@@ -2657,7 +2657,7 @@ class AnnualEnergyObservationTests(unittest.TestCase):
         with patch.dict(self.spec["annual_water_observations"][0], {"unit": "L/kWh"}):
             with self.assertRaisesRegex(UpdateError, "metric/unit"):
                 self.payloads()
-        self.spec.pop("annual_water_observations")
+        original_water = self.spec.pop("annual_water_observations")
         self.spec.update(base_dataset=out.name, base_manifest_sha256=hashlib.sha256((out / "manifest.json").read_bytes()).hexdigest())
         admission.update(project_stable_key="curated:second:construction", physical_site_stable_key="curated:second")
         payloads, _ = self.payloads()
@@ -2665,6 +2665,17 @@ class AnnualEnergyObservationTests(unittest.TestCase):
         new = next(r for r in rows if r["project_stable_key"] == admission["project_stable_key"])
         self.assertEqual(json.loads(new[field]), [])
         self.assertTrue(new["annual_water_unknown_reason"])
+        discharge = "annual_water_discharge_m3"
+        self.spec["annual_water_observations"] = [{**original_water[0], "metric": discharge}]
+        payloads, _ = self.payloads()
+        schema = json.loads(payloads["schema.json"])
+        self.assertEqual(set(schema["embedded_array_items"]["projects.csv:" + field]["allowed_metrics"]),
+                         expected_metrics | {discharge})
+        self.assertEqual(schema["embedded_types"]["typed_metric_observation"]["unit_by_metric"][discharge], "m³/year")
+        original = next(row for row in csv.DictReader(io.StringIO(payloads["projects.csv"].decode()))
+                        if row["project_stable_key"] == original_water[0]["project_stable_key"])
+        self.assertEqual([obs["metric"] for obs in json.loads(original[field])],
+                         [original_water[0]["metric"], original_water[1]["metric"], discharge])
 
     def test_facility_electricity_uses_the_reported_year_and_its_own_source(self):
         self.spec["format"] = "datacenter-atlas-update-input-v2"

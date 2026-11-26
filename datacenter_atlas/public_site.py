@@ -3643,7 +3643,11 @@ def _sqlite_metadata(context: _Context, atlas: Atlas) -> list[tuple[str, str]]:
     ]
     rows += [(f"table:{name}", note) for name, note in SQLITE_TABLE_NOTES.items()]
     if "annual_water_observations" in _sqlite_observation_tables(atlas):
-        rows.append(("table:annual_water_observations", "Annual facility water withdrawals and consumption in cubic metres."))
+        water = atlas.schema.get("embedded_array_items", {}).get("projects.csv:annual_water_observations_json", {})
+        note = "Annual facility water withdrawals and consumption in cubic metres."
+        if "annual_water_discharge_m3" in water.get("allowed_metrics", []):
+            note = "Annual facility water withdrawals, discharges and consumption in cubic metres."
+        rows.append(("table:annual_water_observations", note))
     return rows
 
 

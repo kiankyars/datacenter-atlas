@@ -31,7 +31,9 @@ class UpdateError(ValueError):
     """An update cannot be applied without losing its evidence or identity."""
 
 
-WATER_METRICS = {"annual_water_withdrawal_m3", "annual_water_consumption_m3"}
+INITIAL_WATER_METRICS = {"annual_water_withdrawal_m3", "annual_water_consumption_m3"}
+WATER_DISCHARGE = "annual_water_discharge_m3"
+WATER_METRICS = INITIAL_WATER_METRICS | {WATER_DISCHARGE}
 WATER_UNKNOWN_REASON = "no reported annual facility water volume"
 UPDATE_METRIC_UNITS = {**METRIC_UNITS, "wue": "L/kWh", **dict.fromkeys(WATER_METRICS, "m³/year")}
 
@@ -496,12 +498,12 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
              "description": "Why no annual facility water volume is recorded. Empty when an observation is present."},
         ])
         schema["embedded_array_items"][water_schema_key] = {
-            "item_type": "typed_metric_observation", "allowed_metrics": sorted(WATER_METRICS),
+            "item_type": "typed_metric_observation", "allowed_metrics": sorted(INITIAL_WATER_METRICS),
             "description": "Annual facility water withdrawal or consumption in cubic metres, with reporting period and source.",
         }
         schema["json_embedded_evidence_fields"].append(["projects.csv", water_field, "evidence_id"])
         schema["embedded_types"]["typed_metric_observation"]["unit_by_metric"].update(
-            {metric: UPDATE_METRIC_UNITS[metric] for metric in WATER_METRICS}
+            {metric: UPDATE_METRIC_UNITS[metric] for metric in INITIAL_WATER_METRICS}
         )
         for project in projects:
             project.update(annual_water_observations_json="[]", annual_water_unknown_reason=WATER_UNKNOWN_REASON)
@@ -1024,6 +1026,14 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
             "WUE is litres of facility water per kWh of IT energy. A reported zero is a numeric reading."
         )
         schema["embedded_types"]["typed_metric_observation"]["unit_by_metric"]["wue"] = UPDATE_METRIC_UNITS["wue"]
+    if any(item["metric"] == WATER_DISCHARGE for item in added_metrics.get("added_annual_water_observations", [])):
+        water = schema["embedded_array_items"][water_schema_key]
+        water["allowed_metrics"] = sorted(set(water["allowed_metrics"]) | {WATER_DISCHARGE})
+        water["description"] = (
+            "Annual facility water withdrawal, discharge or consumption in cubic metres, "
+            "with the reporting period, source and scope."
+        )
+        schema["embedded_types"]["typed_metric_observation"]["unit_by_metric"][WATER_DISCHARGE] = UPDATE_METRIC_UNITS[WATER_DISCHARGE]
     for name, table in schema["tables"].items():
         for field in table["fields"]:
             if "allowed_values" in field and field["logical_type"] == "string":
