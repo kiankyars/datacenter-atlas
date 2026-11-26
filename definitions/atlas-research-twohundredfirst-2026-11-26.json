@@ -1,0 +1,319 @@
+{
+  "format": "datacenter-atlas-update-input-v2",
+  "updated_at": "2026-11-26",
+  "output": "verified_construction_core/2026-11-26-research-twohundredfirst",
+  "base_dataset": "verified_construction_core/2026-11-26-research-twohundredth",
+  "base_manifest_sha256": "911c7ec0e6a2b8a9b6011a50719665375ecc4c4748e42d0f828bd7a764673dba",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-26-twohundredfirst-primary-sources.json",
+      "sha256": "61148888cb84e686d873d7646f25477dd7c596fa2909bef85c8f6ec456aa95cd"
+    }
+  ],
+  "additions": [
+    {
+      "site_name": "Zona Franca del Plata, Colonia del Sacramento",
+      "name": "Teletipos Zona Franca del Plata data center",
+      "physical_site_stable_key": "curated:teletipos-zona-franca-del-plata-colonia",
+      "project_stable_key": "curated:teletipos-zona-franca-del-plata-colonia:data-center",
+      "country": "Uruguay",
+      "country_iso_a2": "UY",
+      "context_source_ids": [
+        "uy201-host"
+      ],
+      "status": {
+        "value": "under_construction",
+        "source_id": "uy201-construction",
+        "as_of": "2026-11-20",
+        "summary": "Teletipos Ingeniería reported that it was building the data center in the newly inaugurated Zona Franca del Plata building in Colonia del Sacramento."
+      },
+      "roles": [
+        {
+          "party": "Teletipos Ingeniería",
+          "role": "operator",
+          "source_id": "uy201-role",
+          "relationship_scope": "intended"
+        }
+      ],
+      "locator": {
+        "source_id": "uy201-parcel",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -57.870659,
+            -34.440366
+          ]
+        },
+        "identity_source_ids": [
+          "uy201-identity",
+          "uy201-construction"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_reference_point",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Centroid of the original cadastral polygon in WGS 84 / UTM zone 21S, transformed to WGS 84.",
+        "precision": "Property-level point for Zona Franca del Plata, Colonia padrón 3195.",
+        "identity_review": "The developer places the data center in the Zona Franca del Plata building. The free-zone authorization identifies the same host property as Colonia padrón 3195.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The digitized boundary approximates the legal parcel. The cadastral survey gives no horizontal accuracy for its centroid."
+      },
+      "distinctness_review": "Snapshot 200 includes Uruguayan projects in Montevideo and Canelones. The Colonia del Sacramento property and its named developer are distinct from those projects, and the authorized free zone is Zona Franca del Plata.",
+      "successor_review": "The public November 19 inauguration applied to the commercial host building. Teletipos reported the following day that work on the data center was under way."
+    },
+    {
+      "site_identity_review": "The award identifies Sify Infinit Spaces Limited’s Rabale Data Center T4 in the TTC Industrial Area, Navi Mumbai. Sify’s prospectus identifies Tower 4 as a separate building on its Rabale campus.",
+      "existing_site_id": "vcc-site-2088ce1cae4288c3f3a1",
+      "physical_site_stable_key": "imported:semiconductor-atlas:sify-rabale-navi-mumbai",
+      "project_stable_key": "curated:sify-rabale-navi-mumbai:tower-4",
+      "name": "Sify Rabale Tower 4 — certified facility",
+      "site_name": "Sify Rabale data center campus (Mumbai 03), Navi Mumbai",
+      "country": "India",
+      "country_iso_a2": "IN",
+      "status": {
+        "value": "completed",
+        "as_of": "2026-09-20",
+        "source_id": "apac201-sify-rabale-t4-certification",
+        "summary": "On September 20, 2026, EPI recertified Rabale Tower 4 as a constructed facility. Its initial certification dates to September 2023."
+      },
+      "locator": {
+        "scope": "campus_locator",
+        "reuse_from_project_id": "c52dcc98-dfd2-5012-8703-5d9e24de51b2",
+        "geometry_evidence_id": "a93324fd-66f0-59de-86d2-b51fe68df290",
+        "geometry_evidence_ids": [
+          "a93324fd-66f0-59de-86d2-b51fe68df290"
+        ],
+        "geometry_identity_evidence_ids": [
+          "4578cf0b-852a-50c8-a4bb-3fd168eb53f6",
+          "711b47f5-1ae4-5059-9945-0f25adb4c8b6",
+          "a994034c-3584-5d30-bf0c-5b1d5c6b502c"
+        ],
+        "identity_review": "Sify’s prospectus groups Tower 4 with the other Rabale campus buildings. The inherited MIDC plot centroid marks the published campus address only. The issuer lists Tower 4 at 847/2. The campus address plot R-847/1/2, R-847/1/3 is separate from the tower property."
+      },
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Sify Infinit Spaces Limited",
+          "relationship_scope": "current",
+          "source_id": "apac201-sify-rabale-t4-filing"
+        }
+      ],
+      "distinctness_review": "The 200 baseline has one Rabale campus aggregate with no individual Tower 4 project. The operator distinguishes Tower 4 from Towers 1–3 and 5 in its facility-level table. This adds a building at the existing site.",
+      "successor_review": "EPI’s September 20 recertification is the latest tower-specific physical observation checked. The issuer’s June 2025 filing documents earlier revenue-generating service at Tower 4. Its October 2026 parent-company earnings disclosure gives consolidated portfolio capacity; it does not date a new Tower 4 service event."
+    },
+    {
+      "physical_site_stable_key": "curated:xneelo-samrand-landmarks",
+      "project_stable_key": "curated:xneelo-samrand-landmarks:second-data-centre",
+      "existing_site_id": "vcc-site-8a1255c08654214bd11b",
+      "site_name": "xneelo Samrand Data Centre Park",
+      "name": "xneelo Samrand, second data centre",
+      "country": "South Africa",
+      "country_iso_a2": "ZA",
+      "site_identity_review": "xneelo identifies its second data centre on the same premises as the original facility. The inherited OpenStreetMap point represents the whole Samrand campus with 130 m uncertainty.",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-16",
+        "source_id": "za201-samrand-indaba",
+        "summary": "On November 16, xneelo reported that it was building a second data centre on the same premises as its existing Samrand facility."
+      },
+      "roles": [
+        {
+          "party": "xneelo",
+          "role": "operator",
+          "relationship_scope": "intended",
+          "source_id": "za201-samrand-groundbreaking"
+        }
+      ],
+      "context_source_ids": [
+        "za201-samrand-groundbreaking",
+        "za201-samrand-customer-visit"
+      ],
+      "locator": {
+        "reuse_from_project_id": "6bd959e2-52b5-5389-8760-a7ee93ad2f6c",
+        "geometry_evidence_id": "86424e35-2dc5-541e-88d4-4213f158922f",
+        "geometry_evidence_ids": [
+          "86424e35-2dc5-541e-88d4-4213f158922f"
+        ],
+        "geometry_identity_evidence_ids": [],
+        "scope": "campus_locator",
+        "identity_review": "xneelo identifies its second data centre on the same premises as the original facility. The inherited OpenStreetMap point represents the whole Samrand campus with 130 m uncertainty."
+      },
+      "distinctness_review": "The sole baseline xneelo project covers existing operations at the original centre. Both November operator publications identify a second centre. Africa Data Centres, Digital Parks Africa and NTT have other Samrand properties.",
+      "successor_review": "The February announcement projected an October finish. On November 16 xneelo twice described the second centre as under construction. The original facility’s November 21 service notice does not identify this building."
+    }
+  ],
+  "context_updates": [
+    {
+      "project_stable_key": "curated:equinix-wollongong-lathe-place:existing-operations",
+      "preserve_status_as_of": "2026-09-30",
+      "context_kind": "environmental_performance",
+      "source_ids": [
+        "au201-n31179",
+        "au201-dc34178"
+      ],
+      "summary": "Historical NABERS register editions identify earlier infrastructure PUE ratings for Equinix SY7. The archived editions provide the certificate expiry dates but give no measurement period.",
+      "identity_review": "The records match Equinix SY7 by NABERS premises ID P5275, 2 Lathe Place and the published property name. Other buildings and subsequent, already represented ratings are excluded."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-mel11-72-radnor-drive-deer-park:existing-operations",
+      "preserve_status_as_of": "2026-08-19",
+      "context_kind": "environmental_performance",
+      "source_ids": [
+        "au201-n31167",
+        "au201-dc33060",
+        "au201-dc42605"
+      ],
+      "summary": "Historical NABERS register editions identify earlier infrastructure PUE ratings for Digital Realty MEL11. The archived editions provide the certificate expiry dates but give no measurement period.",
+      "identity_review": "The records match Digital Realty MEL11 by NABERS premises ID P6944, 72 Radnor Drive and the published property name. Other buildings and subsequent, already represented ratings are excluded."
+    },
+    {
+      "project_stable_key": "curated:odata-dc-rj01-sao-joao-de-meriti-campus:existing-operations",
+      "source_ids": [
+        "br201-odata-rj01"
+      ],
+      "context_kind": "power_readiness",
+      "preserve_status_as_of": "2026-09-25",
+      "summary": "On August 25, 2023, ODATA announced the first building’s opening and a planned IT capacity of up to 24 MW for the full RJ01 campus in São João de Meriti.",
+      "identity_review": "ODATA identifies its first site in Rio de Janeiro as RJ01 in São João de Meriti. The existing record covers this campus. The announcement distinguishes the first building delivered from the planned capacity across the full campus."
+    }
+  ],
+  "efficiency_observations": [
+    {
+      "project_stable_key": "curated:elea-bsb2-brasilia:existing-operations",
+      "source_id": "br201-elea-wue",
+      "metric": "wue",
+      "stage": "measured",
+      "unit": "L/kWh",
+      "method": "reported",
+      "low": 0.006,
+      "base": 0.006,
+      "high": 0.006,
+      "confidence": 0.99,
+      "as_of_date": "2023-12-31",
+      "target_date": null,
+      "notes": "Elea reported BSB2’s 2023 annual mean WUE as 0.006 litres of cooling-system water per kilowatt-hour of IT equipment energy. The table covers January through December."
+    },
+    {
+      "project_stable_key": "curated:elea-cta1-curitiba-sao-francisco:existing-operations",
+      "source_id": "br201-elea-wue",
+      "metric": "wue",
+      "stage": "measured",
+      "unit": "L/kWh",
+      "method": "reported",
+      "low": 0.008,
+      "base": 0.008,
+      "high": 0.008,
+      "confidence": 0.99,
+      "as_of_date": "2023-12-31",
+      "target_date": null,
+      "notes": "Elea reported CTA1’s 2023 annual mean WUE as 0.008 litres of cooling-system water per kilowatt-hour of IT equipment energy. The table covers January through December."
+    },
+    {
+      "project_stable_key": "curated:elea-poa1-porto-alegre:operational-facility",
+      "source_id": "br201-elea-wue",
+      "metric": "wue",
+      "stage": "measured",
+      "unit": "L/kWh",
+      "method": "reported",
+      "low": 0.634,
+      "base": 0.634,
+      "high": 0.634,
+      "confidence": 0.99,
+      "as_of_date": "2023-12-31",
+      "target_date": null,
+      "notes": "Elea reported POA1’s 2023 annual mean WUE as 0.634 litres of cooling-system water per kilowatt-hour of IT equipment energy. The table covers January through December."
+    }
+  ],
+  "power_observations": [
+    {
+      "project_stable_key": "curated:sify-rabale-navi-mumbai:tower-4",
+      "source_id": "apac201-sify-rabale-t4-filing",
+      "metric": "critical_it_mw",
+      "stage": "installed",
+      "low": 8.1,
+      "base": 8.1,
+      "high": 8.1,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2025-06-30",
+      "target_date": null,
+      "notes": "Sify’s June 30, 2025 table reports 8.10 MW of installed IT capacity at Rabale Tower 4. Sify defines installed capacity as equipped, powered and commissioned."
+    },
+    {
+      "project_stable_key": "curated:sify-rabale-navi-mumbai:tower-4",
+      "source_id": "apac201-sify-rabale-t4-filing",
+      "metric": "critical_it_mw",
+      "stage": "contracted",
+      "low": 7.95,
+      "base": 7.95,
+      "high": 7.95,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.99,
+      "as_of_date": "2025-06-30",
+      "target_date": null,
+      "notes": "Sify’s June 30, 2025 table reports 7.95 MW of Tower 4 IT capacity sold to customers and generating revenue. The issuer defines this figure using contracted or committed IT load."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-mombasa-mba1-miritini:existing-operations",
+      "source_id": "ke201-customer-power",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 0.675,
+      "base": 0.675,
+      "high": 0.675,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2021-09-24",
+      "target_date": null,
+      "notes": "iColo reported 675 kW of customer IT capacity at Mombasa One on September 24, 2021."
+    },
+    {
+      "project_stable_key": "curated:icolo-nairobi-karen-campus:nbo1-existing-operations",
+      "source_id": "ke201-customer-power",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 0.825,
+      "base": 0.825,
+      "high": 0.825,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2021-09-24",
+      "target_date": null,
+      "notes": "iColo reported 825 kW of customer IT capacity at Nairobi One on September 24, 2021."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-mombasa-mba1-miritini:existing-operations",
+      "source_id": "ke201-mombasa-portfolio",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 0.9,
+      "base": 0.9,
+      "high": 0.9,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2026-08-28",
+      "target_date": null,
+      "notes": "The operator listed 0.9 MW of IT power for Mombasa One in Miritini in its August 2026 archived portfolio."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-mba2-mombasa-kongoni-road:existing-operations",
+      "source_id": "ke201-mombasa-portfolio",
+      "metric": "critical_it_mw",
+      "stage": "operational",
+      "low": 1.75,
+      "base": 1.75,
+      "high": 1.75,
+      "unit": "MW",
+      "method": "reported",
+      "confidence": 0.98,
+      "as_of_date": "2026-08-28",
+      "target_date": null,
+      "notes": "The operator listed 1.75 MW of IT load for Mombasa Two in Nyali in its August 2026 archived portfolio."
+    }
+  ]
+}
