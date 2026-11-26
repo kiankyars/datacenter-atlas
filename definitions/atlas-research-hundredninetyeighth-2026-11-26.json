@@ -1,0 +1,225 @@
+{
+  "format": "datacenter-atlas-update-input-v2",
+  "updated_at": "2026-11-26",
+  "output": "verified_construction_core/2026-11-26-research-hundredninetyeighth",
+  "base_dataset": "verified_construction_core/2026-11-26-research-hundredninetyseventh",
+  "base_manifest_sha256": "9714883db6ce23730a8692c480baaa4ad1877cae3e90f96f991de425a24766ce",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-26-hundredninetyeighth-primary-sources.json",
+      "sha256": "43e6eb42f8d2bfcf7a0547d7dfe55a6911030961620f943508d2466c25ae8214"
+    }
+  ],
+  "additions": [
+    {
+      "project_stable_key": "curated:risti-kampus-rouma:planned-campus",
+      "physical_site_stable_key": "curated:risti-kampus-rouma",
+      "name": "Risti Kampus — planned data center campus",
+      "site_name": "Risti Kampus, Rõuma",
+      "country": "Estonia",
+      "country_iso_a2": "EE",
+      "roles": [],
+      "status": {
+        "value": "announced",
+        "as_of": "2026-11-23",
+        "source_id": "eu198-risti-development",
+        "summary": "On November 23, Magnora Data Center ASA reported that it and Sunly were continuing joint development of the planned Risti data center campus."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            24.03721398,
+            59.00086189
+          ]
+        },
+        "source_id": "eu198-risti-parcels",
+        "identity_source_ids": [
+          "eu198-risti-campus",
+          "eu198-risti-planning"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_cadastral_parcel_as_campus_locator",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Take the area centroid of the four adjoining official parcels in EPSG:3301, verify it lies inside their union and transform it to WGS 84.",
+        "precision": "Point representing the 36-hectare proposed campus planning property in Rõuma, Lääne-Nigula.",
+        "identity_review": "The developer and the municipality link to the same numbered planning decision. The municipal notice names all four parcels and the cadastre confirms the parcel identifiers, names, village and contiguous area.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "This point represents the planning property as a whole. Individual building positions have not been assigned."
+      },
+      "context_source_ids": [
+        "eu198-risti-campus",
+        "eu198-risti-meeting"
+      ],
+      "distinctness_review": "Snapshot 197 contains no matching project, site, parcel identifiers or historical identity. The nearest existing site is Greenergy Hüüru Data Center Campus, 52.2 km away. The municipal planning decision identifies this 36-hectare private proposal separately from other planned developments near Risti.",
+      "successor_review": "The November 23 developer update reports ongoing development. It distinguishes the November 18 opening of the adjacent solar park. The municipality’s earlier decision initiated the planning process, and the campus partners describe the building permit as a future milestone."
+    },
+    {
+      "project_stable_key": "curated:cologix-johnstown-duncan-plains-campus:initial-two-building-phase",
+      "physical_site_stable_key": "curated:cologix-johnstown-duncan-plains-campus",
+      "site_name": "Cologix Johnstown campus",
+      "name": "Cologix Johnstown campus — initial COL7 and COL8 construction",
+      "country": "United States",
+      "country_iso_a2": "US",
+      "status": {
+        "value": "under_construction",
+        "as_of": "2026-11-13",
+        "source_id": "am198-progress",
+        "summary": "Cologix reported on November 13 that construction was underway on the first two data centers at its Johnstown campus."
+      },
+      "roles": [],
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -82.7147696165744,
+            40.1367529440696
+          ]
+        },
+        "source_id": "am198-address",
+        "identity_source_ids": [
+          "am198-col7",
+          "am198-col8",
+          "am198-epa",
+          "am198-parcel"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_campus_property_address_point",
+        "authority": "official_source",
+        "method": "Federal civic address point at the county auditor’s recorded property address, cross-checked against both facility addresses in the county register.",
+        "derivation": "direct_geometry",
+        "precision": "Property address point for the shared Johnstown campus. The federal register records the point placement as unknown.",
+        "identity_review": "Cologix lists COL7 and COL8 at separate street numbers on Duncan Plains Road. Both county address points fall on the same Cologix Johnstown LLC parcel, whose official situs matches the federal address.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The federal address record gives no numeric accuracy for this point."
+      },
+      "context_source_ids": [
+        "am198-epa"
+      ],
+      "distinctness_review": "Snapshot 197 has no matching Johnstown, Duncan Plains, COL7 or COL8 record. Its nearest site is Microsoft New Albany about 4.93 km away. The two Cologix offerings share the same property and together form this initial construction phase.",
+      "successor_review": "The November 13 report describes ongoing construction of the first two facilities. Pre-leasing and later completion targets do not establish an opening."
+    },
+    {
+      "physical_site_stable_key": "curated:hyperdc-mbl1-moorabool",
+      "project_stable_key": "curated:hyperdc-mbl1-moorabool:proposed-campus",
+      "site_name": "HyperDC MBL1 Moorabool",
+      "name": "HyperDC MBL1 — proposed Moorabool campus",
+      "country": "Australia",
+      "country_iso_a2": "AU",
+      "status": {
+        "value": "announced",
+        "as_of": "2026-09-22",
+        "source_id": "apac198-mbl1-application",
+        "summary": "Victoria’s planning department received Hyper DC Pty Ltd’s application for a data centre at 715 Ballan Road, Moorabool, on September 22, 2026."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            144.290997,
+            -38.034791
+          ]
+        },
+        "source_id": "apac198-mbl1-address",
+        "identity_source_ids": [
+          "apac198-mbl1-application",
+          "apac198-mbl1-developer",
+          "apac198-mbl1-property"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "official_civic_address_point_on_proposed_campus",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "Primary WGS84 address point from Vicmap for the land named in planning application PA2604671, cross-checked against its linked Vicmap property.",
+        "precision": "Representative civic address point for the proposed campus property.",
+        "identity_review": "The state register and HyperDC identify the project land as 715 Ballan Road, Moorabool. The primary Vicmap address points to the same cadastral property.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "Vicmap does not give a numerical positional accuracy for this representative property address point."
+      },
+      "roles": [],
+      "context_source_ids": [
+        "apac198-mbl1-developer",
+        "apac198-mbl1-public-report"
+      ],
+      "distinctness_review": "One application covers the proposed MBL1 campus. Its address and permit number are distinct from all snapshot 197 records. The nearest catalogued property is NEXTDC GE1 Geelong Data Center Campus, 7.6 km away.",
+      "successor_review": "The state register shows the project at the application stage. Its public notice is dated December 4, after this review, and its decision field is empty."
+    }
+  ],
+  "operating_model_updates": [
+    {
+      "project_stable_key": "curated:cologix-johnstown-duncan-plains-campus:initial-two-building-phase",
+      "operating_model": "colocation",
+      "source_id": "am198-col7",
+      "identity_review": "Cologix offers pre-leasing for both named Johnstown facilities on its COL7 and COL8 colocation pages. The classification describes the product being offered for the construction phase."
+    },
+    {
+      "project_stable_key": "curated:nextdc-p1-perth:existing-operations",
+      "source_id": "offer198-4f1d12b5",
+      "operating_model": "colocation",
+      "identity_review": "NEXTDC expressly names P1 as a facility offering colocation in Perth."
+    },
+    {
+      "project_stable_key": "curated:nextdc-sc1-sunshine-coast:existing-operations",
+      "source_id": "offer198-5eb19c1f",
+      "operating_model": "colocation",
+      "identity_review": "NEXTDC includes SC1 in the list of Queensland facilities offering colocation and identifies SC1 as the Sunshine Coast centre."
+    },
+    {
+      "project_stable_key": "curated:nextdc-ph1-port-hedland:existing-operations",
+      "source_id": "offer198-f104b08f",
+      "operating_model": "colocation",
+      "identity_review": "NEXTDC’s PH1 facility page advertises edge colocation and names Port Hedland among its colocation locations."
+    },
+    {
+      "project_stable_key": "curated:nextdc-p2-perth:existing-operations",
+      "source_id": "offer198-e11d9de5",
+      "operating_model": "colocation",
+      "identity_review": "NEXTDC describes P2 in Perth as a colocation facility on its dedicated facility page."
+    },
+    {
+      "project_stable_key": "curated:nextdc-m2-melbourne:existing-operations",
+      "source_id": "offer198-80f722a4",
+      "operating_model": "colocation",
+      "identity_review": "NEXTDC advertises colocation at M2 in Tullamarine on its dedicated facility page."
+    },
+    {
+      "project_stable_key": "curated:planetel-terra-1-padova:industrial-building-conversion",
+      "source_id": "offer198-4c041cbf",
+      "operating_model": "colocation",
+      "identity_review": "Planetel’s November opening announcement expressly offers colocation at TERRA-1 in Padua."
+    }
+  ],
+  "efficiency_observations": [
+    {
+      "project_stable_key": "curated:equinix-wollongong-lathe-place:existing-operations",
+      "source_id": "nabers198-sy7",
+      "metric": "pue",
+      "unit": "ratio",
+      "stage": "measured",
+      "method": "reported",
+      "low": 1.23,
+      "base": 1.23,
+      "high": 1.23,
+      "target_date": null,
+      "as_of_date": "2025-10-31",
+      "confidence": 0.99,
+      "notes": "Annual PUE for Equinix SY7, November 1, 2024 to October 31, 2025. NABERS Energy infrastructure rating DC43624."
+    },
+    {
+      "project_stable_key": "curated:digital-realty-mel11-72-radnor-drive-deer-park:existing-operations",
+      "source_id": "apac198-mel11-annual-pue",
+      "metric": "pue",
+      "stage": "measured",
+      "unit": "ratio",
+      "base": 1.71,
+      "low": 1.71,
+      "high": 1.71,
+      "as_of_date": "2026-08-31",
+      "target_date": null,
+      "method": "reported",
+      "confidence": 0.99,
+      "notes": "Annual PUE for Digital Realty MEL11 in the NABERS Energy infrastructure assessment, September 1, 2025 to August 31, 2026 (rating DC54490)."
+    }
+  ]
+}
