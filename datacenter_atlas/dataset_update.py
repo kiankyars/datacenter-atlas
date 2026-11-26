@@ -191,6 +191,25 @@ def _certified_completion(spec, source, details, project_key):
     _text(details.get("date_semantics"), "source observation date semantics")
 
 
+def _planning_application(spec, source, details, project_key):
+    application = details["planning_application"]
+    _require(source["kind"] == "government_planning_record", "planning application requires an official planning register")
+    _require(isinstance(application, dict) and spec["value"] == LifecycleStatus.ANNOUNCED.value
+             and application.get("event_type") in ("application_received", "application_filed")
+             and application.get("scope") == "data_center_development",
+             "planning application must document a filing for the data-center development at announced status")
+    for field in ("reference", "activity", "identity_review"):
+        _text(application.get(field), f"planning application {field}")
+    url = urlsplit(source["source_url"])
+    _require(application.get("record_url") == source["source_url"] and (url.path.strip("/") or url.query),
+             "planning application must link the original register record")
+    _require(application.get("project_stable_key") == project_key, "planning application must cover the selected project")
+    _require(application.get("application_date") == spec["as_of"] == details.get("source_observation_date")
+             and details.get("source_observation_date_precision") == "day",
+             "planning application observation must match the exact filing or receipt day")
+    _text(details.get("date_semantics"), "source observation date semantics")
+
+
 def _status(spec, sources, updated, *, project_key, is_v2, source_details, admission=False):
     observed = _date(spec["as_of"])
     _require(spec["value"] != PROPOSED, PROPOSED_REFUSAL)
@@ -208,15 +227,17 @@ def _status(spec, sources, updated, *, project_key, is_v2, source_details, admis
         _certified_completion(spec, source, details, project_key)
     else:
         _require("constructed_facility_award" not in details, "certificate status requires a certification registry source")
+    filing = "planning_application" in details
+    if filing:
+        _require(is_v2, "planning application status requires a v2 update")
+        _planning_application(spec, source, details, project_key)
     if source.get("published_at"):
         _require(observed <= _date(source["published_at"]), "observation postdates its source")
     else:
-        # A dated construction photograph or operational-status entry can establish
-        # its observation day even when the containing page has no publication date.
-        # Keep observation, publication and retrieval dates distinct.
+        # An explicit event date on an undated page is separate from its retrieval date.
         _require(details.get("source_observation_date") and
                  details.get("source_observation_date_precision") == "day" and
-                 (spec["value"] in OBSERVED_STATUSES or certificate),
+                 (spec["value"] in OBSERVED_STATUSES or certificate or filing),
                  "status observation needs a dated source")
         _text(details.get("date_semantics"), "source observation date semantics")
         _require(_date(details["source_observation_date"]) == observed,
@@ -237,7 +258,7 @@ def _status(spec, sources, updated, *, project_key, is_v2, source_details, admis
         _require(firsthand.get("observed_on") == spec["as_of"]
                  and firsthand.get("supported_status") == spec["value"],
                  "firsthand statement must support the selected status and observation date")
-    elif not certificate:
+    elif not (certificate or filing):
         _require(source["kind"] in {"company_disclosure", "government_record", "regulatory_filing"}, "status observation needs a primary source")
     _text(spec.get("summary"), "project status summary")
     if spec["value"] == LifecycleStatus.PERMITTED.value:
@@ -248,6 +269,8 @@ def _status(spec, sources, updated, *, project_key, is_v2, source_details, admis
         _text(spec.get("permit_identity_review"), "permit identity review")
     if certificate:
         return "constructed_facility_certification", "physical_status"
+    if filing:
+        return "official_planning_application", "announcement"
     if source["kind"] in FIRSTHAND_REPORT_KINDS:
         return "attributed_firsthand_physical_status_report", "physical_status"
     if spec["value"] == LifecycleStatus.ANNOUNCED.value:
@@ -811,6 +834,9 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         if status_method == "constructed_facility_certification":
             _require(row["last_observed_physical_status"] in ACTIVE_STATUSES | PLANNED_STATUSES | {PROPOSED, "paused", "completed"},
                      "constructed-facility certification cannot supersede operation or a terminal lifecycle status")
+        if status_method == "official_planning_application":
+            _require(row["last_observed_physical_status"] in {PROPOSED, LifecycleStatus.ANNOUNCED.value},
+                     "a planning application cannot supersede an established permit, physical or lifecycle status")
         if correction:
             _require(item.get("replaces_status_evidence_id") == row["status_evidence_id"], "correction must name the replaced status evidence")
             _text(item.get("reason"), "status correction reason")

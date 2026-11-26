@@ -432,6 +432,92 @@ class DatasetUpdateTests(unittest.TestCase):
                     self.payloads()
                 self.spec["additions"][0]["status"]["as_of"] = "2026-09-21"
 
+    def use_planning_application(self):
+        item = self.spec["additions"][0]
+        self.spec["format"] = "datacenter-atlas-update-input-v2"
+        url = "https://example.org/applications/101"
+        application = {
+            "reference": "PA-101", "event_type": "application_received", "application_date": "2026-09-21",
+            "record_url": url, "project_stable_key": item["project_stable_key"], "scope": "data_center_development",
+            "activity": "Construct the first data centre at Example campus.", "identity_review": "The applicant and campus match.",
+        }
+        source = {**self.sources["sources"][0], "id": "filing", "kind": "government_planning_record",
+                  "publisher": "Example planning authority", "title": "Planning application PA-101", "source_url": url,
+                  "published_at": None, "source_observation_date": "2026-09-21", "source_observation_date_precision": "day",
+                  "date_semantics": "The authority received the application on September 21.", "planning_application": application}
+        self.sources["sources"].append(source)
+        status = {"value": "announced", "as_of": "2026-09-21", "source_id": "filing",
+                  "summary": "The authority recorded receipt of application PA-101 for the data centre."}
+        item["status"] = status
+        return source, application, status
+
+    def test_planning_register_filing_keeps_event_separate_from_publication(self):
+        source, application, _ = self.use_planning_application()
+        for event, publication in (("application_filed", "2026-09-28"), ("application_received", None)):
+            with self.subTest(event=event):
+                application["event_type"] = event
+                source["published_at"] = publication
+                self.write()
+                out = self.root / event
+                self.assertEqual(build_update(self.input, out, root=self.root), validate_update(self.input, out, root=self.root))
+                row = next(r for r in csv.DictReader(io.StringIO((out / "projects.csv").read_text()))
+                           if r["project_stable_key"] == application["project_stable_key"])
+                evidence = next(r for r in csv.DictReader(io.StringIO((out / "evidence.csv").read_text()))
+                                if r["evidence_id"] == row["status_evidence_id"])
+                self.assertEqual((row["last_observed_physical_status"], row["status_as_of"], row["status_method"]),
+                                 ("announced", "2026-09-21", "official_planning_application"))
+                self.assertEqual((evidence["kind"], evidence["published_at"], json.loads(evidence["roles_json"])),
+                                 ("government_planning_record", publication or "", ["announcement"]))
+                projection = json.loads((out / "review-provenance.json").read_text())["source_projections"]["filing"]
+                self.assertEqual(projection["planning_application"], application)
+                self.assertEqual(projection["date_semantics"], source["date_semantics"])
+
+    def test_planning_application_requires_original_project_scope_and_receipt_day(self):
+        source, application, status = self.use_planning_application()
+        for target, key, value, error in (
+                (self.spec, "format", "datacenter-atlas-update-input-v1", "requires a v2"),
+                (source, "kind", "regulatory_filing", "official planning register"),
+                (source, "kind", "company_disclosure", "official planning register"),
+                (source, "published_at", "2026-09-20", "observation postdates its source"),
+                (source, "planning_application", None, "must document a filing"),
+                (source, "source_observation_date_precision", "month", "exact filing or receipt day"),
+                (source, "source_observation_date", "2026-09-20", "exact filing or receipt day"),
+                (source, "date_semantics", "", "date semantics"),
+                (source, "retrieved_at", "2026-09-20T09:00:00Z", "capture predates observation"),
+                (application, "reference", "", "application reference"),
+                (application, "identity_review", "", "application identity_review"),
+                (application, "activity", "", "application activity"),
+                (application, "event_type", "public_notice", "must document a filing"),
+                (application, "scope", "substation_development", "data-center development"),
+                (application, "project_stable_key", "other:campus", "cover the selected project"),
+                (application, "application_date", "2026-09-19", "filing or receipt day"),
+                (application, "record_url", "https://example.org/applications/102", "original register record"),
+                (status, "value", "permitted", "announced status"),
+                (status, "value", "under_construction", "announced status"),
+        ):
+            with self.subTest(key=key, value=value), patch.dict(target, {key: value}):
+                with self.assertRaisesRegex(UpdateError, error):
+                    self.payloads()
+        with patch.dict(source, {"published_at": "2026-09-28", "source_observation_date": "2026-09-28"}):
+            with self.assertRaisesRegex(UpdateError, "exact filing or receipt day"):
+                self.payloads()
+        del source["planning_application"]
+        with self.assertRaisesRegex(UpdateError, "needs a dated source"):
+            self.payloads()
+
+    def test_filing_cannot_replace_observed_construction(self):
+        _, application, status = self.use_planning_application()
+        row = next(csv.DictReader(io.StringIO((BASE / "projects.csv").read_text())))
+        key = application["project_stable_key"] = row["project_stable_key"]
+        action = {"project_stable_key": key, "status": status, "identity_review": "Same campus.",
+                  "successor_review": "Checked later records.", "reason": "Filing review.",
+                  "replaces_status_evidence_id": row["status_evidence_id"]}
+        self.spec["additions"] = []
+        for group in ("status_updates", "status_corrections"):
+            with self.subTest(group=group), patch.dict(self.spec, {group: [action]}):
+                with self.assertRaisesRegex(UpdateError, "cannot supersede"):
+                    self.payloads()
+
     def use_facility_award(self, key):
         self.spec["format"] = "datacenter-atlas-update-input-v2"
         url = "https://example.org/awards/101"

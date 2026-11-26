@@ -521,6 +521,15 @@ publication does not depend on reaching a site-count target or product-version m
    cite the scheme's reassessment requirements. Use the award day for `status.as_of` and
    `source_observation_date`. The construction finish date and service start each require
    separate evidence.
+   A v2 update can use a `government_planning_record` for `announced` when the
+   register identifies the project and gives its exact filing or receipt day. In the source’s
+   `planning_application`, record the `reference`, `record_url`, `project_stable_key`,
+   proposed `activity`, `identity_review` and `scope` of `data_center_development`. Set
+   `event_type` to `application_filed` or `application_received`. Use the same day for
+   `application_date`, `source_observation_date` with day precision, and `status.as_of`.
+   Leave `published_at` empty unless the register supplies its publication date.
+   Describe the filing in the status summary and explain the
+   date in `date_semantics`. Public notice and a decision each have their own dates.
 2. Record source URLs, retrieval dates, licences and supported facts. Preserve the observation date
    and location precision. Check for subsequent opening, cancellation or other status changes.
    Supporting grid-work records can be associated with an existing project using `context_updates`
