@@ -64,7 +64,7 @@ them directly from their providers, under the providers' terms; the website's
 ## OpenStreetMap-derived geometries: ODbL 1.0
 
 Geometry evidence records the OpenStreetMap licence by identifier, by name, or alongside the terms
-of a second source used to locate the site (<!-- atlas:osm-geometry-count -->172 of the 1867 project geometries, on 160 sites, in the 2026-11-26 data snapshot<!-- /atlas:osm-geometry-count -->). These
+of a second source used to locate the site (<!-- atlas:osm-geometry-count -->173 of the 1871 project geometries, on 161 sites, in the 2026-11-26 data snapshot<!-- /atlas:osm-geometry-count -->). These
 geometries are © OpenStreetMap contributors and are available under the ODbL 1.0, not CC BY 4.0.
 Credit "© OpenStreetMap contributors" and link to <https://www.openstreetmap.org/copyright>. If you
 publicly use a derivative database of these geometries, the ODbL's share-alike terms apply to that
