@@ -1412,6 +1412,14 @@
   // Power observations
   // ---------------------------------------------------------------------------
 
+  var observationNumberFormat = numberFormat
+    ? new Intl.NumberFormat('en-US', { maximumSignificantDigits: 21 })
+    : null;
+
+  function formatObservationNumber(value) {
+    return observationNumberFormat ? observationNumberFormat.format(value) : String(value);
+  }
+
   /** "low-high unit" when the bounds differ, else the single value with its unit. */
   function formatPowerValue(observation) {
     var obs = observation || {};
@@ -1421,13 +1429,13 @@
     var unit = str(obs.unit);
     var text;
     if (low !== null && high !== null && low !== high) {
-      text = formatNumber(low) + '\u2013' + formatNumber(high);
+      text = formatObservationNumber(low) + '\u2013' + formatObservationNumber(high);
     } else if (base !== null) {
-      text = formatNumber(base);
+      text = formatObservationNumber(base);
     } else if (low !== null) {
-      text = formatNumber(low);
+      text = formatObservationNumber(low);
     } else if (high !== null) {
-      text = formatNumber(high);
+      text = formatObservationNumber(high);
     } else {
       return '';
     }

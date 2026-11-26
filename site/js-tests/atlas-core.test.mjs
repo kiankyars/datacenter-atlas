@@ -679,6 +679,13 @@ test('formatPowerValue shows a range only when bounds differ', () => {
   assert.equal(Core.plural(0, 'entry', 'entries'), '0 entries');
 });
 
+test('reported observations retain decimal precision for values and ranges', () => {
+  assert.equal(Core.formatPowerValue({ base: 0.675, unit: 'MW' }), '0.675 MW');
+  assert.equal(Core.formatPowerValue({ base: 0.825, unit: 'MW' }), '0.825 MW');
+  assert.equal(Core.formatPowerValue({ low: 0.674, high: 0.6745, unit: 'MW' }), '0.674–0.6745 MW');
+  assert.equal(Core.formatNumber(0.825), '0.83');
+});
+
 test('geometry helpers convert GeoJSON to Leaflet order and bounds', () => {
   assert.deepEqual(Core.geometryLatLngs(square)[0][0], [50, 10]);
   const multi = { type: 'MultiPolygon', coordinates: [square.coordinates, square.coordinates] };
