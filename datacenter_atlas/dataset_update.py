@@ -1122,6 +1122,10 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
                       consolidation_policy=inherited_report.get("consolidation_policy", ""),
                       decisions=inherited_report.get("decisions", {}))
     attribution = (base_path / "ATTRIBUTION.txt").read_text()
+    for item in spec.get("attribution_files", []):
+        notice = _path(root, item["path"]).read_bytes()
+        _require(_sha(notice) == item["sha256"], f"attribution file hash differs: {item['path']}")
+        attribution += "\n" + notice.decode("utf-8")
     source_notices = []
     for row in sources.values():
         notice = f"{row['publisher']}: {row['title']} — {row['source_url']} ({row['license']})"

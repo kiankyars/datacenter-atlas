@@ -83,6 +83,23 @@ class DatasetUpdateTests(unittest.TestCase):
         with self.assertRaisesRegex(UpdateError, "not reproducible"):
             validate_update(self.input, out, root=self.root)
 
+    def test_supplemental_attribution_is_pinned_and_inherited(self):
+        notice = b"Source notice and license.\n"
+        path = self.root / "NOTICE.txt"
+        path.write_bytes(notice)
+        self.spec["attribution_files"] = [{"path": path.name, "sha256": hashlib.sha256(notice).hexdigest()}]
+        self.write()
+        first = self.root / "first"
+        build_update(self.input, first, root=self.root)
+        self.assertIn(notice, (first / "ATTRIBUTION.txt").read_bytes())
+        path.write_bytes(b"Replaced notice")
+        with self.assertRaisesRegex(UpdateError, "attribution file hash differs"):
+            self.payloads()
+        del self.spec["attribution_files"]
+        self.spec.update(base_dataset="first", base_manifest_sha256=hashlib.sha256((first / "manifest.json").read_bytes()).hexdigest())
+        self.spec["additions"] = []
+        self.assertEqual(self.payloads()[0]["ATTRIBUTION.txt"].count(notice), 1)
+
     def test_cdla_source_includes_license_text_and_credit_in_later_snapshots(self):
         filename = "CDLA-Permissive-2.0.txt"
         self.assertNotIn(filename, self.payloads()[0])
