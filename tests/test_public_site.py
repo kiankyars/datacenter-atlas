@@ -1070,7 +1070,7 @@ class PublishedSnapshotTests(unittest.TestCase):
                         "SELECT last_observed_physical_status, COUNT(*) FROM projects GROUP BY 1"
                     ).fetchall(), [(status, len(projects))])
 
-    def test_reported_zero_wue_survives_downloads_api_and_site_evidence(self):
+    def test_reported_water_efficiency_and_volume_survive_downloads_api_and_site_evidence(self):
         with tempfile.TemporaryDirectory(prefix="atlas-facility-wue-") as temporary:
             base = Path(temporary)
             root = make_fixture_root(base)
@@ -1083,9 +1083,12 @@ class PublishedSnapshotTests(unittest.TestCase):
                  "base": value, "high": value, "evidence_id": evidence_id}
                 for metric, unit, value in (("pue", "ratio", 1.2), ("wue", "L/kWh", 0))
             ]
-            fields = [*PROJECT_FIELDS, _field("efficiency_observations_json", "json_array")]
+            volume = {**observations[1], "metric": "annual_water_consumption_m3", "unit": "m³/year"}
+            fields = [*PROJECT_FIELDS, _field("efficiency_observations_json", "json_array"),
+                      _field("annual_water_observations_json", "json_array")]
             for row in projects:
                 row["efficiency_observations_json"] = _compact(observations if row is project else [])
+                row["annual_water_observations_json"] = _compact([volume] if row is project else [])
             _write_csv(directory / "projects.csv", fields, projects)
             schema = read_json(directory / "schema.json")
             schema["tables"]["projects.csv"]["fields"] = fields
@@ -1105,8 +1108,11 @@ class PublishedSnapshotTests(unittest.TestCase):
             self.assertEqual(json.loads(item["efficiency_observations_json"]), observations)
             item = next(r for r in read_json(output / "api/v1/projects.json") if r["project_id"] == project["project_id"])
             self.assertEqual(item["efficiency_observations"], observations)
+            self.assertEqual(item["annual_water_observations"], [volume])
             self.assertNotIn("wue", read_json(output / "api/v1/stats.json")["by_power_metric"])
             with sqlite3.connect(downloads / "atlas.sqlite") as connection:
+                self.assertEqual(connection.execute("SELECT metric, base, unit, evidence_id FROM annual_water_observations")
+                                 .fetchall(), [("annual_water_consumption_m3", 0, "m³/year", evidence_id)])
                 rows = connection.execute("SELECT metric, base, unit, evidence_id FROM efficiency_observations "
                                           "WHERE project_id = ? ORDER BY metric", (project["project_id"],)).fetchall()
                 self.assertEqual(rows, [("pue", 1.2, "ratio", evidence_id), ("wue", 0.0, "L/kWh", evidence_id)])
@@ -1114,6 +1120,8 @@ class PublishedSnapshotTests(unittest.TestCase):
             water_row = next(row for row in re.findall(r"<tr>(.*?)</tr>", html, re.S) if "<td>WUE</td>" in row)
             self.assertIn("0 L/kWh", water_row)
             self.assertIn(f'href="#evidence-{evidence_id}"', water_row)
+            self.assertIn("<h4>Annual water</h4>", html)
+            self.assertIn("0 m³/year", html)
             projects_resource = next(r for r in read_json(downloads / "datapackage.json")["resources"]
                                      if r["name"] == "projects")
             field = next(f for f in projects_resource["schema"]["fields"] if f["name"] == "efficiency_observations_json")
@@ -2060,7 +2068,9 @@ class RealSiteBuildTests(unittest.TestCase):
         dictionary = (self.site / "data" / "dictionary" / "index.html").read_text(encoding="utf-8").replace("<wbr>", "")
         for table, spec in self.schema["tables"].items():
             for field in spec["fields"]:
-                text = descriptions["tables"].get(table, {}).get(field["name"], "")
+                embedded = self.schema.get("embedded_array_items", {}).get(f"{table}:{field['name']}", {})
+                shared = descriptions["tables"].get(table, {}).get(field["name"])
+                text = embedded.get("description") or shared or field.get("description", "")
                 self.assertGreater(len(text.strip()), 20, f"{table}:{field['name']}")
                 self.assertIn(f">{field['name']}<", dictionary)
             extra = set(descriptions["tables"].get(table, {})) - {field["name"] for field in spec["fields"]}

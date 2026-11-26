@@ -31,7 +31,9 @@ class UpdateError(ValueError):
     """An update cannot be applied without losing its evidence or identity."""
 
 
-UPDATE_METRIC_UNITS = {**METRIC_UNITS, "wue": "L/kWh"}
+WATER_METRICS = {"annual_water_withdrawal_m3", "annual_water_consumption_m3"}
+WATER_UNKNOWN_REASON = "no reported annual facility water volume"
+UPDATE_METRIC_UNITS = {**METRIC_UNITS, "wue": "L/kWh", **dict.fromkeys(WATER_METRICS, "m³/year")}
 
 ACTIVE_STATUSES = {
     "site_preparation", "clearing", "civil_works", "foundations", "shell",
@@ -241,14 +243,14 @@ def _metric_observation(item, source, details, category, allowed_metrics):
     _require(observation["stage"] != "unknown" and observation["method"] != "unknown",
              f"{category} observation needs a known stage and method")
     observed = _date(observation["as_of_date"])
-    measured_energy = category == "annual_energy" and observation["stage"] == "measured"
-    if measured_energy:
-        _require(observation["target_date"] is None, "measured annual energy must not have a target date")
+    measured_annual = category in {"annual_energy", "annual_water"} and observation["stage"] == "measured"
+    if measured_annual:
+        _require(observation["target_date"] is None, f"measured {category.replace('_', ' ')} must not have a target date")
     if observation["target_date"] is not None:
         _date(observation["target_date"])
     if source.get("published_at"):
         _require(observed <= _date(source["published_at"]), f"{category} observation postdates its source")
-    if category in {"annual_energy", "efficiency"} and "source_reporting_period" in details:
+    if category in {"annual_energy", "annual_water", "efficiency"} and "source_reporting_period" in details:
         period = details["source_reporting_period"]
         quarter = {(3, 31): 1, (6, 30): 2, (9, 30): 3, (12, 31): 4}.get((observed.month, observed.day))
         matches_period = ((category == "efficiency" and quarter is not None and period == f"{observed.year}-Q{quarter}")
@@ -256,7 +258,7 @@ def _metric_observation(item, source, details, category, allowed_metrics):
         _require(matches_period and observation["stage"] == "measured" and observation["target_date"] is None,
                  f"{category} observation must use the end of its measured reporting period")
         _text(details.get("date_semantics"), f"{category} reporting period semantics")
-    elif measured_energy or not source.get("published_at"):
+    elif measured_annual or not source.get("published_at"):
         _require(details.get("source_observation_date") == observation["as_of_date"]
                  and details.get("source_observation_date_precision") == "day",
                  f"{category} source needs an explicit observation date")
@@ -481,6 +483,24 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     schema = json.loads((base_path / "schema.json").read_bytes())
     tables = {name: list(csv.DictReader(io.StringIO((base_path / name).read_text()))) for name in ("sites.csv", "projects.csv", "evidence.csv")}
     sites, projects, evidence = (tables[name] for name in ("sites.csv", "projects.csv", "evidence.csv"))
+    water_field = "annual_water_observations_json"
+    water_schema_key = "projects.csv:" + water_field
+    if spec.get("annual_water_observations") and water_schema_key not in schema["embedded_array_items"]:
+        schema["tables"]["projects.csv"]["fields"].extend([
+            {"name": water_field, "logical_type": "json_array", "allows_empty_string": False},
+            {"name": "annual_water_unknown_reason", "logical_type": "string", "allows_empty_string": True,
+             "description": "Why no annual facility water volume is recorded. Empty when an observation is present."},
+        ])
+        schema["embedded_array_items"][water_schema_key] = {
+            "item_type": "typed_metric_observation", "allowed_metrics": sorted(WATER_METRICS),
+            "description": "Annual facility water withdrawal or consumption in cubic metres, with reporting period and source.",
+        }
+        schema["json_embedded_evidence_fields"].append(["projects.csv", water_field, "evidence_id"])
+        schema["embedded_types"]["typed_metric_observation"]["unit_by_metric"].update(
+            {metric: UPDATE_METRIC_UNITS[metric] for metric in WATER_METRICS}
+        )
+        for project in projects:
+            project.update(annual_water_observations_json="[]", annual_water_unknown_reason=WATER_UNKNOWN_REASON)
     has_consolidation = "source-records.json" in base["files"]
     inherited_report = json.loads((base_path / "selection-report.json").read_bytes()) if has_consolidation else {}
     inherited_resolutions = copy.deepcopy(inherited_report.get("source_record_resolutions", []))
@@ -641,6 +661,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
         row["role_claims_json"] = _json(roles)
         for role, column in (("owner", "owner"), ("operator", "operator"), ("user", "users"), ("tenant", "tenants"), ("customer", "customers")):
             row[column] = "; ".join(sorted({entry["party"] for entry in roles if entry["role"] == role}))
+        if water_field in row:
+            row["annual_water_unknown_reason"] = WATER_UNKNOWN_REASON
         projects.append(row)
         by_key[key] = row
         if existing_site:
@@ -831,6 +853,8 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
 
     corrected_metrics, metric_targets = [], set()
     metric_fields = {"power_observations_json", "annual_energy_observations_json", "efficiency_observations_json"}
+    if water_schema_key in schema["embedded_array_items"]:
+        metric_fields.add(water_field)
     for item in spec.get("metric_date_corrections", []):
         _require(isinstance(item, dict) and set(item) <= {
             "project_stable_key", "field", "replaces_observation", "as_of_date", "source_id", "reason", "identity_review",
@@ -876,7 +900,7 @@ def update_payloads(input_path: Path, *, root: Path = ROOT):
     added_metrics = {}
     identity = ("metric", "stage", "as_of_date", "target_date")
     for category, allowed_metrics in (("power", POWER_METRICS), ("efficiency", EFFICIENCY_METRICS | {"wue"}),
-                                      ("annual_energy", ENERGY_METRICS)):
+                                      ("annual_energy", ENERGY_METRICS), ("annual_water", WATER_METRICS)):
         action_key = category + "_observations"
         metric_actions = spec.get(action_key, [])
         _require(isinstance(metric_actions, list) and (not metric_actions or is_v2),

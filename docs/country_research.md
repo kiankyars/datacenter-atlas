@@ -61,6 +61,12 @@ per kilowatt-hour of IT energy over the reporting period. Preserve reported zero
 precision and omit missing observations. Cite the facility return and identify the period
 in the observation notes. For a calendar-year return, use December 31 as the measurement date.
 
+Record annual facility water volumes in `annual_water_observations`. Use
+`annual_water_withdrawal_m3` for water drawn from all sources and
+`annual_water_consumption_m3` for the amount the source identifies as consumed.
+Both use `m³/year`. When converting units, keep the reported value, unit and precision in
+the notes. A dash or an empty cell supplies no observation.
+
 Use `operating_model_updates` in a v2 update when primary evidence identifies the operating
 model of a specific project whose model is unknown. Each entry takes `project_stable_key`,
 `operating_model`, `source_id` and an `identity_review` explaining how the source supports

@@ -1862,6 +1862,9 @@
       kvRow(dl, 'Power', power.length ? observationList(power, 'power_metrics') : unknownText(project.power_unknown_reason));
       var energy = Array.isArray(project.annual_energy_observations) ? project.annual_energy_observations : [];
       kvRow(dl, 'Annual energy', energy.length ? observationList(energy, 'power_metrics') : unknownText(project.annual_energy_unknown_reason));
+      if (Array.isArray(project.annual_water_observations) && project.annual_water_observations.length) {
+        kvRow(dl, 'Annual water', observationList(project.annual_water_observations, 'power_metrics'));
+      }
       var efficiency = Array.isArray(project.efficiency_observations) ? project.efficiency_observations : [];
       kvRow(dl, 'Efficiency', efficiency.length ? observationList(efficiency, 'power_metrics') : unknownText(project.efficiency_unknown_reason));
       el.appendChild(dl);

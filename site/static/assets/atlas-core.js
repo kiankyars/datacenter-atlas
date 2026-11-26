@@ -109,7 +109,8 @@
     power_metrics: {
       grid_connection_mw: 'Grid connection', gross_facility_mw: 'Gross facility load',
       critical_it_mw: 'Critical IT load', generation_nameplate_mw: 'Generation nameplate',
-      annual_energy_mwh: 'Annual energy', pue: 'PUE', wue: 'WUE'
+      annual_energy_mwh: 'Annual energy', pue: 'PUE', wue: 'WUE',
+      annual_water_withdrawal_m3: 'Water withdrawal', annual_water_consumption_m3: 'Water consumption'
     },
     workloads: {
       ai_specialized_unspecified: 'AI (unspecified)', ai_training: 'AI training',

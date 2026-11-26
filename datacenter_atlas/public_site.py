@@ -325,6 +325,7 @@ OBSERVATION_FIELDS = (
     ("power_observations", "power_unknown_reason", "Power"),
     ("efficiency_observations", "efficiency_unknown_reason", "Efficiency"),
     ("annual_energy_observations", "annual_energy_unknown_reason", "Annual energy"),
+    ("annual_water_observations", "annual_water_unknown_reason", "Annual water"),
 )
 OBSERVATION_COLUMNS = (
     "metric", "stage", "low", "base", "high", "unit", "as_of_date", "target_date", "method", "confidence",
@@ -3388,12 +3389,16 @@ def _quote_identifier(name: str) -> str:
 
 
 SQLITE_PAGE_SIZE = 4096
-# Typed observation arrays of projects.csv that get their own table: (JSON field, table).
-SQLITE_OBSERVATION_TABLES = (
-    ("power_observations", "power_observations"),
-    ("efficiency_observations", "efficiency_observations"),
-    ("annual_energy_observations", "annual_energy_observations"),
-)
+
+
+def _sqlite_observation_tables(atlas: Atlas) -> tuple[str, ...]:
+    # The original three tables are part of every archived SQLite download.
+    tables = ("power_observations", "efficiency_observations", "annual_energy_observations")
+    if any(field["name"] == "annual_water_observations_json" for field in atlas.fields["projects.csv"]):
+        return (*tables, "annual_water_observations")
+    return tables
+
+
 SQLITE_TABLE_NOTES = {
     "sites": "One row per physical site; the columns of sites.csv.",
     "projects": "One row per project; the columns of projects.csv.",
@@ -3508,7 +3513,7 @@ def _sqlite_schema(connection: sqlite3.Connection, atlas: Atlas) -> None:
             )
             indexes.append((table, column))
         connection.execute(f"CREATE TABLE {_quote_identifier(table)} (\n" + ",\n".join(lines) + "\n)")
-    observation_tables = "".join(_sqlite_observation_table(table) for _, table in SQLITE_OBSERVATION_TABLES)
+    observation_tables = _sqlite_observation_tables(atlas)
     connection.executescript(
         """
 CREATE TABLE "project_evidence" (
@@ -3521,7 +3526,7 @@ CREATE TABLE "evidence_roles" (
   "role" TEXT NOT NULL,
   PRIMARY KEY ("evidence_id", "role")
 );"""
-        + observation_tables
+        + "".join(_sqlite_observation_table(table) for table in observation_tables)
         + """
 CREATE TABLE "role_claims" (
   "project_id" TEXT NOT NULL REFERENCES "projects" ("project_id"),
@@ -3545,7 +3550,7 @@ CREATE VIEW "site_overview" AS
 """
     )
     indexes.append(("project_evidence", "evidence_id"))
-    for table in (*(table for _, table in SQLITE_OBSERVATION_TABLES), "role_claims", "workload_observations"):
+    for table in (*observation_tables, "role_claims", "workload_observations"):
         indexes.append((table, "evidence_id"))
     for table, column in indexes:
         name = _quote_identifier(f"idx_{table}_{column}")
@@ -3569,13 +3574,13 @@ def _sqlite_rows(connection: sqlite3.Connection, context: _Context, atlas: Atlas
     connection.executemany('INSERT INTO "project_evidence" VALUES (?, ?)', links)
     roles = sorted({(item["evidence_id"], str(role)) for item in atlas.evidence for role in item.get("roles") or []})
     connection.executemany('INSERT INTO "evidence_roles" VALUES (?, ?)', roles)
-    observations: dict[str, list[tuple[Any, ...]]] = {table: [] for _, table in SQLITE_OBSERVATION_TABLES}
+    observations: dict[str, list[tuple[Any, ...]]] = {table: [] for table in _sqlite_observation_tables(atlas)}
     claims, workloads = [], []
     for project in atlas.projects:
         project_id = project["project_id"]
-        for key, table in SQLITE_OBSERVATION_TABLES:
-            for ordinal, item in enumerate(_dict_items(project.get(key))):
-                observations[table].append((project_id, ordinal, *(item.get(name) for name in OBSERVATION_COLUMNS)))
+        for table, rows in observations.items():
+            for ordinal, item in enumerate(_dict_items(project.get(table))):
+                rows.append((project_id, ordinal, *(item.get(name) for name in OBSERVATION_COLUMNS)))
         for ordinal, item in enumerate(_dict_items(project.get("role_claims"))):
             claims.append((project_id, ordinal, *(item.get(key) for key in ("role", "party", "relationship_scope", "evidence_id"))))
         for ordinal, item in enumerate(_dict_items(project.get("workloads"))):
@@ -3637,6 +3642,8 @@ def _sqlite_metadata(context: _Context, atlas: Atlas) -> list[tuple[str, str]]:
         )),
     ]
     rows += [(f"table:{name}", note) for name, note in SQLITE_TABLE_NOTES.items()]
+    if "annual_water_observations" in _sqlite_observation_tables(atlas):
+        rows.append(("table:annual_water_observations", "Annual facility water withdrawals and consumption in cubic metres."))
     return rows
 
 
@@ -4089,6 +4096,8 @@ def _table_descriptions(context: _Context, atlas: Atlas, file_name: str) -> dict
         definition = (atlas.schema.get("embedded_array_items") or {}).get(key, {})
         if definition.get("description"):
             descriptions[spec["name"]] = definition["description"]
+        elif spec.get("description"):
+            descriptions.setdefault(spec["name"], spec["description"])
     return descriptions
 
 
