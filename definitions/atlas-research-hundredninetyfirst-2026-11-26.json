@@ -1,0 +1,552 @@
+{
+  "format": "datacenter-atlas-update-input-v2",
+  "updated_at": "2026-11-26",
+  "output": "verified_construction_core/2026-11-26-research-hundredninetyfirst",
+  "base_dataset": "verified_construction_core/2026-11-26-research-hundredninetieth",
+  "base_manifest_sha256": "5ed32703592e642cb20a9068de74110a536c8d800aea07483cc82388aabc64e0",
+  "source_files": [
+    {
+      "path": "sources/research-countries-2026-11-26-hundredninetyfirst-primary-sources.json",
+      "sha256": "654e78d6efea3babee729b789072ab9a3257a42386c70e2b88dc8e12f14ef37d"
+    }
+  ],
+  "additions": [
+    {
+      "physical_site_stable_key": "curated:datrix-lim1-manuel-olguin-surco",
+      "project_stable_key": "curated:datrix-lim1-manuel-olguin-surco:existing-operations",
+      "site_name": "Datrix LIM1, Santiago de Surco",
+      "name": "Datrix LIM1, Santiago de Surco — existing colocation operations",
+      "country": "Peru",
+      "country_iso_a2": "PE",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-20",
+        "source_id": "pe191-lim1-status",
+        "summary": "A commercial presence filing dated November 20, 2026 confirms service at the Manuel Olguín facility. The operator lists it as its existing LIM1 property."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -76.9731846,
+            -12.0890723
+          ]
+        },
+        "source_id": "pe191-lim1-map",
+        "identity_source_ids": [
+          "pe191-lim1-facility",
+          "pe191-lim1-certificate"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "reviewed_facility_property_locator",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "OpenStreetMap_named_building_polygon_centroid_EPSG3857_to_WGS84",
+        "precision": "Representative point inside the mapped building at the operator’s published property.",
+        "identity_review": "The named OpenStreetMap footprint encloses the native marker on Datrix’s LIM1 property page. The commercial address and TÜV certificate match this facility.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The source gives no numerical positional accuracy for this mapped footprint."
+      },
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Datrix (Cirion Technologies)",
+          "source_id": "pe191-lim1-facility",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "pe191-brand",
+        "pe191-portfolio"
+      ],
+      "distinctness_review": "The registered site is at Avenida Manuel Olguín 395. Equinix LM1 is at Calle Centauro 115. Additional provider listings at Manuel Olguín 395 share the Datrix host property. The nearest previous record, Equinix LM1, Calle Centauro 115, Lima, is 224 metres away. Six release layers were checked for the property and address aliases.",
+      "successor_review": "Cirion and Datrix are successive brands for this same facility. The registered site is at Avenida Manuel Olguín 395. Equinix LM1 is at Calle Centauro 115. Additional provider listings at Manuel Olguín 395 share the Datrix host property."
+    },
+    {
+      "name": "Open DC PE2 — existing colocation operations",
+      "site_name": "Open DC PE2, Bayan Lepas",
+      "physical_site_stable_key": "curated:open-dc-pe2-bayan-lepas",
+      "project_stable_key": "curated:open-dc-pe2-bayan-lepas:existing-operations",
+      "country": "Malaysia",
+      "country_iso_a2": "MY",
+      "roles": [
+        {
+          "party": "Open DC Sdn Bhd",
+          "role": "operator",
+          "source_id": "sea191-pe2-operating",
+          "relationship_scope": "current"
+        }
+      ],
+      "context_source_ids": [
+        "sea191-pe2-commercial-update",
+        "sea191-pe2-energised",
+        "sea191-pe2-colocation"
+      ],
+      "status": {
+        "value": "operational",
+        "as_of": "2026-11-06",
+        "source_id": "sea191-pe2-operating",
+        "summary": "On November 6 Open DC reported that it operated the PE2 data centre in Bayan Lepas Industrial Park, Penang."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            100.2896687,
+            5.2960349
+          ]
+        },
+        "source_id": "sea191-pe2-osm-lot",
+        "identity_source_ids": [
+          "sea191-pe2-address",
+          "sea191-pe2-sale-attachment"
+        ],
+        "scope": "campus_locator",
+        "scope_class": "named_building_footprint_centroid",
+        "authority": "compiled_reference",
+        "derivation": "coordinate_transform",
+        "method": "Calculate the area centroid of OpenStreetMap way 262514310 version 3 in WGS 84 / UTM zone 47N and transform it to WGS 84 longitude and latitude.",
+        "precision": "Representative point on the published campus property at Lot 17001, Medan Bayan Lepas.",
+        "identity_review": "Open DC gives Lot 17001, Medan Bayan Lepas as the PE2 address. The seller identifies that lot in the sale to Open DC PE2 Asset. The mapped industrial building bears the same lot, street, city and postcode under the former industrial occupant’s name.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "OpenStreetMap publishes no measured positional error for this building. Its historical outline identifies the campus address."
+      },
+      "distinctness_review": "No PE2 or Lot 17001 campus alias matches a canonical project, site, historical identity or imported source record. Open DC lists PE1 separately at Menara Suntech. The nearest published site is Google Data Center, Elmina Business Park, 266.9 km away.",
+      "successor_review": "The November 13, 18 and 24 operator publications describe colocation customers, first-phase commitments and energised power respectively. The 100 MW target is a phased campus plan. These updates identify no additional completed project or opening date."
+    },
+    {
+      "physical_site_stable_key": "curated:uniserve-van-2-369-terminal-vancouver",
+      "project_stable_key": "curated:uniserve-van-2-369-terminal-vancouver:initial-buildout",
+      "site_name": "Uniserve VAN-2, Vancouver",
+      "name": "Uniserve VAN-2, Vancouver — initial buildout",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "completed",
+        "as_of": "2026-09-28",
+        "source_id": "ca191-van2-completion",
+        "summary": "Uniserve’s September 28 management report confirms that construction of the initial facility at 369 Terminal Avenue was complete. Its October disclosures give differing timetables for commercial launch and initial operating capacity."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -123.09460147065045,
+            49.27225868752188
+          ]
+        },
+        "source_id": "ca191-van2-address",
+        "identity_source_ids": [
+          "ca191-van2-property",
+          "ca191-van2-lease"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "City_of_Vancouver_primary_property_address_point",
+        "precision": "Municipal parcel-display point for the host property. The lease covers a portion of its commercial space.",
+        "identity_review": "The project release and executed lease summary both identify 369 Terminal Avenue. The municipal address register returns a single record for that address.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The City of Vancouver publishes no numerical accuracy for this individual parcel-display point."
+      },
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Uniserve Communications Corporation",
+          "source_id": "ca191-van2-property",
+          "relationship_scope": "intended"
+        }
+      ],
+      "context_source_ids": [
+        "ca191-van2-launch"
+      ],
+      "distinctness_review": "The municipal register distinguishes 369 Terminal Avenue from the separately addressed parcel at 333 Terminal Avenue. The nearest existing atlas property is Cologix VAN4 Data Centre, Vancouver (175 West Cordova Street), 1620 metres away.",
+      "successor_review": "Uniserve’s filing distinguishes VAN-2 from its existing Vancouver facility and from a possible future expansion. This record covers the initial buildout of the leased premises at 369 Terminal Avenue."
+    },
+    {
+      "physical_site_stable_key": "curated:uniserve-333-terminal-vancouver",
+      "project_stable_key": "curated:uniserve-333-terminal-vancouver:existing-operations",
+      "site_name": "Uniserve, 333 Terminal Avenue, Vancouver",
+      "name": "Uniserve, 333 Terminal Avenue, Vancouver — existing colocation operations",
+      "country": "Canada",
+      "country_iso_a2": "CA",
+      "status": {
+        "value": "operational",
+        "as_of": "2026-10-30",
+        "source_id": "ca191-van2-launch",
+        "summary": "In its October 30 filing, Uniserve describes operating its established Vancouver data center separately from VAN-2. The property’s leasing agent identifies the established colocation facility at 333 Terminal Avenue."
+      },
+      "locator": {
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -123.09570709162959,
+            49.27244487701413
+          ]
+        },
+        "source_id": "ca191-van1-address",
+        "identity_source_ids": [
+          "ca191-van1-host",
+          "ca191-van2-launch"
+        ],
+        "scope": "reviewed_site_locator",
+        "scope_class": "government_address_point",
+        "authority": "official_source",
+        "derivation": "direct_geometry",
+        "method": "City_of_Vancouver_primary_property_address_point",
+        "precision": "Municipal civic address point for the host property. The data center occupies part of the commercial building.",
+        "identity_review": "The agent’s building-specific brochure expressly identifies Uniserve’s colocation facility at 333 Terminal Avenue. The issuer reports a continuing facility lease with 333 Terminal Holdings Ltd. and distinguishes the existing building from its VAN-2 project.",
+        "horizontal_uncertainty_metres": null,
+        "uncertainty_reason": "The city publishes no numerical accuracy for this individual parcel-display point."
+      },
+      "roles": [
+        {
+          "role": "operator",
+          "party": "Uniserve Communications Corporation",
+          "source_id": "ca191-van2-launch",
+          "relationship_scope": "current"
+        }
+      ],
+      "distinctness_review": "The existing colocation site has a separate registered property address and a different municipal parcel from VAN-2 at 369 Terminal Avenue. The nearest baseline facility is Cologix VAN4 Data Centre, Vancouver (175 West Cordova Street), 1554 metres away.",
+      "successor_review": "The operator distinguishes the earlier Vancouver data center and its later VAN-2 buildout. The leasing agent identifies the existing site inside 333 Terminal Avenue."
+    }
+  ],
+  "operating_model_updates": [
+    {
+      "project_stable_key": "curated:datrix-lim1-manuel-olguin-surco:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "pe191-lim1-spec",
+      "identity_review": "The operator’s LIM1 specification expressly describes commercial colocation at this property. The independently audited TÜV certificate also names colocation in the site-specific service scope."
+    },
+    {
+      "project_stable_key": "curated:open-dc-pe2-bayan-lepas:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "sea191-pe2-colocation",
+      "identity_review": "Open DC expressly discusses the clients of its PE2 colocation service in its November 13 publication about the site."
+    },
+    {
+      "project_stable_key": "curated:uniserve-van-2-369-terminal-vancouver:initial-buildout",
+      "operating_model": "colocation",
+      "source_id": "ca191-van2-property",
+      "identity_review": "Uniserve explicitly names commercial colocation among the services planned at VAN-2, at the same civic address as the reported completed buildout."
+    },
+    {
+      "project_stable_key": "curated:uniserve-333-terminal-vancouver:existing-operations",
+      "operating_model": "colocation",
+      "source_id": "ca191-van1-host",
+      "identity_review": "The 333 Terminal Avenue leasing brochure identifies Uniserve as providing colocation and data center services in this specific building. The company reports operation of its existing Vancouver data center."
+    },
+    {
+      "project_stable_key": "curated:meta-henrico-data-center-campus:existing-operations",
+      "source_id": "meta191-henrico-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Henrico data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-altoona-data-center-campus:existing-operations",
+      "source_id": "meta191-altoona-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Altoona data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-sarpy-data-center-campus:existing-operations",
+      "source_id": "meta191-sarpy-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Sarpy data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-prineville-data-center-campus:existing-operations",
+      "source_id": "meta191-prineville-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Prineville data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-los-lunas-data-center-messenger-loop:existing-operations",
+      "source_id": "meta191-los-lunas-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Los Lunas data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-huntsville-north-huntsville-industrial-park:existing-operations",
+      "source_id": "meta191-huntsville-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Huntsville data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:meta-kansas-city",
+      "source_id": "meta191-kansas-city-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Kansas City data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-forest-city-social-circle-campus:existing-operations",
+      "source_id": "meta191-forest-city-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Forest City data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-fort-worth-data-center:existing-campus",
+      "source_id": "meta191-fort-worth-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Meta records breaking ground on its Fort Worth data center and identifies the facility as infrastructure for its own products. This classification covers the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-odense-data-center-campus:existing-operations",
+      "source_id": "meta191-odense-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Facebook describes constructing the first phase at Odense, bringing it online and starting its own campus expansion. The model applies to the existing operating campus."
+    },
+    {
+      "project_stable_key": "curated:meta-clonee-data-center-campus:existing-operations",
+      "source_id": "meta191-clonee-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Facebook identifies Clonee as its own construction project for delivering its apps and services. The existing project links to Meta’s operating campus fact sheet."
+    },
+    {
+      "project_stable_key": "curated:meta-lulea-porson-campus:existing-operations",
+      "source_id": "meta191-luleå-model",
+      "operating_model": "hyperscale_self_build",
+      "identity_review": "Facebook identifies Luleå among the facilities its data center teams managed through construction and commissioning. Meta identifies the same Luleå campus as serving its own technologies in the linked operating fact sheet."
+    },
+    {
+      "project_stable_key": "curated:raxio-ao1-cacuaco-luanda:operating-facility",
+      "operating_model": "colocation",
+      "source_id": "extra191-raxio-ao1-model",
+      "identity_review": "The operator names AO1 in the physical site’s key facts and lists colocation in the same section. The original facility page is already linked to this project."
+    },
+    {
+      "project_stable_key": "curated:raxio-drc1-kinshasa-limete:operating-facility",
+      "operating_model": "colocation",
+      "source_id": "extra191-raxio-drc1-model",
+      "identity_review": "The operator names DRC1 in the physical site’s key facts and lists colocation in the same section. The original facility page is already linked to this project."
+    },
+    {
+      "project_stable_key": "curated:raxio-mz1-beluluane-matola:operating-facility",
+      "operating_model": "colocation",
+      "source_id": "extra191-raxio-mz1-model",
+      "identity_review": "The operator names MZ1 in the physical site’s key facts and lists colocation in the same section. The original facility page is already linked to this project."
+    },
+    {
+      "project_stable_key": "curated:raxio-ug1-namanve:operating-facility",
+      "operating_model": "colocation",
+      "source_id": "extra191-raxio-ug1-model",
+      "identity_review": "The operator names UG1 in the physical site’s key facts and lists colocation in the same section. The original facility page is already linked to this project."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:meta-temple-texas",
+      "operating_model": "hyperscale_self_build",
+      "source_id": "mex191-meta-temple-self-build",
+      "identity_review": "Meta reports that it broke ground on its Temple data center and that the facility was serving traffic for its own technologies in July 2026."
+    },
+    {
+      "project_stable_key": "imported:semiconductor-atlas:meta-kuna-idaho",
+      "operating_model": "hyperscale_self_build",
+      "source_id": "mex191-meta-kuna-self-build",
+      "identity_review": "Meta reports that it broke ground on its Kuna data center in 2022 and owned and operated the facility for its technologies when it came online in September 2026."
+    },
+    {
+      "project_stable_key": "curated:meta-eagle-mountain-data-center:existing-campus",
+      "operating_model": "hyperscale_self_build",
+      "source_id": "mex191-meta-eagle-mountain-self-build",
+      "identity_review": "Meta identifies Eagle Mountain as a data center it broke ground on in 2018 and uses to deliver its own technologies. The model applies to the operating campus."
+    }
+  ],
+  "annual_water_observations": [
+    {
+      "project_stable_key": "curated:meta-altoona-data-center-campus:existing-operations",
+      "source_id": "facebook191-water-2014",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 18000,
+      "base": 18000,
+      "high": 18000,
+      "as_of_date": "2014-12-31",
+      "target_date": null,
+      "notes": "Altoona, IA, calendar 2014. Facebook reports water withdrawal of 18,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-forest-city-social-circle-campus:existing-operations",
+      "source_id": "facebook191-water-2014",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 112000,
+      "base": 112000,
+      "high": 112000,
+      "as_of_date": "2014-12-31",
+      "target_date": null,
+      "notes": "Forest City, NC, calendar 2014. Facebook reports water withdrawal of 112,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-lulea-porson-campus:existing-operations",
+      "source_id": "facebook191-water-2014",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 13000,
+      "base": 13000,
+      "high": 13000,
+      "as_of_date": "2014-12-31",
+      "target_date": null,
+      "notes": "Luleå, Sweden, calendar 2014. Facebook reports water withdrawal of 13,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-prineville-data-center-campus:existing-operations",
+      "source_id": "facebook191-water-2014",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 40000,
+      "base": 40000,
+      "high": 40000,
+      "as_of_date": "2014-12-31",
+      "target_date": null,
+      "notes": "Prineville, OR, calendar 2014. Facebook reports water withdrawal of 40,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-altoona-data-center-campus:existing-operations",
+      "source_id": "facebook191-water-2015",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 44000,
+      "base": 44000,
+      "high": 44000,
+      "as_of_date": "2015-12-31",
+      "target_date": null,
+      "notes": "Altoona, IA, calendar 2015. Facebook reports water withdrawal of 44,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-forest-city-social-circle-campus:existing-operations",
+      "source_id": "facebook191-water-2015",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 99000,
+      "base": 99000,
+      "high": 99000,
+      "as_of_date": "2015-12-31",
+      "target_date": null,
+      "notes": "Forest City, NC, calendar 2015. Facebook reports water withdrawal of 99,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-lulea-porson-campus:existing-operations",
+      "source_id": "facebook191-water-2015",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 30000,
+      "base": 30000,
+      "high": 30000,
+      "as_of_date": "2015-12-31",
+      "target_date": null,
+      "notes": "Luleå, Sweden, calendar 2015. Facebook reports water withdrawal of 30,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-prineville-data-center-campus:existing-operations",
+      "source_id": "facebook191-water-2015",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 70000,
+      "base": 70000,
+      "high": 70000,
+      "as_of_date": "2015-12-31",
+      "target_date": null,
+      "notes": "Prineville, OR, calendar 2015. Facebook reports water withdrawal of 70,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-altoona-data-center-campus:existing-operations",
+      "source_id": "facebook191-water-2016",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 87000,
+      "base": 87000,
+      "high": 87000,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Altoona, IA, calendar 2016. Facebook reports water withdrawal of 87,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-forest-city-social-circle-campus:existing-operations",
+      "source_id": "facebook191-water-2016",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 123000,
+      "base": 123000,
+      "high": 123000,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Forest City, NC, calendar 2016. Facebook reports water withdrawal of 123,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-fort-worth-data-center:existing-campus",
+      "source_id": "facebook191-water-2016",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 14000,
+      "base": 14000,
+      "high": 14000,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Fort Worth, TX, calendar 2016. Facebook reports water withdrawal of 14,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-lulea-porson-campus:existing-operations",
+      "source_id": "facebook191-water-2016",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 32000,
+      "base": 32000,
+      "high": 32000,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Luleå, Sweden, calendar 2016. Facebook reports water withdrawal of 32,000 m³."
+    },
+    {
+      "project_stable_key": "curated:meta-prineville-data-center-campus:existing-operations",
+      "source_id": "facebook191-water-2016",
+      "metric": "annual_water_withdrawal_m3",
+      "stage": "measured",
+      "method": "reported",
+      "confidence": 0.99,
+      "unit": "m³/year",
+      "low": 70000,
+      "base": 70000,
+      "high": 70000,
+      "as_of_date": "2016-12-31",
+      "target_date": null,
+      "notes": "Prineville, OR, calendar 2016. Facebook reports water withdrawal of 70,000 m³."
+    }
+  ]
+}
